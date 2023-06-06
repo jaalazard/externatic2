@@ -1,13 +1,7 @@
-.navbar-brand {
-    margin-left: $spacing-nav;
-    margin-right: $spacing-nav;
-}
+
 
 .nav-link {
- --bs-nav-link-color : $primary;
- color: var(--bs-nav-link-color);
- margin-right: $spacing-nav;
- margin-left: $spacing-nav;
+color: $primary;
 }
 
 .profil-nav {
@@ -28,7 +22,7 @@
 nav {
     font-family: $font-family-base;
     font-weight: bold;
-    font-size: 20px;
+    font-size: $font-size-nav;
     color: $primary;
 }
 
