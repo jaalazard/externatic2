@@ -1,15 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} | Accueil{% endblock %}
+{% block title %}
+	{{ parent() }}
+	| Accueil
+{% endblock %}
 
 {% block body %}
-    <div class="pink-stripe">
-        <h1 class="text-primary">
-            
-        </h1>
+	<div class="pink-stripe">
+		<h1 class="text-dark fw-bold text-uppercase d-flex justify-content-center my-5">
+			<span class="text-primary fw-bold">Externatic&nbsp;</span>
+			avec vous de A à Z
+		</h1>
+		<div class="d-flex justify-content-center">
+			<button type="button" class="btn btn-primary btn-lg fw-bold text-uppercase mb-5 px-5 rounded-0">candidat</button>
+			<button type="button" class="btn btn-secondary btn-lg fw-bold text-uppercase mb-5 px-5 rounded-0">entreprise</button>
+		</div>
+		<div class="container-xl d-flex flex-column flex-md-row align-items-center align-items-md-start">
+			<div class="flex-column">
+				<h2 class="h3 text-dark fw-400 fs-2 text-uppercase  mx-5 my-5">Les cabinets de recrutement se limitent souvent au CV.</br>
+				<span class="text-primary fw-400">pas nous.</span>
+			</h2>
+			<div class="d-flex justify-content-center align-items-stretch w-50 flex-column">
 
-{% endblock %}
+				<button type="button" class="btn btn-primary btn-lg fw-bold text-uppercase mx-5 my-4 px-5 rounded-0">candidat</button>
 
-{% block footer %}
-{% include 'components/_footer.html.twig' %}
-{% endblock %}
+				<button type="button" class="btn btn-primary btn-lg fw-bold text-uppercase mx-5 my-4 px-5 rounded-0">nos offres</button>
+
+			</div>
+		</div>
+		<img class="logo-nav img-fluid my-5 w-50" src=" {{ asset('build/images/candidat-home.png') }} " alt="Image accueil">
+	</div>
+	<div class="container-xl">
+		<h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-5 my-5">
+			<span class="text-primary fw-400">Externatic</span>,</br>
+		plus qu’un cabinet de recrutement informatique
+	</h2>
+	<div class="mx-5 d-flex justify-content-center align-items-center">
+		<p class="mx-5 my-5 fs-5">
+			<span class="fw-bold">Trouver le job idéal,</span></br>
+	c’est avant tout commencer par s’entourer des
+	personnes qui pourront vous comprendre.</p>
+<video poster="{{asset('build/images/video-externatic.jpeg')}}" controls class="w-50 mx-5 my-5" src=" {{asset('build/images/video.mp4') }} " id="video"></video>
+</div>
+<h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-5 my-5">
+La réussite de notre cabinet de recrutement</br> 
+informatique <span class="text-secondary">?</span>
+</h2></div>
+{% endblock %}{% block footer %}{% include 'components/_footer.html.twig' %}{% endblock %}
