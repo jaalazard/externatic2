@@ -10,18 +10,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/consultants')]
+#[Route('/consultant')]
 class ConsultantsController extends AbstractController
 {
-    #[Route('/', name: 'app_consultants_index', methods: ['GET'])]
+    #[Route('/', name: 'app_consultant_index', methods: ['GET'])]
     public function index(ConsultantRepository $consultantRepository): Response
     {
-        return $this->render('consultants/index.html.twig', [
-            'consultants' => $consultantRepository->findAll(),
+        return $this->render('consultant/index.html.twig', [
+            'consultant' => $consultantRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_consultants_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_consultant_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ConsultantRepository $consultantRepository): Response
     {
         $consultant = new Consultant();
@@ -31,24 +31,24 @@ class ConsultantsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $consultantRepository->save($consultant, true);
 
-            return $this->redirectToRoute('app_consultants_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_consultant_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('consultants/new.html.twig', [
+        return $this->renderForm('consultant/new.html.twig', [
             'consultant' => $consultant,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_consultants_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_consultant_show', methods: ['GET'])]
     public function show(Consultant $consultant): Response
     {
-        return $this->render('consultants/show.html.twig', [
+        return $this->render('consultant/show.html.twig', [
             'consultant' => $consultant,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_consultants_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_consultant_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Consultant $consultant, ConsultantRepository $consultantRepository): Response
     {
         $form = $this->createForm(ConsultantType::class, $consultant);
@@ -57,10 +57,10 @@ class ConsultantsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $consultantRepository->save($consultant, true);
 
-            return $this->redirectToRoute('app_consultants_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_consultant_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('consultants/edit.html.twig', [
+        return $this->renderForm('consultant/edit.html.twig', [
             'consultant' => $consultant,
             'form' => $form,
         ]);
