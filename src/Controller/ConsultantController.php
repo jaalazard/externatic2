@@ -17,7 +17,9 @@ class ConsultantController extends AbstractController
     public function index(ConsultantRepository $consultantRepository): Response
     {
         return $this->render('consultant/index.html.twig', [
-            'consultant' => $consultantRepository->findAll(),
+            'consultant' => $consultantRepository->findBy([], [
+                'firstname' => 'ASC',
+            ]),
         ]);
     }
 
