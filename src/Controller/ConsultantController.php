@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/consultant')]
-class ConsultantsController extends AbstractController
+class ConsultantController extends AbstractController
 {
     #[Route('/', name: 'app_consultant_index', methods: ['GET'])]
     public function index(ConsultantRepository $consultantRepository): Response
