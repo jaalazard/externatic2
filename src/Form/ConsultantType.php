@@ -29,7 +29,7 @@ class ConsultantType extends AbstractType
             ->add('location', TextType::class, [
                 'label' => 'Secteur',
                 'attr' => [
-                    'placeholder' => 'Entrer le secteur'
+                'placeholder' => 'Entrer le secteur'
                 ]
             ])
             ->add('specialization', TextType::class, [

@@ -48,7 +48,7 @@ class Consultant
     #[Assert\Length(max: 255)]
     private ?string $poster = null;
 
-    #[Vich\UploadableField(mapping: 'consultant_file', fileNameProperty: 'consultant')]
+    #[Vich\UploadableField(mapping: 'consultant_file', fileNameProperty: 'poster')]
     #[Assert\File(
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
