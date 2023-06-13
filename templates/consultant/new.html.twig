@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Consultant{% endblock %}
+{% block title %}Nouveau || Consultant
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Consultant</h1>
+    <section class="container">
+        <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Créer un nouveau consultant</h1>
 
-    {{ include('consultant/_form.html.twig') }}
+        {{ include('consultant/_form.html.twig') }}
 
-    <a href="{{ path('app_consultant_index') }}">back to list</a>
+        <a class="btn btn-secondary btn fw-bold text-uppercase my-3  mx-2 rounded-0" href="{{ path('app_consultant_index') }}">
+        {% include 'icons/return.svg'%}
+            Revenir à la liste</a>
+    </section>
 {% endblock %}
+
