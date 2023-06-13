@@ -1,4 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <img src="{{ vich_uploader_asset(consultant) }}" alt="">
+    <button class="btn btn-primary btn fw-bold text-uppercase  mx-2 my-5 rounded-0">
+     {% include 'icons/save.svg' %}{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
