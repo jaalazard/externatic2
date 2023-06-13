@@ -44,7 +44,7 @@ class ConsultantType extends AbstractType
                     'placeholder' => 'Entrer le lien Linkedin'
                 ]
             ])
-            ->add('posterFile', VichFileType::class, [
+            ->add('consultantFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true,
                 'download_uri' => true,

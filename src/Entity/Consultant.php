@@ -48,12 +48,12 @@ class Consultant
     #[Assert\Length(max: 255)]
     private ?string $poster = null;
 
-    #[Vich\UploadableField(mapping: 'poster_file', fileNameProperty: 'poster')]
+    #[Vich\UploadableField(mapping: 'consultant_file', fileNameProperty: 'consultant')]
     #[Assert\File(
         maxSize: '1M',
         mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
     )]
-    private ?File $posterFile = null;
+    private ?File $consultantFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
@@ -123,9 +123,9 @@ class Consultant
         return $this;
     }
 
-    public function setPosterFile(File $image = null): Consultant
+    public function setConsultantFile(File $image = null): Consultant
     {
-        $this->posterFile = $image;
+        $this->consultantFile = $image;
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
@@ -133,9 +133,9 @@ class Consultant
         return $this;
     }
 
-    public function getPosterFile(): ?File
+    public function getConsultantFile(): ?File
     {
-        return $this->posterFile;
+        return $this->consultantFile;
     }
 
 
