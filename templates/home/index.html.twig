@@ -108,15 +108,33 @@
 	        </div>
         </section>
 		<section class="container-xl">
-		<div class="">
-		<h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-md-5 mx-0 my-5">Qui sommes nous<span class="text-secondary"> ?</span></h2>
-			{% for consultant in consultants %}
-				<h1 class="h1 text-dark fw-bold fs-1 mx-md-5 mx-0 my-2"> {{ consultant.firstname }}
-				 <span class="h1 text-primary fw-bold fs-1 text-uppercase mx-0 my-5 "> {{ consultant.lastname }}</span></h1>
-				 <h2 class="text-dark fs-3 mx-md-5 mx-0 my-2"> Consultant {{ consultant.specialization }}</h2>
-				 <h2 class="h2 text-secondary fst-italic fs-3 mx-md-5 mx-0 my-2"> {{ consultant.location }}</h2>
-				 <img src=" {{ asset('build/images/linkedin-home.svg') }}" class="img-linkedin mx-md-5 mx-0 my-2" href="{{ consultant.linkedin }}">
-				{% endfor %}
+				<h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-md-5 mx-0 my-5">Qui sommes nous<span class="text-secondary"> ?</span></h2>
+				<div id="carouselConsultant" class="carousel slide">
+				{% for consultant in consultants %}
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselConsultant" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' : '' }}" aria-current="true" aria-label="Slide 1"></button>
+					</div>
+					{% endfor %}
+					<div class="carousel-inner">
+					{% for consultant in consultants %}
+						<div class="carousel-item {{ loop.first ? 'active' : '' }}">
+							<h1 class="h1 text-dark fw-bold fs-1 mx-md-5 mx-0 my-2"> {{ consultant.firstname }}
+				 			<span class="h1 text-primary fw-bold fs-1 text-uppercase mx-0 my-5 "> {{ consultant.lastname }}</span></h1>
+							<h2 class="text-dark fs-3 mx-md-5 mx-0 my-2"> Consultant {{ consultant.specialization }}</h2>
+							<h2 class="h2 text-secondary fst-italic fs-3 mx-md-5 mx-0 my-2"> {{ consultant.location }}</h2>
+							<img src=" {{ asset('build/images/linkedin-home.svg') }}" class="img-linkedin mx-md-5 mx-0 my-2">
+							<img src=" {{ consultant.poster }}" class="d-block w-50" alt="...">
+						</div>
+					{% endfor %}
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselConsultant" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselConsultant" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
 		</section>
     </main>
