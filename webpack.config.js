@@ -81,7 +81,9 @@ Encore
     // .autoProvidejQuery()
 
     // enables Sass/SCSS support
-    .enableSassLoader();
+    .enableSassLoader()
+    ;
+
 const fullConfig = Encore.getWebpackConfig();
 fullConfig.devServer = {
     headers: {
@@ -93,4 +95,5 @@ fullConfig.devServer = {
         paths: ['templates/**/*.html.twig']
     }
 };
+
 module.exports = fullConfig;
