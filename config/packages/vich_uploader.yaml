@@ -6,6 +6,6 @@ vich_uploader:
 
     mappings:
         consultant_file:
-            uri_prefix: /images/consultants
-            upload_destination: '%upload_directory%'
+            uri_prefix: /uploads/images/consultants
+            upload_destination: '%upload_directory%/images/consultants'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

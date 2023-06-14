@@ -68,8 +68,8 @@
 					<p class="mx-5 my-3 mb-5 fs-6">
 						<span class="fw-bold my-3">Notre proximité</span>
 						<br>L’expérience professionnelle est une chose. L’expérience de vie en est une autre. Alors nos consultants
-																																									prennent le temps de faire connaissance avec chaque personne, pour comprendre le contexte, le parcours,
-																																									les envies et les projets.</p>
+																																															prennent le temps de faire connaissance avec chaque personne, pour comprendre le contexte, le parcours,
+																																															les envies et les projets.</p>
 				</div>
 
 				<div class="col-md-4">
@@ -77,7 +77,7 @@
 					<p class="mx-5 my-3 fs-6 mb-5">
 						<span class="fw-bold my-3">Notre performance</span>
 						<br>Notre réseau est une force et nous y travaillons sans relâche.
-																																									Notre expérience nous permet d’identifier les vrais besoins d’une entreprise et de ceux qui la rejoignent.
+																																															Notre expérience nous permet d’identifier les vrais besoins d’une entreprise et de ceux qui la rejoignent.
 					</p>
 				</div>
 				<div class="col-md-4">
@@ -85,9 +85,9 @@
 					<p class="mx-5 my-3 fs-6 mb-5">
 						<span class="fw-bold my-3">Notre durabilité</span>
 						<br>Notre challenge est de trouver l’équipe qui fonctionnera ensemble de manière professionnelle et personnelle, pour aller 
-																																									jusqu’au bout d’un projet commun.
-																																									Notre responsabilité vis-à-vis des impacts de nos décisions et nos actions sur le long-terme correspondent également
-																																									à notre politique RSE.
+																																															jusqu’au bout d’un projet commun.
+																																															Notre responsabilité vis-à-vis des impacts de nos décisions et nos actions sur le long-terme correspondent également
+																																															à notre politique RSE.
 					</p>
 				</div>
 				<div class="col-md-4">
@@ -95,7 +95,7 @@
 					<p class="mx-5 my-3 fs-6 mb-5">
 						<span class="fw-bold my-3">Evénements</span>
 						<br>Nous serons présents au DevFest Lille 
-																																									26 Mai 2023 – Lille Grand Palais<br>
+																																															26 Mai 2023 – Lille Grand Palais<br>
 						<a href="" class="text-primary text-uppercase">Plus d’infos</a>
 					</p>
 				</div>
@@ -104,13 +104,11 @@
 					<p class="mx-5 mt-3 fs-6 mb-5">
 						<span class="fw-bold my-3">Salaires</span>
 						<br>Etude sur les rémunérations et évolutions 
-																																									du marché informatique<br>
+																																															du marché informatique<br>
 						<a href="" class="text-primary text-uppercase">Étude des salaires dans l’informatique</a>
 					</p>
 				</div>
 			</div>
-		</section>
-		<section class="container-xl">
 			<h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-md-5 mx-0 my-5">Qui sommes nous<span class="text-secondary">
 					?</span>
 			</h2>
@@ -121,9 +119,11 @@
 					{% endfor %}
 				</div>
 				<div class="carousel-inner">
-					<div class="d-flex">
+					<div class="d-flex my-5">
 						{% for consultant in consultants %}
-							<div class="carousel-item {{ loop.first ? 'active' : '' }}">
+							<div class="carousel-item w-75 m-auto {{ loop.first ? 'active' : '' }}">
+							<div class="row">
+							<div class="col">
 								<h1 class="h1 text-dark fw-bold fs-1 mx-md-5 mx-0 my-2">
 									{{ consultant.firstname }}
 									<span class="h1 text-primary fw-bold fs-1 text-uppercase mx-0 my-5 ">
@@ -135,7 +135,11 @@
 								<h2 class="h2 text-secondary fst-italic fs-3 mx-md-5 mx-0 my-2">
 									{{ consultant.location }}</h2>
 								<img src=" {{ asset('build/images/linkedin-home.svg') }}" class="img-linkedin mx-md-5 mx-0 my-2">
-								<img src=" {{ consultant.poster }}" class="d-block mx-md-5 mx-0 my-5 w-50" alt="...">
+								</div >
+								<div class="col">
+								<img src=" {{ consultant.poster ?? asset('build/images/placeholder-consultant.jpeg')}}" class="d-block mx-md-5 mx-0 my-0 w-50" alt="...">
+								</div>
+								</div>
 							</div>
 						{% endfor %}
 					</div>

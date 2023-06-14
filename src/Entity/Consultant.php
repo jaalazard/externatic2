@@ -144,7 +144,7 @@ class Consultant
         return $this->poster;
     }
 
-    public function setPoster(string $poster): self
+    public function setPoster(?string $poster): self
     {
         $this->poster = $poster;
         return $this;

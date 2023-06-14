@@ -32,8 +32,9 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addStyleEntry('jobOffer', './assets/styles/jobOffer.scss')
     .addStyleEntry('home', './assets/styles/home.scss')
-    .addStyleEntry('admin', './assets/styles/admin/_navbar-admin.scss')
+    .addStyleEntry('admin', './assets/styles/admin.scss')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -81,7 +82,9 @@ Encore
 // .autoProvidejQuery()
 
     // enables Sass/SCSS support
-    .enableSassLoader();
+    .enableSassLoader()
+;
+
 const fullConfig = Encore.getWebpackConfig();
 fullConfig.devServer = {
     headers: {
@@ -93,4 +96,5 @@ fullConfig.devServer = {
         paths: ['templates/**/*.html.twig']
     }
 };
+
 module.exports = fullConfig;
