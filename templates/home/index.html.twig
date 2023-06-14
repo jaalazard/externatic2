@@ -3,7 +3,6 @@
 {% block stylesheets %}
 	{{ parent()}}
 	{{ encore_entry_link_tags('home') }}
-	{{ encore_entry_link_tags('home-admin') }}
 {% endblock %}
 
 {% block title %}
@@ -122,7 +121,7 @@
 					{% endfor %}
 				</div>
 				<div class="carousel-inner">
-					<div class="d-flex justify-content-center">
+					<div class="d-flex">
 						{% for consultant in consultants %}
 							<div class="carousel-item {{ loop.first ? 'active' : '' }}">
 								<h1 class="h1 text-dark fw-bold fs-1 mx-md-5 mx-0 my-2">
@@ -141,12 +140,12 @@
 						{% endfor %}
 					</div>
 				</div>
-				<button class="carousel-control-prev bg-primary" type="button" data-bs-target="#carouselConsultant" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselConsultant" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon bg-primary rounded-1" aria-hidden="true"></span>
 					<span class="visually-hidden">Previous</span>
 				</button>
-				<button class="carousel-control-next bg-primary" type="button" data-bs-target="#carouselConsultant" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselConsultant" data-bs-slide="next">
+					<span class="carousel-control-next-icon bg-primary rounded-1" aria-hidden="true"></span>
 					<span class="visually-hidden">Next</span>
 				</button>
 			</div>
