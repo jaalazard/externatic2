@@ -1,0 +1,19 @@
+{% extends 'admin-template.html.twig' %}
+
+{% block title %}Modifier || Consultant{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Modifier un consultant</h1>
+
+        {{ include('consultant/_form.html.twig', {'button_label': 'Valider'}) }}
+
+        <a class="btn btn-secondary btn fw-bold text-uppercase  my-3 mx-2 rounded-0" href="{{ path('app_consultant_index') }}">
+            {% include 'icons/return.svg' %}
+            Retour à la liste</a>
+
+        {{ include('consultant/_delete_form.html.twig') }}
+    </section>
+    
+{% endblock %}

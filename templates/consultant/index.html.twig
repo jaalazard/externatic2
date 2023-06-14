@@ -1,0 +1,46 @@
+{% extends 'admin-template.html.twig' %}
+
+{% block title %}Index || Consultant
+{% endblock %}
+
+{% block body %}
+    <section class="container">
+        <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Les consultants</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Prénom</th>
+                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Nom</th>
+                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Secteur</th>
+                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Spécialisation</th>
+                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Linkedin</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consultant in consultant %}
+                    <tr>
+                        <td class="fs-5">{{ consultant.firstname }}</td>
+                        <td class="fs-5">{{ consultant.lastname }}</td>
+                        <td class="fs-5">{{ consultant.location }}</td>
+                        <td class="fs-5">{{ consultant.specialization }}</td>
+                        <td class="fs-5">{{ consultant.linkedin }}</td>
+                        <td>
+                            <a class="btn btn-primary btn fw-bold text-uppercase  mx-2 my-3 rounded-0" href="{{ path('app_consultant_edit', {'id': consultant.id}) }}">
+                            {% include 'icons/edit.svg' %}
+                                Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">Pas de consultant trouvé</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary btn fw-bold text-uppercase my-3 mx-2 rounded-0" href="{{ path('app_consultant_new') }}">
+        {% include 'icons/new.svg' %}
+            Nouveau</a>
+    </section>
+{% endblock %}

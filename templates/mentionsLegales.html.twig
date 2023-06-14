@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| Mentions légales
+{% endblock %}
+
+{% block body %}
+	<div class="pink-stripe container-fluid h4 ">
+		<h1 class="text-primary h1 mt-5">
+			Mentions Légales
+		</h1>
+
+		<p>Ce site est la propriété de :<br>
+			<span class="h5">EXTERNATIC</span><br>
+			1 Rue Racine<br>
+			44000 NANTES</p>
+			
+			<p>SIREN : 800 426 629</p>
+			
+			<p><span class="h5">Responsable de la rédaction :</span> Franck Gascard</p>
+			
+			<p><span class="h5">Conception et réalisation du site</span><br>
+			iLoofo<br>
+			Web & E-Commerce<br>
+			7 Boulevard Ampère – 44470 Carquefou</p>
+			
+			
+			<p class="mb-5"><span class="h5">Hébergement :</span><br>
+			OVH SAS<br>
+			2 rue Kellermann – 59100 Roubaix – France
+		</p>
+	<div>
+
+	{% endblock %}
+
+	{% block footer %}
+		{% include 'components/_footer.html.twig' %}
+	{% endblock %}
