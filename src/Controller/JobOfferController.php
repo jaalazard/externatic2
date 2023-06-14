@@ -15,10 +15,7 @@ class JobOfferController extends AbstractController
     {
         $jobOffers = $jobOfferRepository->findAll();
         return $this->render('jobOffer/index.html.twig', [
-            'jobOffers' => $jobOffers
+            'jobOffers' => $jobOffers,
         ]);
     }
 }
-#JobOfferRepositoy $jobOfferRepository
-#        $jobOffers = $jobOfferRepository->findAll();
-#            'jobOffers' => $jobOffers
