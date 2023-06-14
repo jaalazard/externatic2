@@ -23,6 +23,7 @@ class UserFixtures extends Fixture
         $candidate->setRoles(['ROLE_CANDIDATE']);
         $hashedPassword = $this->passwordHasher->hashPassword($candidate, 'candidatepassword');
         $candidate->setPassword($hashedPassword);
+        $this->addReference('user_candidate', $candidate);
         $manager->persist($candidate);
 
         $admin = new User();
@@ -30,6 +31,7 @@ class UserFixtures extends Fixture
         $admin->setRoles(['ROLE_ADMIN']);
         $hashedPassword = $this->passwordHasher->hashPassword($admin, 'adminpassword');
         $admin->setPassword($hashedPassword);
+        $this->addReference('user_candidate', $candidate);
         $manager->persist($admin);
 
         $manager->flush();
