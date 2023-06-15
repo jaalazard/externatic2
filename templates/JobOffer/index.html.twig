@@ -8,13 +8,13 @@
 {% block title %}Offres d'emploi
 {% endblock %}
 {% block body %}
-	<section class="container p-5 mt-4">
+	<section class="container-xl">
 		<h1 class="fw-bold text-dark text-uppercase my-5">Avec
 			<span class="text-primary">
-				externatic</span>, trouvez l’emploi qui vous correspond !</h1>
+				externatic</span>,<br> trouvez l’emploi qui vous correspond !</h1>
 		<h2 class="mb-4 text-dark">Trier les offres d'emplois</h2>
 
-		<div class="row g-5">
+		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
 				<div class="col-lg-6">
 					<div class="card bg-primary border-light shadow">
@@ -43,7 +43,7 @@
 							</div>
 							<div class="image position-relative">
 								<button type="button" class="btn col-btn-sm btn-primary position-absolute top-0 start-50 translate-middle d-grid col-8 mx-auto border-light">
-									<a class="text-light text-decoration-none fs-3 fw-bold" href="{{ path("joboffer_index", { id: jobOffer.id}) }}">INTÉRESSÉ ?</a>
+									<a class="text-light text-decoration-none fs-3 fw-bold" href="{{ path("jobOffer_index", { id: jobOffer.id}) }}">INTÉRESSÉ ?</a>
 								</button>
 								<img src={{ asset('build/images/jobOffercardfooter.jpg') }} class="d-flex justify-content-center object-fit-cover rounded w-100">
 							</div>
