@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
- {% block stylesheets %}
+{% block stylesheets %}
 	{{ parent()}}
-    {{ encore_entry_link_tags('home') }}
+	{{ encore_entry_link_tags('home') }}
 {% endblock %}
 
 {% block title %}
@@ -12,102 +12,65 @@
 
 {% block body %}
 	<header class="pink-stripe">
-	    <div class="container-xl">
-		        <h1 class="text-dark fw-bold text-uppercase d-flex justify-content-center my-5">
-			    <span class="text-primary fw-bold">Externatic&nbsp;</span>
-			    avec vous de A à Z
-		        </h1>
-		    <div class="d-flex justify-content-center">
-			    <a class="btn btn-primary btn-lg fw-bold text-uppercase mb-5 px-md-5 px-3 rounded-0" href="#">Candidat</a>
-			    <a class="btn btn-secondary btn-lg fw-bold text-uppercase mb-5 px-md-5 px-3 rounded-0" href="#">Entreprise</a>
-		    </div>
+		<div class="container-xl">
+			<h1 class="text-dark fw-bold text-uppercase d-flex justify-content-center my-5">
+				<span class="text-primary fw-bold">Externatic&nbsp;</span>
+				avec vous de A à Z
+			</h1>
+			<div class="d-flex justify-content-center">
+				<a class="btn btn-primary btn-lg fw-bold text-uppercase mb-5 px-md-5 px-3 rounded-0" href="#">Candidat</a>
+				<a class="btn btn-secondary btn-lg fw-bold text-uppercase mb-5 px-md-5 px-3 rounded-0" href="#">Entreprise</a>
+			</div>
 		</div>
 		<div class="container-xl d-flex flex-column flex-md-row align-items-center align-items-md-start">
-			    <div class="">
-				        <h2 class="h3 text-dark fw-400 fs-2 text-uppercase  mx-md-5 mx-0 my-5">Les cabinets de recrutement se limitent souvent au CV.</br>
-				        <span class="text-primary fw-400">pas nous.</span>
-			            </h2>
-			        <div class="d-flex align-items-stretch w-50 flex-column mx-md-0 mx-auto">
-				        <a class="btn btn-primary btn-lg fw-bold text-uppercase mx-md-5 mx-0 mb-5 rounded-0" href="#">Candidat</a>
-				        <a class="btn btn-primary btn-lg fw-bold text-uppercase mx-md-5 mx-0 mb-5 rounded-0" href="#">Nos offres</a>
-			        </div>
-		        </div>
-		    <img class="logo-nav img-fluid my-5 w-50" src=" {{ asset('build/images/candidat-home.png') }} " alt="Image accueil">
-	    </div>
-    </header>
-    <main class="">
-	    <section class="container-xl">
-		                <h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-md-5 mx-0 my-5">
-		                <span class="text-primary fw-400">Externatic</span>,<br>
-		                plus qu’un cabinet de recrutement informatique
-	                    </h2>
-	                <div class="mx-5 d-md-flex d-block justify-content-center align-items-center">
-		        <div class="row">
-			<div class="col">
-			    <p class="mx-md-5 mx-0 my-5 fs-5">
-			    <span class="fw-bold">Trouver le job idéal,</span>
-			    </br>
-	            c’est avant tout commencer par s’entourer des personnes qui pourront vous comprendre.
-	            </p>
-	                </div>
-	            </div>
-	            <div class="col-md-6">
-		            <video poster="{{asset('build/images/video-externatic.jpeg')}}" controls class=" w-100 mx-md-5 mx-0 my-5 rounded-4" src=" {{asset('build/images/video.mp4') }} " id="video"></video>
-	            </div>
-	        </div>
-	    </section>
-        <section class="container-xl">
-		        <h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-md-5 mx-0 my-5">
-		        La réussite de notre cabinet de recrutement</br>informatique<span class="text-secondary"> ?</span></h2>
-
-	        <div class="row">
-		        <div class="col-md-4">
-			        <img class="img-home img-fluid mt-5 mx-5" src=" {{ asset('build/images/proximitee.svg') }} " alt="Image proximité">
-			        <p class="mx-5 my-3 mb-5 fs-6">
-			        <span class="fw-bold my-3">Notre proximité</span>
-			        </br>L’expérience professionnelle est une chose. L’expérience de vie en est une autre. Alors nos consultants
+			<div class="">
+				<h2 class="h3 text-dark fw-400 fs-2 text-uppercase  mx-md-5 mx-0 my-5">Les cabinets de recrutement se limitent souvent au CV.</br>
+				<span class="text-primary fw-400">pas nous.</span>
+			</h2>
+			<div class="d-flex align-items-stretch w-50 flex-column mx-md-0 mx-auto">
+				<a class="btn btn-primary btn-lg fw-bold text-uppercase mx-md-5 mx-0 mb-5 rounded-0" href="#">Candidat</a>
+				<a class="btn btn-primary btn-lg fw-bold text-uppercase mx-md-5 mx-0 mb-5 rounded-0" href="#">Nos offres</a>
+			</div>
+		</div>
+		<img class="logo-nav img-fluid my-5 w-50" src=" {{ asset('build/images/candidat-home.png') }} " alt="Image accueil">
+	</div>
+</header>
+<main class="">
+	<section class="container-xl">
+		<h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-md-5 mx-0 my-5">
+			<span class="text-primary fw-400">Externatic</span>,<br>
+			plus qu’un cabinet de recrutement informatique
+		</h2>
+		<div class="mx-5 d-md-flex d-block justify-content-center align-items-center">
+			<div class="row">
+				<div class="col">
+					<p class="mx-md-5 mx-0 my-5 fs-5">
+						<span class="fw-bold">Trouver le job idéal,</span>
+					</p>
+				</br>
+				c’est avant tout commencer par s’entourer des personnes qui pourront vous comprendre.
+			</p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<video poster="{{asset('build/images/video-externatic.jpeg')}}" controls class=" w-100 mx-md-5 mx-0 my-5 rounded-4" src=" {{asset('build/images/video.mp4') }} " id="video"></video>
+	</div>
+</div></section><section class="container-xl">
+<h2 class="h2 text-dark fw-bold fs-2 text-uppercase  mx-md-5 mx-0 my-5">
+	La réussite de notre cabinet de recrutement</br>informatique<span class="text-secondary">
+	?</span></h2><div class="row">
+<div class="col-md-4">
+	<img class="img-home img-fluid mt-5 mx-5" src=" {{ asset('build/images/proximitee.svg') }} " alt="Image proximité">
+	<p class="mx-5 my-3 mb-5 fs-6">
+		<span class="fw-bold my-3">Notre proximité</span>
+	</p>
+</br>L’expérience professionnelle est une chose. L’expérience de vie en est une autre. Alors nos consultants
 					prennent le temps de faire connaissance avec chaque personne, pour comprendre le contexte, le parcours,
-					les envies et les projets.</p>
-		        </div>
-
-		        <div class="col-md-4">
-				    <img class="img-home img-fluid mt-5 mx-5" src=" {{ asset('build/images/performance.svg') }} " alt="Image performance">
-					<p class="mx-5 my-3 fs-6 mb-5"><span class="fw-bold my-3">Notre performance</span>
-					</br>Notre réseau est une force et nous y travaillons sans relâche.
-					Notre expérience nous permet d’identifier les vrais besoins d’une entreprise et de ceux qui la rejoignent.
-					</p>
-		        </div>
-		        <div class="col-md-4">
-				    <img class="img-home img-fluid mt-5 mx-5" src=" {{ asset('build/images/durabilitee.svg') }} " alt="Image durabilité">
-					<p class="mx-5 my-3 fs-6 mb-5">
-					<span class="fw-bold my-3">Notre durabilité</span>
-					</br>Notre challenge est de trouver l’équipe qui fonctionnera ensemble de manière professionnelle et personnelle, pour aller 
-					jusqu’au bout d’un projet commun.
-					Notre responsabilité vis-à-vis des impacts de nos décisions et nos actions sur le long-terme correspondent également
-					à notre politique RSE.
-                    </p>
-		        </div>
-		        <div class="col-md-4">
-			        <img class="img-home img-fluid mx-5 mt-md-0 mt-5" src=" {{ asset('build/images/evenement.svg') }} " alt="Image évenements">
-			        <p class="mx-5 my-3 fs-6 mb-5">
-				    <span class="fw-bold my-3">Evénements</span>
-			        </br>Nous serons présents au DevFest Lille 
-					26 Mai 2023 – Lille Grand Palais</br>
-					<a href="" class="text-primary text-uppercase">Plus d’infos</a>
-				    </p>
-		        </div>
-		        <div class="col-md-4">
-			        <img class="img-home img-fluid mx-5 mt-md-0 mt-5" src=" {{ asset('build/images/salaires.svg') }} " alt="Image salaires">
-			        <p class="mx-5 mt-3 fs-6 mb-5">
-				    <span class="fw-bold my-3">Salaires</span>
-					</br>Etude sur les rémunérations et évolutions 
-					du marché informatique</br>
-					<a href="" class="text-primary text-uppercase">Étude des salaires dans l’informatique</a>
-					</p>
-		        </div>
-
-	        </div>
-        </section>
-    </main>
-{% endblock %}
-{% block footer %}{% include 'components/_footer.html.twig' %}{% endblock %}
+					les envies et les projets.</p></div><div class="col-md-4"><img class="img-home img-fluid mt-5 mx-5" src=" {{ asset('build/images/performance.svg') }} " alt="Image performance"><p class="mx-5 my-3 fs-6 mb-5">
+<span class="fw-bold my-3">Notre performance</span></p></br>Notre réseau est une force et nous y travaillons sans relâche.
+						Notre expérience nous permet d’identifier les vrais besoins d’une entreprise et de ceux qui la rejoignent.</p></div><div class="col-md-4"><img class="img-home img-fluid mt-5 mx-5" src=" {{ asset('build/images/durabilitee.svg') }} " alt="Image durabilité"><p class="mx-5 my-3 fs-6 mb-5"><span class="fw-bold my-3">Notre durabilité</span></p></br>Notre challenge est de trouver l’équipe qui fonctionnera ensemble de manière professionnelle et personnelle, pour aller 
+						jusqu’au bout d’un projet commun.
+						Notre responsabilité vis-à-vis des impacts de nos décisions et nos actions sur le long-terme correspondent également
+						à notre politique RSE.</p></div><div class="col-md-4"><img class="img-home img-fluid mx-5 mt-md-0 mt-5" src=" {{ asset('build/images/evenement.svg') }} " alt="Image évenements"><p class="mx-5 my-3 fs-6 mb-5"><span class="fw-bold my-3">Evénements</span></p></br>Nous serons présents au DevFest Lille 
+						26 Mai 2023 – Lille Grand Palais</br><a href="" class="text-primary text-uppercase">Plus d’infos</a></p></div><div class="col-md-4"><img class="img-home img-fluid mx-5 mt-md-0 mt-5" src=" {{ asset('build/images/salaires.svg') }} " alt="Image salaires"><p class="mx-5 mt-3 fs-6 mb-5"><span class="fw-bold my-3">Salaires</span></p></br>Etude sur les rémunérations et évolutions 
+						du marché informatique</br> <a href="" class="text-primary text-uppercase">Étude des salaires dans l’informatique</a></p></div></div></section></main>{% endblock %}{% block footer %}{% include 'components/_footer.html.twig' %}{% endblock %}
