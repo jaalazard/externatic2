@@ -5,8 +5,8 @@
 
 {% block body %}
 	<section class="container">
-		<h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Éditez une offre d'emploi</h1>
-		{{ include('admin_jobOffer/_form.html.twig', {'button_label': 'Editez'}) }}
+		<h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Éditer une offre d'emploi</h1>
+		{{ include('admin_jobOffer/_form.html.twig', {'button_label': 'Éditez'}) }}
 		{{ include('admin_jobOffer/_delete_form.html.twig') }}
 
 		<a class="btn btn-secondary btn fw-bold text-uppercase  px-3 rounded-10" href="{{ path('admin_jobOffer_index') }}">

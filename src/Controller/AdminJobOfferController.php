@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/offres_d\'emlpoi', name: 'admin_jobOffer_')]
+#[Route('/admin/offres', name: 'admin_jobOffer_')]
 class AdminJobOfferController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
