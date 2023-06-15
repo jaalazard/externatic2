@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/jobOffer', name: 'admin_jobOffer_')]
+#[Route('/admin/offres', name: 'admin_jobOffer_')]
 class AdminJobOfferController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -21,7 +21,7 @@ class AdminJobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/nouveau', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, JobOfferRepository $jobOfferRepository): Response
     {
         $jobOffer = new JobOffer();
@@ -48,7 +48,7 @@ class AdminJobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/editer', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
         $form = $this->createForm(JobOfferType::class, $jobOffer);
