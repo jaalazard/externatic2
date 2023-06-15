@@ -4,41 +4,48 @@
 {% endblock %}
 
 {% block body %}
-	<h1>JobOffer index</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Job</th>
-				<th>City</th>
-				<th>Contract</th>
-				<th>Description</th>
-				<th>CreatedAt</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for jobOffer in jobOffers %}
+	<section class="container">
+		<h1 class="text-primary fw-bold text-uppercase d-flex my-5">Liste des offres d'emploi</h1>
+		<table class="table">
+			<thead>
 				<tr>
-					<td>{{ jobOffer.id }}</td>
-					<td>{{ jobOffer.job }}</td>
-					<td>{{ jobOffer.city }}</td>
-					<td>{{ jobOffer.contract }}</td>
-					<td>{{ jobOffer.description }}</td>
-					<td>{{ jobOffer.createdAt ? jobOffer.createdAt|date('Y-m-d') : '' }}</td>
-					<td>
-						<a href="{{ path('admin_jobOffer_show', {'id': jobOffer.id}) }}">show</a>
-						<a href="{{ path('admin_jobOffer_edit', {'id': jobOffer.id}) }}">edit</a>
-					</td>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Date d'ajout</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Job</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">City</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Contract</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="7">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for jobOffer in jobOffers %}
+					<tr>
+						<td class="fs-5 fw-medium">{{ jobOffer.createdAt ? jobOffer.createdAt|date('Y-m-d') : '' }}</td>
+						<td class="fs-5 fw-medium">{{ jobOffer.job }}</td>
+						<td class="fs-5 fw-medium">{{ jobOffer.city }}</td>
+						<td class="fs-5 fw-medium">{{ jobOffer.contract }}</td>
+						<td>
+							<a href="{{ path('admin_jobOffer_show', {'id': jobOffer.id}) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-eye-fill" viewbox="0 0 16 16">
+									<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+									<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+								</svg>
+							</a>
+						</td>
+						<td>
+							<a href="{{ path('admin_jobOffer_edit', {'id': jobOffer.id}) }}">
+								<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-pencil-fill" viewbox="0 0 16 16">
+									<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+								</svg>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="7">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-	<a href="{{ path('admin_jobOffer_new') }}">Ajouter une nouvelle offre</a>
+		<a class="btn btn-secondary btn fs-5 fw-bold text-uppercase my-3 px-3 rounded" href="{{ path('admin_jobOffer_new') }}">Ajouter une nouvelle offre</a>
+	</section>
 {% endblock %}
