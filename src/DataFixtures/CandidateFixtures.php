@@ -26,7 +26,6 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        // Tu retournes ici toutes les classes de fixtures dont CandidateFixtures dépend
         return [
             UserFixtures::class,
         ];
