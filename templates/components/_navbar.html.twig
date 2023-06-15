@@ -3,7 +3,7 @@
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<a class="navbar-brand mx-3" href="#">
+		<a class="navbar-brand mx-3" href="{{ path('app_home')}}">
 			<img class="logo-nav img-fluid d-none d-md-block" src=" {{ asset('build/images/logo.png') }} " alt="Logo Externatic">
 			<img class="logo-nav-res img-fluid d-md-none d-block" src=" {{ asset('build/images/logo-res.png') }} " alt="Logo Externatic">
 		</a>
@@ -17,7 +17,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link mx-3" href="#">OFFRE D'EMPLOI</a>
+					<a class="nav-link mx-3" href="{{ path('jobOffer_index') }}">OFFRE D'EMPLOI</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link mx-3" href="#">CANDIDAT</a>
@@ -28,8 +28,17 @@
 				<li class="nav-item">
 					<a class="nav-link mx-3" href="#">FICHES METIERS</a>
 				</li>
-			</ul>
-		</div>
-
+			</liclass="nav-item">
+			{% if app.user %}
+				<li class="nav-item">
+					<a class="nav-link mx-3 text-decoration-none text-secondary" href="{{ path('app_logout') }}">DÉCONNEXION</a>
+				</li>
+			{% else %}
+				<li class="nav-item">
+					<a class="nav-link mx-3 text-decoration-none text-secondary" href="{{ path('app_login') }}">CONNEXION</a>
+				</li>
+			{% endif %}
+		</ul>
 	</div>
-</nav>
+
+</div></nav>

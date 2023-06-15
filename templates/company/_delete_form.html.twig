@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('app_company_delete', {'id': company.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette entreprise ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ company.id) }}">
+    <button class="btn btn-primary btn fw-bold text-uppercase my-5 mx-2 rounded-0">
+    {% include 'icons/delete.svg' %}Supprimer</button>
+</form>

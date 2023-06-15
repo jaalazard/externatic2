@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index || Entreprises {% endblock %}
+
+{% block body %}
+<section class="container">
+        <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Les Entreprises</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Nom</th>
+                <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Lien</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td class="fs-5">{{ company.name }}</td>
+                <td class="fs-5">{{ company.link }}</td>
+                <td>
+                    <a class="btn btn-primary btn fw-bold text-uppercase  mx-2 my-3 rounded-0" href="{{ path('app_company_edit', {'id': company.id}) }}">
+                    {% include 'icons/edit.svg' %}
+                    Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune entreprise trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a <a class="btn btn-primary btn fw-bold text-uppercase my-3 mx-2 rounded-0" href="{{ path('app_company_new') }}">
+    {% include 'icons/new.svg' %}
+    Nouveau</a>
+    </section>
+{% endblock %}

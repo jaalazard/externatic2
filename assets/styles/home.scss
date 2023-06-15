@@ -1,3 +1,18 @@
+@import "variables";
+
 .img-home {
     width: 40px;
+}
+
+.img-linkedin {
+    width: 55px;
+}
+
+.img-company {
+    width: 130px;
+}
+
+.text-lastname {
+    text-shadow: 2px 0 $primary, -2px 0 $primary, 0 2px $primary, 0 -2px $primary,
+    1px 1px $primary, -1px -1px $primary, 1px -1px $primary, -1px 1px $primary;
 }

@@ -1,0 +1,15 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: attribute
+
+    mappings:
+        consultant_file:
+            uri_prefix: /uploads/images/consultants
+            upload_destination: '%upload_directory%/images/consultants'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        company_file:
+            uri_prefix: /uploads/images/company
+            upload_destination: '%upload_directory%/images/company'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

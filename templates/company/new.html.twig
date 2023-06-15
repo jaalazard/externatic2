@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle || Entreprise{% endblock %}
+
+{% block body %}
+<section class="container">
+    <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">
+    Créer une nouvelle entreprise</h1>
+
+    {{ include('company/_form.html.twig') }}
+
+    <a <a class="btn btn-secondary btn fw-bold text-uppercase my-3  mx-2 rounded-0" href="{{ path('app_company_index') }}">
+    {% include 'icons/return.svg'%}
+    Revenir à la liste</a>
+    </section>
+{% endblock %}
