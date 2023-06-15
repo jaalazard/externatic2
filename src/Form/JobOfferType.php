@@ -19,7 +19,7 @@ class JobOfferType extends AbstractType
             ->add('job', TextType::class, [
                 'label' => 'Métier',
                 'attr' => [
-                    'placeholder' => 'Sélectionner un métier pour cette offre',
+                    'placeholder' => 'Sélectionnez un métier pour cette offre',
                 ]
             ])
             ->add('city', TextType::class, [
@@ -30,7 +30,7 @@ class JobOfferType extends AbstractType
             ])
             ->add('contract', ChoiceType::class, [
                 'label' => 'Contrat',
-                'placeholder' => 'Sélectionner un contrat pour cette offre',
+                'placeholder' => 'Sélectionnez un contrat pour cette offre',
 
 
             ])
@@ -38,8 +38,6 @@ class JobOfferType extends AbstractType
                 'label' => 'Description',
                 'attr' => [
                     'placeholder' => 'Décrivez cette offre',
-                    'multiple' => true,
-                    'expanded' => false, // If you want checkboxes instead of a select dropdown
                 ]
             ])
             ->add('createdAt', DateType::class, [
