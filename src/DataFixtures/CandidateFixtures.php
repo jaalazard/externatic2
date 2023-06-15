@@ -14,12 +14,13 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create('fr_FR');
 
-        $candidate = new Candidate();
-        $candidate->setAddress($faker->address());
-        $candidate->setCity($faker->city());
-        $candidate->setUser($this->getReference('user_candidate'));
-        $manager->persist($candidate);
-
+        for ($i = 0; $i < UserFixtures::NB_USERS; $i++) {
+            $candidate = new Candidate();
+            $candidate->setAddress($faker->address());
+            $candidate->setCity($faker->city());
+            $candidate->setUser($this->getReference('user_' . $i));
+            $manager->persist($candidate);
+        }
 
         $manager->flush();
     }

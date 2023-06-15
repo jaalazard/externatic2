@@ -17,22 +17,23 @@
 {% endblock %}
 
 {% block body %}
-	<section class="container">
+    <h1 class="profil mr-4 my-5 py-5 text-center">
+		<span class="title text-primary fw-bold text-uppercase fs-2">Profil</span>
+		<span class="text-dark fw-bolder text-uppercase fs-2">de l'utilisateur</span>
+	</h1>
+	<section class="container-fluid">
 		<div class="row mt-5">
-			<div class="col-md-3 col-sm-6">
-				<img src={{ asset('build/images/profil.png') }} alt="Placeholder_cadidate" style="width:120px; height:100%">
+			<div class="col-sm-6 col-md-4">
+				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
             </div>
-            <div class="col-md-9 col-sm-6">
-				<h1 class="profil text-center">
-					<span class="title text-primary fw-bolder text-uppercase fs-5 ml-md-5 mx-0 my-5">Profil</span>
-					<span class="text-dark fw-bolder text-uppercase fs-5 md-5 mx-0 my-5">de l'utilisateur</span>
-				</h1>
-			</div>
-        </div>
-			<p class="mail mt-5">Votre email :
+            <div class="col-sm-6 col-md-8- text-center">
+                <p class="Name text-center fs-md-6">Prénom Nom </p>
+                <p class="mail text-center fs-md-6">Votre email :
 				<a href="email">{{ candidate.user.email }}</a>
 			</p>
-		</section>
+			</div>
+        </div>
+	</section>
 
 
 	{% endblock %}
