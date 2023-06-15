@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JobOffer index
+{% endblock %}
+
+{% block body %}
+	<h1>JobOffer index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Job</th>
+				<th>City</th>
+				<th>Contract</th>
+				<th>Description</th>
+				<th>CreatedAt</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for jobOffer in jobOffers %}
+				<tr>
+					<td>{{ jobOffer.id }}</td>
+					<td>{{ jobOffer.job }}</td>
+					<td>{{ jobOffer.city }}</td>
+					<td>{{ jobOffer.contract }}</td>
+					<td>{{ jobOffer.description }}</td>
+					<td>{{ jobOffer.createdAt ? jobOffer.createdAt|date('Y-m-d') : '' }}</td>
+					<td>
+						<a href="{{ path('admin_jobOffer_show', {'id': jobOffer.id}) }}">show</a>
+						<a href="{{ path('admin_jobOffer_edit', {'id': jobOffer.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="7">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_jobOffer_new') }}">Ajouter une nouvelle offre</a>
+{% endblock %}
