@@ -16,11 +16,9 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'consultants' => $consultantRepository->findBy([], [
-                'firstname' => 'ASC',
-            ]),
+                'firstname' => 'ASC']),
             'companies' => $companyRepository->findBy([], [
-                'name' => 'ASC',
-            ])
+                'name' => 'ASC'], 10)
         ]);
     }
 
