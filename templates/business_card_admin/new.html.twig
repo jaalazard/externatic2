@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New BusinessCard{% endblock %}
+
+{% block body %}
+    <h1>Create new BusinessCard</h1>
+
+    {{ include('business_card/_form.html.twig') }}
+
+    <a href="{{ path('app_business_card_index') }}">back to list</a>
+{% endblock %}
