@@ -17,7 +17,9 @@ class BusinessCardController extends AbstractController
     public function index(BusinessRepository $businessRepository): Response
     {
         return $this->render('business-card/index.html.twig', [
-            'business_cards' => $businessRepository->findAll(),
+            'business_cards' => $businessRepository->findBy([], [
+                'name' => 'ASC',
+            ]),
         ]);
     }
 
