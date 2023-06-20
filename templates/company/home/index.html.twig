@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block title %}
+	{{ parent() }}
+	|| Entreprise
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<h1 class="text-dark fw-bold text-uppercase mx-5 my-5">
+			<span class="text-secondary">Vous cherchez un expert dans l'it ?</span>
+			<br>
+			Faites appel au cabinet de recrutement spécialisé dans l'informatique.</h1>
+
+
+		<h2 class="text-w fw-bold text-uppercase mx-5 my-5">Ce que l'on vous apporte</h2>
+
+		<div class="row my-md-5 my-2 g-0 g-md-4">
+
+			<div class="col-md-5 my-md-5 bg-secondary">
+				<h2 class="h3 text-white fw-bold my-5 fs-3 text-uppercase mx-5">Recrutement
+					<br>
+					informatique au succès</h2>
+				<p class="text-white fs-6 mx-5 my-5">Notre cabinet de recrutement fonctionne sur un modèle au succès. Nous donnerons le meilleur
+																																																	         de nous même pour trouver le profil correspondant à vos critères de recherche.<br>
+					Pas d’engagement ni d’acompte à verser avant même de travailler ensemble.<br>
+					Pas de clause d’exclusivité, soyez libre de continuer à utiliser vos outils de recrutements habituels.
+				</p>
+			</div>
+
+			<div class="col-md-7 my-md-5">
+				<img src="{{ asset('build/images/recrutement.png')}}" class="w-100 h-100 mx-0 border mb-5 border-secondary">
+			</div>
+
+
+			<div class="col-md-7 my-md-5">
+				<img src="{{ asset('build/images/optimiser.png')}}" class="w-100 h-100 mx-0 mt-5 mt-md-0 border border-secondary">
+			</div>
+
+			<div class="col-md-5 my-md-5 mb-5 bg-secondary">
+				<h2 class="h3 text-white fw-bold mt-5 fs-3 text-uppercase mx-5">Optimisez vos
+					<br>
+					recrutements it</h2>
+				<p class="text-white fs-6 mx-5 my-5">
+					Un mauvais recrutement peut coûter cher à une entreprise !<br><br>
+					Vous ne disposez pas des compétences techniques, 
+																																								                ni du temps nécessaire pour qualifier les candidats recherchés dans votre équipe IT. En choisissant de faire 
+																																								                appel à notre cabinet de recrutement expert en informatique, gagnez du temps pour consacrer toute votre énergie à vos activités.
+				</p>
+			</div>
+
+
+			<div class="col-md-5 my-md-5 bg-secondary">
+				<h2 class="h3 text-white fw-bold mt-5 fs-3 text-uppercase mx-5">Accédez à un réseau de
+																																			candidat exclusif</h2>
+				<p class="text-white fs-6 mx-5 my-5">En vous faisant accompagner par notre cabinet, vous bénéficiez d’un accès privilégié à notre réseau de candidats.<br><br>
+					Notre valeur ajoutée sera de vous transmettre des candidatures issues d’une base de candidats cachés.<br><br>
+					Des profils souvent discrets sur les réseaux classiques de recrutement (réseaux sociaux, jobboards, CVthéque…).</p>
+			</div>
+
+			<div class="col-md-7 my-md-5 mb-5">
+				<img src="{{ asset('build/images/acceder.png')}}" class="w-100 h-100 mx-0 border border-secondary">
+			</div>
+
+
+			<div class="col-md-7 my-md-5">
+				<img src="{{ asset('build/images/methode.png')}}" class="w-100 h-100 mx-0 border border-secondary">
+			</div>
+
+			<div class="col-md-5 my-md-5 mb-5 bg-secondary">
+				<h2 class="h3 text-white fw-bold mt-5 fs-3 text-uppercase mx-5">La méthode Externatic, 
+																									10 ans de recrutement IT</h2>
+				<p class="text-white fs-6 mx-5 my-5">
+					Notre méthode de recrutement innovante s’appuie sur une gamme d’outils variés et une connaissance du marché.
+															                     Nous sommes toujours en veille sur les outils de sourcing et d’approche directe pour vous apporter les meilleurs
+															                     talents.
+																				Parce que notre méthode de recrutement ne s’arrête pas aux outils en ligne, notre force est aussi dans les 
+															                    relations humaines. Nous sommes partenaires d’événements (meetups tech, DevFest…) et d’écoles du monde de l’IT.
+				</p>
+			</div>
+
+
+			<div class="col-md-5 my-md-5 bg-secondary">
+				<h2 class="h3 text-white fw-bold mt-5 fs-3 text-uppercase mx-5">Comment fonctionne notre cabinet ?</h2>
+
+				<p class="text-white fs-6 mx-5  my-5">Pour vous accompagner au mieux dans vos recrutements, nous avons mis en place
+										                un processus en 5 étapes clés :<br>
+					1. Premier échange pour avoir un maximum d’informations sur votre entreprise, son fonctionnement, son activité, ses valeurs…<br>
+					2. Recueil et analyse de votre besoin en recrutement. Profil idéal : formation, expérience, salaire, soft skills, hard skills, mad skills,
+										 compétences techniques…<br>
+					3. Activation de notre méthode Externatic pour vous trouver les meilleurs profils IT correspondant à vos critères.<br></p>
+			</div>
+
+			<div class="col-md-7 my-md-5 mb-5">
+				<img src="{{ asset('build/images/fonctionnement.png')}}" class="w-100 h-100 mx-0 border border-secondary">
+			</div>
+		</div>
+
+        <h2 class="text-w fw-bold text-uppercase mx-5 my-5">Nos ressources sont humains</h2>
+
+        <p class="text-black fs-5 mx-5 fw-bold my-5">Nos consultants experts et passionnés du monde de la tech conaissent et comprennent les candidats<br>
+        <span class="text-secondary">comme aucun algorithme ne peut le faire</span></p>
+
+        <h2 class="text-w fw-bold text-uppercase mx-5 my-5">Vous vous lancez ?</h2>
+        
+
+	</section>
+{% endblock %}
+
+{% block footer %}
+	{% include 'components/_footer.html.twig' %}
+{% endblock %}
