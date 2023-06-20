@@ -24,17 +24,21 @@ class CandidateController extends AbstractController
     }
 
     #[Route('candidat/{id}/formation', name: 'app_candidate_edit')]
-    public function newFormation(Request $request, FormationRepository $formationRepository, Candidate $candidate): Response
-    {
+    public function newFormation(
+        Request $request,
+        FormationRepository $formationRepository,
+        Candidate $candidate
+    ): Response {
         $formation = new Formation();
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $formationRepository->save($formation, true);
-            return $this->render('candidate/show.html.twig',
-            [ 
-                'candidate' => $candidate,]);
-    }
+            return $this->render(
+                'candidate/show.html.twig',
+                ['candidate' => $candidate,]
+            );
+        }
         return $this->render('candidate/edit.html.twig', [
             'form' => $form,
         ]);

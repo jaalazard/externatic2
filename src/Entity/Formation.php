@@ -17,11 +17,11 @@ class Formation
 
     #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
-    private ?string $etablissement = null;
+    private ?string $establishment = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
-    private ?string $diplome = null;
+    private ?string $diploma = null;
 
     #[Assert\NotBlank]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -39,26 +39,26 @@ class Formation
         return $this->id;
     }
 
-    public function getEtablissement(): ?string
+    public function getEstablishment(): ?string
     {
-        return $this->etablissement;
+        return $this->establishment;
     }
 
-    public function setEtablissement(string $etablissement): self
+    public function setEstablishment(string $establishment): self
     {
-        $this->etablissement = $etablissement;
+        $this->establishment = $establishment;
 
         return $this;
     }
 
-    public function getDiplome(): ?string
+    public function getDiploma(): ?string
     {
-        return $this->diplome;
+        return $this->diploma;
     }
 
-    public function setDiplome(string $diplome): self
+    public function setDiploma(string $diploma): self
     {
-        $this->diplome = $diplome;
+        $this->diploma = $diploma;
 
         return $this;
     }

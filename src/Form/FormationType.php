@@ -32,7 +32,7 @@ class FormationType extends AbstractType
             ->add('start', DateType::class, [
                 'label' => 'Date d\'entrée en formation',
                 'attr' => [
-                   'class' => 'border-primary',
+                    'class' => 'border-primary',
                 ],
                 'years' => range(2033, 1953)
             ])
@@ -40,17 +40,16 @@ class FormationType extends AbstractType
                 'label' => 'Date de sortie de formation',
                 'attr' => [
                     'class' => 'border-primary',
-                 ],
-                'years' => range(2033,1953)
+                ],
+                'years' => range(2033, 1953)
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [
                     'class' => 'border-primary', 'form-control', 'input-lg',
                     'placeholder' => 'Si vous le souhaitez, ajoutez une courte description de la formation',
-                 ],
+                ],
             ]);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
