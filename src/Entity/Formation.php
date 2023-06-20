@@ -16,10 +16,12 @@ class Formation
     private ?int $id = null;
 
     #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     #[ORM\Column(length: 255)]
     private ?string $establishment = null;
 
     #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     #[ORM\Column(length: 255)]
     private ?string $diploma = null;
 
@@ -28,6 +30,7 @@ class Formation
     private ?\DateTimeInterface $start = null;
 
     #[Assert\NotBlank]
+    #[Assert\GreaterThan(propertyPath:'start')]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $end = null;
 

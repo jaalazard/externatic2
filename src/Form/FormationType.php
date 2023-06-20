@@ -15,14 +15,14 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('etablissement', TextType::class, [
+            ->add('establishment', TextType::class, [
                 'label' => 'Établissement',
                 'attr' => [
                     'placeholder' => 'Nom de l\'établissement',
                     'class' => 'border-primary',
                 ]
             ])
-            ->add('diplome', TextType::class, [
+            ->add('diploma', TextType::class, [
                 'label' => 'Diplôme',
                 'attr' => [
                     'placeholder' => 'Intitulé du diplôme',
