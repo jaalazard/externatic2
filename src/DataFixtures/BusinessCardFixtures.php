@@ -5,8 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\BusinessCard;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class BusinessCardFixtures extends Fixture
+class BusinessCardFixtures extends Fixture implements DependentFixtureInterface
 {
     public const JOBS = [
         [
@@ -73,5 +74,12 @@ class BusinessCardFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+          BusinessCardCategoryFixtures::class,
+        ];
     }
 }
