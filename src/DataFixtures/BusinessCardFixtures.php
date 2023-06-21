@@ -76,11 +76,16 @@ class BusinessCardFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
 
-        foreach (self::JOBS as $jobs) {
+        $i = 0;
+
+        foreach (self::JOBS as $key => $jobs) {
             $businessCard = new BusinessCard();
             $businessCard->setName($jobs['name']);
             $businessCard->setLink($jobs['link']);
+            $businessCard->setCategory($this->getReference($jobs['category']));
             $manager->persist($businessCard);
+            $this->addReference('businesscard_' . $i, $businessCard);
+            $i++;
         }
 
         $manager->flush();
