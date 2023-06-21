@@ -17,10 +17,18 @@ class UserFixtures extends Fixture
         $this->passwordHasher = $passwordHasher;
     }
 
-    public const NB_USERS = 100;
+    public const NB_USERS = 10;
 
     public function load(ObjectManager $manager): void
     {
+
+        $candidate = new User();
+        $candidate->setEmail('candidate@example.com');
+        $candidate->setRoles(['ROLE_CANDIDATE']);
+        $hashedPassword = $this->passwordHasher->hashPassword($candidate, 'candidatepassword');
+        $candidate->setPassword($hashedPassword);
+        $this->addReference('user_', $candidate);
+        $manager->persist($candidate);
 
         $faker = Factory::create('fr_FR');
 
