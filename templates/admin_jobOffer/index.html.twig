@@ -1,44 +1,42 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin-template.html.twig' %}
 
 {% block title %}JobOffer index
 {% endblock %}
 
 {% block body %}
-	<h1>JobOffer index</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Job</th>
-				<th>City</th>
-				<th>Contract</th>
-				<th>Description</th>
-				<th>CreatedAt</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for jobOffer in jobOffers %}
+	<section class="container">
+		<h1 class="text-primary fw-bold text-uppercase d-flex my-5">Liste des offres d'emploi</h1>
+		<table class="table">
+			<thead>
 				<tr>
-					<td>{{ jobOffer.id }}</td>
-					<td>{{ jobOffer.job }}</td>
-					<td>{{ jobOffer.city }}</td>
-					<td>{{ jobOffer.contract }}</td>
-					<td>{{ jobOffer.description }}</td>
-					<td>{{ jobOffer.createdAt ? jobOffer.createdAt|date('Y-m-d') : '' }}</td>
-					<td>
-						<a href="{{ path('admin_jobOffer_show', {'id': jobOffer.id}) }}">show</a>
-						<a href="{{ path('admin_jobOffer_edit', {'id': jobOffer.id}) }}">edit</a>
-					</td>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Date d'ajout</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Job</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">City</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Contract</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="7">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-
-	<a href="{{ path('admin_jobOffer_new') }}">Ajouter une nouvelle offre</a>
-{% endblock %}
+			</thead>
+			<tbody>
+				{% for jobOffer in jobOffers %}
+					<tr>
+						<td class="fs-5 fw-medium">{{ jobOffer.createdAt ? jobOffer.createdAt|date('Y-m-d') : '' }}</td>
+						<td class="fs-5 fw-medium">{{ jobOffer.job }}</td>
+						<td class="fs-5 fw-medium">{{ jobOffer.city }}</td>
+						<td class="fs-5 fw-medium">{{ jobOffer.contract }}</td>
+						<td>
+							<a href="{{ path('admin_jobOffer_show', {'id': jobOffer.id}) }}">
+								{% include 'icons/view.svg' %}</td>
+						</td>
+						<td>
+							<a href="{{ path('admin_jobOffer_edit', {'id': jobOffer.id}) }}">
+								{% include 'icons/edit.svg' %}</td>
+						</td>
+					</tr>
+				</a>
+			</tbody>
+		</td>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="7">Aucun résultat trouvé</td>
+	</tr>
+{% endfor %}</tbody></table><a class="btn btn-secondary btn fs-5 fw-bold text-uppercase my-3 px-3 rounded" href="{{ path('admin_jobOffer_new') }}">Ajouter une nouvelle offre</a></section>{% endblock %}

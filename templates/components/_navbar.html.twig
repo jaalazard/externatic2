@@ -26,19 +26,19 @@
 					<a class="nav-link mx-3" href="#">ENTREPRISE</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link mx-3" href="#">FICHES METIERS</a>
-				</li class="nav-item">
-				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link mx-3 text-decoration-none text-secondary" href="{{ path('app_logout') }}">DÉCONNEXION</a>
-					</li>
-				{% else %}
-					<li class="nav-item">
-						<a class="nav-link mx-3 text-decoration-none text-secondary" href="{{ path('app_login') }}">CONNEXION</a>
-					</li>
-				{% endif %}
-			</ul>
-		</div>
-
+					<a class="nav-link mx-3" href="{{ path('business-card_index')}}">FICHES METIERS</a>
+				</li>
+			</liclass="nav-item">
+			{% if app.user %}
+				<li class="nav-item">
+					<a class="nav-link mx-3 text-decoration-none text-secondary" href="{{ path('app_logout') }}">DÉCONNEXION</a>
+				</li>
+			{% else %}
+				<li class="nav-item">
+					<a class="nav-link mx-3 text-decoration-none text-secondary" href="{{ path('app_login') }}">CONNEXION</a>
+				</li>
+			{% endif %}
+		</ul>
 	</div>
-</nav>
+
+</div></nav>
