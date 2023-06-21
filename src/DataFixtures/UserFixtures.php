@@ -22,6 +22,14 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
+        $candidate = new User();
+        $candidate->setEmail('candidate@example.com');
+        $candidate->setRoles(['ROLE_CANDIDATE']);
+        $hashedPassword = $this->passwordHasher->hashPassword($candidate, 'candidatepassword');
+        $candidate->setPassword($hashedPassword);
+        $this->addReference('user_', $candidate);
+        $manager->persist($candidate);
+
         $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < self::NB_USERS; $i++) {
