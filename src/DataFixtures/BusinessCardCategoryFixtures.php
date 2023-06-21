@@ -10,34 +10,30 @@ class BusinessCardCategoryFixtures extends Fixture
 {
     public const CATEGORY = [
         [
-            'name' => 'Technologies',
+            'name' => 'Technologies', 'code' => 'tech'
         ],
-
         [
-            'name' => 'Management / Marketing',
+            'name' => 'Management / Marketing', 'code' => 'mana'
         ],
-
         [
-            'name' => 'Data'
+            'name' => 'Data', 'code' => 'data'
         ],
-
         [
-            'name' => 'Ressources humaines',
+            'name' => 'Ressouces humaines', 'code' => 'rh'
         ],
-
         [
-            'name' => 'Cybersécurité'
-        ]
+            'name' => 'Cybersécurité', 'code' => 'cyber'
+        ],
     ];
 
     public function load(ObjectManager $manager): void
     {
 
-        foreach (self::CATEGORY as $key => $categories) {
+        foreach (self::CATEGORY as $category) {
             $businessCardCategory = new BusinessCardCategory();
-            $businessCardCategory -> setName($categories['name']);
+            $businessCardCategory -> setName($category['name']);
             $manager->persist($businessCardCategory);
-            $this->addReference('category' . $key, $businessCardCategory);
+            $this->addReference('category_' . $category['code'], $businessCardCategory);
         }
 
         $manager->flush();

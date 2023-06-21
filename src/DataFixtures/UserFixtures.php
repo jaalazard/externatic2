@@ -17,7 +17,7 @@ class UserFixtures extends Fixture
         $this->passwordHasher = $passwordHasher;
     }
 
-    public const NB_USERS = 100;
+    public const NB_USERS = 10;
 
     public function load(ObjectManager $manager): void
     {

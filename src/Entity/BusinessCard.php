@@ -19,8 +19,9 @@ class BusinessCard
     #[ORM\Column(length: 255)]
     private ?string $link = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
+    #[ORM\ManyToOne(inversedBy: 'businessCards')]
+    private ?BusinessCardCategory $category = null;
+
 
     public function getId(): ?int
     {
@@ -51,12 +52,12 @@ class BusinessCard
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?BusinessCardCategory
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): static
+    public function setCategory(?BusinessCardCategory $category): static
     {
         $this->category = $category;
 

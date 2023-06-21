@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\BusinessCardCategoryRepository;
 use App\Repository\BusinessRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,10 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class BusinessCardController extends AbstractController
 {
     #[Route('/', name: '_index', methods: ['GET'])]
-    public function index(BusinessRepository $businessRepository): Response
+    public function index(BusinessCardCategoryRepository $businessCategory): Response
     {
         return $this->render('business-card/index.html.twig', [
-            'business_cards' => $businessRepository->findBy([], [
+            'categories' => $businessCategory->findBy([], [
                 'name' => 'ASC',
             ]),
         ]);
