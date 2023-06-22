@@ -1,10 +1,9 @@
-{% extends 'admin-template.html.twig' %}
+{% extends 'base-admin.html.twig' %}
 
 {% block title %}Index || Consultant
 {% endblock %}
 
 {% block body %}
-    <section class="container">
         <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Les consultants</h1>
 
         <table class="table">
@@ -42,5 +41,4 @@
         <a class="btn btn-primary btn fw-bold text-uppercase my-3 mx-2 rounded-0" href="{{ path('app_consultant_new') }}">
         {% include 'icons/new.svg' %}
             Nouveau</a>
-    </section>
 {% endblock %}
