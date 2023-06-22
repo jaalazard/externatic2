@@ -19,6 +19,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
             $candidate->setAddress($faker->address());
             $candidate->setCity($faker->city());
             $candidate->setUser($this->getReference('user_' . $i));
+            $candidate->setcvitae('');
             $manager->persist($candidate);
         }
 
