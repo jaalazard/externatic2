@@ -154,7 +154,7 @@
 
 		<div class="d-flex justify-content-center mb-5">
 			<div class="row">
-				<div class="col-8 my-5">
+				<div class="col-md-8 col-12 my-md-5 my-0">
 					<div class="accordion mt-5" id="accordionPanelsStayOpenExample">
 						<div class="accordion-item bg-transparent">
 							<h2 class="accordion-header">
@@ -195,7 +195,8 @@
 							</h2>
 							<div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
 								<div class="accordion-body m-4 p-4 bg-transparent border border-dark rounded-2 ">
-									Une ESN propose des missions en assistance technique ou au forfait pour des entreprises. Vous restez salarié de l’ESN. Chez Externatic, nous sommes un cabinet de recrutement et nous ne proposons que des postes en CDI directement chez des startup / éditeur de logiciel / DSI / etc. Pas en ESN. Ainsi, vous serez salarié de l’entreprise accompagnée et non d’Externatic.
+								Externatic vous accompagne de A à Z avec son suivi accompagnement du personnel, des consultants ... Nous vous suivons du départ du processus de votre recrutement, dès l'inscription chez nous,
+								jusqu'à la signature de votre contrat. Effectivement, si votre mission se finit, vous pouvez directement nous recontacter et c'est avec grand plaisir que nous vous accompagnerons jusqu'à votre prochain poste !
 								</div>
 							</div>
 						</div>
@@ -207,18 +208,20 @@
 							</h2>
 							<div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
 								<div class="accordion-body m-4 p-4 bg-transparent border border-dark rounded-2 ">
-									L’entretien se passe en visio ou de visu dans nos locaux ou ailleurs (nos consultants peuvent se déplacer assez facilement pour faciliter la prise de rdv). Au cours de l’échange, nos consultants se présentent à vous, et vous leur parlez de votre parcours et surtout de vos aspirations professionnelles. Les consultants sont là pour vous aider et vous accompagner dans votre démarche de recherche d’emploi : ils sont là pour vous présenter les jobs qui répondent le mieux à vos critères de recherche.
+								Nous intervenons sur les recrutements de tous les métiers de la tech, informatiques en proposant toutes sortes de postes.
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			
-			<div class="col-4">
-				<img src={{ asset('build/images/FAQ.png') }} class="d-md-flex d-none justify-content-center w-100 mx-5">
+			<div class="col-md-4 col-0">
+				<img src={{ asset('build/images/FAQ.png') }} class="d-md-flex d-none justify-content-center w-100">
 			</div>
 			</div>
 		</div>
 	</div>
-</section>{% endblock %}{% block footer %}
+</section>
+{% endblock %}
+{% block footer %}
 {% include 'components/_footer.html.twig' %}{% endblock %}
