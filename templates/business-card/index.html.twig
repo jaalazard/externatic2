@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	|| Fiches Métiers
+{% endblock %}
+
+{% block body %}
+	<section class="container-xl">
+		<h1 class="text-dark fw-bold text-uppercase my-5">
+			Nos fiches<span class="text-primary fw-bold">&nbsp; métiers</span>
+		</h1>
+
+		<p class="mx-0 my-5 fs-4 fw-bold">
+			Avec la
+			<a href="https://www.frenchtechbordeaux.com/" target="_blank" class="text-primary">French Tech Bordeaux</a>
+			,
+			<a href="https://www.pole-emploi.fr/accueil/" target="_blank" class="text-primary">Pôle Emploi</a>
+			et
+			<a href="https://www.apec.fr/" target="_blank" class="text-primary">l’APEC</a>
+			, on a réalisé un Guide des
+																																				 métiers ! Dedans, vous pouvez retrouver toutes nos fiches métiers, des interviews de professionnels et même notre baromètre !
+		</p>
+
+
+		<a class="btn btn-primary btn-lg fw-bold text-uppercase mb-5 px-md-5 px-3 rounded-0" href="https://www.frenchtechbordeaux.com/le-guide-des-metiers-en-start-up/" target="_blank">Je consulte de guide des métiers !</a>
+
+		<p class="my-5 fs-5">
+			« Les métiers de l’informatique » : cette expression souvent employée est très généraliste 
+																																		et vise en réalité plusieurs secteurs de recrutement ainsi qu’un panel très varié de métiers 
+																																		et de compétences. Lorsque l’on parle des métiers de l’informatique, il s’agit donc de désigner
+																																		 l’univers numérique au sens large. Aussi, on peut exercer un métier de l’informatique dans Aussi,
+																																		  on peut exercer un métier de l’informatique dans différents secteurs d’activités
+																																		   (e-commerce, e-santé, environnement, logistique, banque, assurance, économie circulaire…)
+																																		    sur différentes fonctions qui vont du technicien support en passant par le développement à la gestion de projet et le management.<br><br>
+			Mais alors, quels sont les différents métiers de l’informatique ? Quels sont ceux qui ont le plus d’avenir et vers lesquels s’orienter ?
+		</p>
+
+		<p class="fs-5 fw-bold">
+			Quels sont les métiers d’avenir en informatique ?
+		</p>
+		<p class="my-5 fs-5">
+			L’informatique est un secteur très dynamique sur le marché de l’emploi, il s’étend à de très nombreux domaines d’activité 
+																																et continue à progresser dans des secteurs comme la santé et l’éducation, mais aussi les transports, la finance ainsi que
+																																 la production industrielle. Les compétences informatiques prennent de plus en plus d’importance dans nos sociétés et les 
+																																métiers liés à la virtualisation des systèmes ou encore à l’informatique décisionnelle ont de beaux jours devant eux.<br><br>
+			Parmi les métiers les plus souvent cités dans le futur du secteur informatique, citons l’incontournable développeur (full stack,
+																																 front end, d’applications, etc.). Les ingénieurs logiciels figurent eux aussi en tête des profils les plus recherchés. Dans
+																																  les années à venir, on recherchera également de plus en plus d’ingénieurs big data. Parce que l’informatique touche d’année 
+																																  en année davantage de secteurs d’activité, la sécurité tend à jouer un rôle de plus en plus important 
+																																: ainsi l’ingénieur en cyber-sécurité occupera progressivement un poste indispensable pour garantir la sécurité des systèmes d’information.<br><br>
+			Citons également l’ingénieur en intelligence artificielle, l’architecte informatique ou encore l’ingénieur DevOps.
+		</p>
+		<p class="fs-5 fw-bold">
+			Comment choisir son futur métier dans l’informatique ?
+		</p>
+		<p class="mt-5 fs-5">Il existe plusieurs voies de formation pour accéder à un
+			<span class="fw-bold">
+				métier de l’informatique
+			</span>: bac +2, bac+5, BTS, DUT,
+										licences ou encore écoles. Les formations les plus courtes correspondent à des DUT ou à des BTS en informatique,
+						citons le BTS Systèmes numériques option informatique et réseau ou encore le BTS Services Informatiques et Organisations,
+																																   mais aussi le DUT Génie Électrique et Informatique industrielle. Il existe également des licences générales ou professionnelles
+																																 : la licence professionnelle 
+																																mène à une alternance, la licence générale mène à un master de type Méthodes Informatiques Appliquées à la Gestion des Entreprises.<br><br>
+
+			Les écoles d’ingénieurs sont les formations les plus recherchées pour accéder aux métiers de l’informatique. 
+																																Elles sont accessibles en post bac ou après une année de classe préparatoire et offrent la possibilité d’accéder à plus
+																																de 100 diplômes différents liés aux métiers de l’informatique et reconnus par la Commission des titres d’ingénieur.Si une
+																																reconversion professionnelle est tout à fait envisageable, accéder à un
+			<span class="fw-bold">métier de l’informatique</span>
+			demande souvent de repasser
+																																par la case formation. Aussi, n’hésitez pas à en parler autour de vous et à participer à des
+																																salons dédiés à ces métiers. Vous pouvez également consulter les différentes fiches métiers que nous mettons à disposition sur Externatic.
+		</p>
+		{% for category in categories %}
+			<div class="row my-md-5 my-2 g-md-4 g-0">
+				<div class="col-md-8 my-md-5 {{loop.index is even ? 'order-2'}}">
+					<img src="{{ asset('build/images/technology.jpg')}}" class="w-100 h-100 mx-0 border border-primary">
+				</div>
+				<div class="col-md-4 my-md-5 mb-5 bg-primary {{loop.index is even ? 'bg-secondary'}}">
+					<h2 class="h3 text-white fw-bold my-5 fs-2 text-uppercase mx-5">{{ category.name}}</h2>
+					{% for businessCard in category.businessCards %}
+						<p class="text-white fw-bold my-3 mx-5">{{ businessCard.name }}</p>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</section>{% endblock %}{% block footer %}
+{% include 'components/_footer.html.twig' %}{% endblock %}
