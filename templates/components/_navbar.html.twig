@@ -7,17 +7,12 @@
 			<img class="logo-nav img-fluid d-none d-md-block" src=" {{ asset('build/images/logo.png') }} " alt="Logo Externatic">
 			<img class="logo-nav-res img-fluid d-md-none d-block" src=" {{ asset('build/images/logo-res.png') }} " alt="Logo Externatic">
 		</a>
-
 		<div class="btn-group dropstart order-md-2">
 			<button type="button" class="btn" data-bs-toggle="dropdown" aria-expanded="false">
-
-
 				<a class="mx-3" href="#">
 					<img class="profil-nav" src=" {{ asset('build/images/profil.png') }} " alt="Section Profil">
 				</a>
-
 			</button>
-
 			<ul class="dropdown-menu">
 				{% if app.user %}
 					<li class="nav-item my-3">
@@ -28,7 +23,6 @@
 						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="#">Inscription</a>
 					</li>
 				{% endif %}
-
 				<li class="nav-item">
 					{% if app.user %}
 						<li class="nav-item my-3">
@@ -40,11 +34,8 @@
 						</li>
 					{% endif %}
 				</li>
-
 			</ul>
 		</div>
-
-
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -60,9 +51,6 @@
 					<a class="nav-link mx-3" href="{{ path('business-card_index')}}">FICHES METIERS</a>
 				</li>
 			</ul>
-
-
 		</div>
 	</div>
-
 </nav>
