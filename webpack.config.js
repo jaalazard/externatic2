@@ -35,6 +35,7 @@ Encore
     .addStyleEntry('jobOffer', './assets/styles/jobOffer.scss')
     .addStyleEntry('home', './assets/styles/home.scss')
     .addStyleEntry('admin', './assets/styles/admin.scss')
+    .addStyleEntry('pageCandidate', './assets/styles/pageCandidate.scss')
     .addStyleEntry('pageCompany', './assets/styles/pagecompany.scss')
     .addStyleEntry('login', './assets/styles/login.scss')
 
