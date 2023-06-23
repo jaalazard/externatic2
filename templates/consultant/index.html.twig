@@ -4,30 +4,31 @@
 {% endblock %}
 
 {% block body %}
-        <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Les consultants</h1>
+<section class="container">
+        <h1 class="text-primary fw-bold text-uppercase d-flex my-5">Les consultants</h1>
 
         <table class="table">
             <thead>
                 <tr>
-                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Prénom</th>
-                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Nom</th>
-                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Secteur</th>
-                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Spécialisation</th>
-                    <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Linkedin</th>
+                    <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Prénom</th>
+                    <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Nom</th>
+                    <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Secteur</th>
+                    <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Spécialisation</th>
+                    <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Linkedin</th>
                 </tr>
             </thead>
             <tbody>
                 {% for consultant in consultant %}
                     <tr>
-                        <td class="fs-5">{{ consultant.firstname }}</td>
-                        <td class="fs-5">{{ consultant.lastname }}</td>
-                        <td class="fs-5">{{ consultant.location }}</td>
-                        <td class="fs-5">{{ consultant.specialization }}</td>
-                        <td class="fs-5">{{ consultant.linkedin }}</td>
+                        <td class="fs-5 fw-medium">{{ consultant.firstname }}</td>
+                        <td class="fs-5 fw-medium">{{ consultant.lastname }}</td>
+                        <td class="fs-5 fw-medium">{{ consultant.location }}</td>
+                        <td class="fs-5 fw-medium">{{ consultant.specialization }}</td>
+                        <td class="fs-5 fw-medium">{{ consultant.linkedin }}</td>
                         <td>
-                            <a class="btn btn-primary btn fw-bold text-uppercase  mx-2 my-3 rounded-0" href="{{ path('app_consultant_edit', {'id': consultant.id}) }}">
+                            <a  href="{{ path('app_consultant_edit', {'id': consultant.id}) }}">
                             {% include 'icons/edit.svg' %}
-                                Modifier</a>
+                                </a>
                         </td>
                     </tr>
                 {% else %}
@@ -38,7 +39,7 @@
             </tbody>
         </table>
 
-        <a class="btn btn-primary btn fw-bold text-uppercase my-5 mx-2 rounded-0" href="{{ path('app_consultant_new') }}">
-        {% include 'icons/new.svg' %}
-            Nouveau</a>
+        <a class="btn btn-secondary btn fs-5 fw-bold text-uppercase my-3 px-3 rounded" href="{{ path('app_consultant_new') }}">
+            Ajouter un nouveau consultant</a>
+            </section>
 {% endblock %}
