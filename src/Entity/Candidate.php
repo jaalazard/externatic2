@@ -7,10 +7,11 @@ use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CandidateRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 #[Vich\Uploadable]
@@ -42,9 +43,17 @@ class Candidate
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidates')]
+    private Collection $jobOffers;
+
+    #[ORM\OneToOne(inversedBy: 'candidate', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    public function __construct()
+    {
+        $this->jobOffers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,19 +84,55 @@ class Candidate
         return $this;
     }
 
+    /**
+     * @return Collection<int, JobOffer>
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->jobOffers;
+    }
+
+    public function addToFavorites(JobOffer $jobOffer): static
+    {
+        if (!$this->jobOffers->contains($jobOffer)) {
+            $this->jobOffers->add($jobOffer);
+            $jobOffer->addCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFromFavorites(JobOffer $jobOffer): static
+    {
+        if ($this->jobOffers->removeElement($jobOffer)) {
+            $jobOffer->removeCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function isFavorite(JobOffer $jobOffer): bool
+    {
+        if (in_array($jobOffer, $this->getFavorites()->toArray())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(User $user): static
     {
         $this->user = $user;
 
         return $this;
     }
 
-    public function setcvitaeFile(?File $cvitae = null): Candidate
+    public function setCvitaeFile(?File $cvitae = null): Candidate
     {
         $this->cvitaeFile = $cvitae;
         if ($cvitae) {
@@ -96,17 +141,17 @@ class Candidate
         return $this;
     }
 
-    public function getcvitaeFile(): ?File
+    public function getCvitaeFile(): ?File
     {
         return $this->cvitaeFile;
     }
 
-    public function getcvitae(): ?string
+    public function getCvitae(): ?string
     {
         return $this->cvitae;
     }
 
-    public function setcvitae(?string $cvitae): self
+    public function setCvitae(?string $cvitae): self
     {
         $this->cvitae = $cvitae;
         return $this;

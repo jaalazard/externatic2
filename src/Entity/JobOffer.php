@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\JobOfferRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,9 +32,13 @@ class JobOffer
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
+    #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
+    private Collection $candidates;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
+        $this->candidates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,6 +102,30 @@ class JobOffer
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidate>
+     */
+    public function getCandidates(): Collection
+    {
+        return $this->candidates;
+    }
+
+    public function addCandidate(Candidate $candidate): static
+    {
+        if (!$this->candidates->contains($candidate)) {
+            $this->candidates->add($candidate);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidate(Candidate $candidate): static
+    {
+        $this->candidates->removeElement($candidate);
 
         return $this;
     }
