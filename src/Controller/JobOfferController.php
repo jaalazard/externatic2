@@ -26,8 +26,13 @@ class JobOfferController extends AbstractController
 
     #[IsGranted('ROLE_CANDIDATE')]
     #[Route('/{id}/favoris', name: 'favorites', methods: ['POST', 'GET'])]
-    public function addToFavorites(int $id, Request $request, JobOffer $jobOffer, CandidateRepository $candidateRepository, JobOfferRepository $jobOfferRepository): Response
-    {
+    public function addToFavorites(
+        int $id,
+        Request $request,
+        JobOffer $jobOffer,
+        CandidateRepository $candidateRepository,
+        JobOfferRepository $jobOfferRepository
+    ): Response {
         /** @var User */
         $user = $this->getUser();
         $candidate = $user->getCandidate();
