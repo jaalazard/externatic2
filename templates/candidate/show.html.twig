@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil de l'utilisateur
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% block navbar %}
+	{% include 'components/_navbar.html.twig'%}
+{% endblock %}
+
+{% block body %}
+    <h1 class="profil mr-4 my-5 py-5 text-center">
+		<span class="title text-primary fw-bold text-uppercase fs-2">Profil</span>
+		<span class="text-dark fw-bolder text-uppercase fs-2">de l'utilisateur</span>
+	</h1>
+	<section class="container-fluid">
+		<div class="row mt-5">
+			<div class="col-sm-6 col-md-4">
+				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
+            </div>
+            <div class="col-sm-6 col-md-8- text-center">
+                <p class="Name text-center fs-md-6">Prénom Nom </p>
+                <p class="mail text-center fs-md-6">Votre email :
+				<a href="email">{{ candidate.user.email }}</a>
+			</p>
+			</div>
+        </div>
+	</section>
+
+
+	{% endblock %}
