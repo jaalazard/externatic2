@@ -16,23 +16,41 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="profil mr-4 my-5 py-5 text-center">
+	<h1 class="profil mr-4 my-5 py-5 text-center">
 		<span class="title text-primary fw-bold text-uppercase fs-2">Profil</span>
 		<span class="text-dark fw-bolder text-uppercase fs-2">de l'utilisateur</span>
 	</h1>
-	<section class="container-fluid">
+
+
+	<section class="container-fluid px-5">
 		<div class="row mt-5">
-			<div class="col-sm-6 col-md-4">
+			<div class="col d-flex justify-content-center align-items-center">
 				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
-            </div>
-            <div class="col-sm-6 col-md-8- text-center">
-                <p class="Name text-center fs-md-6">Prénom Nom </p>
-                <p class="mail text-center fs-md-6">Votre email :
-				<a href="email">{{ candidate.user.email }}</a>
-			</p>
+				<h2 class="title mx-5 text-center text-primary fw-bold text-uppercase fs-2">NOM
+					<span class="text-secondary">PRÉNOM</h2>
+				</div>
 			</div>
-        </div>
-	</section>
 
+			<div class="col">
+				<h3 class="fs-md-6 mt-5">Informations personnelles</h3>
+				<h4>Ma date de naissance :
+				{{ candidate.birthday|date('d/m/Y') }}</h4>
+				<h4>Mon téléphone :
+					{{ candidate.phone }}</h4>
+				<h4>Mon adresse e-mail :
+					{{ candidate.user.email }}</h4>
+				<h4>Mon adresse :
+					{{ candidate.address }},
+					{{ candidate.city }}
+				</h4>
+				<h3 class="fs-md-6 mt-5">Expériences</h3>
+				<h3 class="fs-md-6 mt-5">Compétences</h3>
+				<h3 class="fs-md-6 mt-5">Formations</h3>
+				{% for formation in candidate.formations %}
+				<h4> {{ formation.establishment }} - {{ formation.establishment }} - {{ formation.start|date('d/m/Y') }} - {{ formation.end|date('d/m/Y') }} </h4>
+				{% endfor %}
 
+			</div>
+
+		</section>
 	{% endblock %}
