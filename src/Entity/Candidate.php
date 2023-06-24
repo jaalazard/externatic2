@@ -38,10 +38,18 @@ class Candidate
     #[ORM\ManyToMany(targetEntity: Formation::class, inversedBy: 'candidates')]
     private Collection $formations;
 
+    #[ORM\OneToMany(mappedBy: 'candidates', targetEntity: Experience::class)]
+    private Collection $experience;
+
+    #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'candidates')]
+    private Collection $skills;
+
     public function __construct()
     {
         $this->jobOffers = new ArrayCollection();
         $this->formations = new ArrayCollection();
+        $this->experience = new ArrayCollection();
+        $this->skills = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -165,6 +173,60 @@ class Candidate
     public function removeFormation(Formation $formation): static
     {
         $this->formations->removeElement($formation);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Experience>
+     */
+    public function getExperience(): Collection
+    {
+        return $this->experience;
+    }
+
+    public function addExperience(Experience $experience): static
+    {
+        if (!$this->experience->contains($experience)) {
+            $this->experience->add($experience);
+            $experience->setCandidates($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExperience(Experience $experience): static
+    {
+        if ($this->experience->removeElement($experience)) {
+            // set the owning side to null (unless already changed)
+            if ($experience->getCandidates() === $this) {
+                $experience->setCandidates(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Skill>
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    public function addSkill(Skill $skill): static
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skill $skill): static
+    {
+        $this->skills->removeElement($skill);
 
         return $this;
     }

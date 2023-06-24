@@ -26,8 +26,8 @@
 		<div class="row mt-5">
 			<div class="col d-flex justify-content-center align-items-center">
 				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
-				<h2 class="title mx-5 text-center text-primary fw-bold text-uppercase fs-2">NOM
-					<span class="text-secondary">PRÉNOM</h2>
+				<h2 class="title mx-5 text-center text-primary fw-bold text-uppercase fs-2">{{ candidate.user.lastname }}
+					<span class="text-secondary">{{ candidate.user.firstname }}</h2>
 				</div>
 			</div>
 
@@ -47,7 +47,7 @@
 				<h3 class="fs-md-6 mt-5">Compétences</h3>
 				<h3 class="fs-md-6 mt-5">Formations</h3>
 				{% for formation in candidate.formations %}
-				<h4> {{ formation.establishment }} - {{ formation.establishment }} - {{ formation.start|date('d/m/Y') }} - {{ formation.end|date('d/m/Y') }} </h4>
+				<h4> {{ formation.diploma }} - {{ formation.establishment }} - {{ formation.start|date('d/m/Y') }} - {{ formation.end|date('d/m/Y') }} </h4>
 				{% endfor %}
 
 			</div>

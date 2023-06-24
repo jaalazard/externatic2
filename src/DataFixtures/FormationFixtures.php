@@ -7,14 +7,14 @@ use Doctrine\Persistence\ObjectManager;
 use App\Entity\Formation;
 use DateTime;
 
-class FormationFixture extends Fixture
+class FormationFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
         $formation = new Formation();
         $formation->setEstablishment('Wild Code School');
         $formation->setDiploma('Développeur Web et web Mobile');
-        $formation->setStart(new dateTime('2023/02/28'));
+        $formation->setStart(new DateTime('2023/02/28'));
         $formation->setEnd(new DateTime('2023/07/28'));
         $this->addReference('formation_1', $formation);
         $manager->persist($formation);

@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Candidate;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\DataFixtures\UserFixtures;
+use App\DataFixtures\FormationFixtures;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -33,6 +35,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
         $candidate->setPhone($faker->phoneNumber());
         $candidate->setBirthday($faker->dateTime());
         $candidate->addFormation($this->getReference('formation_2'));
+        $candidate->addFormation($this->getReference('formation_1'));
         $this->addReference('candidate_' . 11, $candidate);
         $manager->persist($candidate);
 
@@ -44,6 +47,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserFixtures::class,
+            FormationFixtures::class,
         ];
     }
 }
