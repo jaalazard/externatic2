@@ -15,13 +15,15 @@ class ExperienceFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i < UserFixtures::NB_USERS; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $experience = new Experience();
             $experience->setJobTitle($faker->jobTitle());
             $experience->setCompany($faker->company());
             $experience->setStart($faker->dateTime());
             $experience->setEnd($faker->dateTime());
-            $experience->setCandidates($this->getReference('candidate_' . $i));
+            $experience->setCandidates($this->getReference(
+                'candidate_' . $faker->numberBetween(0, UserFixtures::NB_USERS)
+            ));
             $this->addReference('experience_' . $i, $experience);
             $manager->persist($experience);
         }

@@ -24,6 +24,12 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
             $candidate->setPhone($faker->phoneNumber());
             $candidate->setBirthday($faker->dateTime());
             $candidate->addFormation($this->getReference('formation_1'));
+            $candidate->addFormation($this->getReference('formation_2'));
+            $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
+            $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
+            $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
+            $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
+            $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
             $this->addReference('candidate_' . $i, $candidate);
             $manager->persist($candidate);
         }
@@ -31,12 +37,17 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
         $candidate = new Candidate();
         $candidate->setAddress('A la maison');
         $candidate->setCity('Orléans');
-        $candidate->setUser($this->getReference('user_' . 11));
+        $candidate->setUser($this->getReference('user_' . 10));
         $candidate->setPhone($faker->phoneNumber());
         $candidate->setBirthday($faker->dateTime());
         $candidate->addFormation($this->getReference('formation_2'));
         $candidate->addFormation($this->getReference('formation_1'));
-        $this->addReference('candidate_' . 11, $candidate);
+        $candidate->addSkill($this->getReference('skill_11'));
+        $candidate->addSkill($this->getReference('skill_10'));
+        $candidate->addSkill($this->getReference('skill_9'));
+        $candidate->addSkill($this->getReference('skill_8'));
+        $candidate->addSkill($this->getReference('skill_7'));
+        $this->addReference('candidate_' . 10, $candidate);
         $manager->persist($candidate);
 
 
@@ -48,6 +59,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
         return [
             UserFixtures::class,
             FormationFixtures::class,
+            SkillFixtures::class,
         ];
     }
 }

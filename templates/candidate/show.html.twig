@@ -32,7 +32,7 @@
 			</div>
 
 			<div class="col">
-				<h3 class="fs-md-6 mt-5">Informations personnelles</h3>
+				<h3 class="fs-md-6 mt-5">Informations personnelles <a href="{{ path('app_candidate_edit', {'id': candidate.id}) }}">{% include 'icons/edit.svg' %}</a></h3>
 				<h4>Ma date de naissance :
 				{{ candidate.birthday|date('d/m/Y') }}</h4>
 				<h4>Mon téléphone :
@@ -43,9 +43,15 @@
 					{{ candidate.address }},
 					{{ candidate.city }}
 				</h4>
-				<h3 class="fs-md-6 mt-5">Expériences</h3>
-				<h3 class="fs-md-6 mt-5">Compétences</h3>
-				<h3 class="fs-md-6 mt-5">Formations</h3>
+				<h3 class="fs-md-6 mt-5">Expériences <a href="{{ path('app_candidate_edit', {'id': candidate.id}) }}">{% include 'icons/edit.svg' %}</a></h3>
+				{% for experience in candidate.experience %}
+				<h4> {{ experience.jobTitle }} - {{ experience.company }} - {{ experience.start|date('d/m/Y') }} - {{ experience.end|date('d/m/Y') }}</h4>
+				{% endfor %}
+				<h3 class="fs-md-6 mt-5">Compétences <a href="{{ path('app_candidate_edit', {'id': candidate.id}) }}">{% include 'icons/edit.svg' %}</a></h3>
+				{% for skill in candidate.skills %}
+				<h4> {{ skill.name }} </h4>
+				{% endfor %}
+				<h3 class="fs-md-6 mt-5">Formations <a href="{{ path('app_candidate_edit', {'id': candidate.id}) }}">{% include 'icons/edit.svg' %}</a></h3>
 				{% for formation in candidate.formations %}
 				<h4> {{ formation.diploma }} - {{ formation.establishment }} - {{ formation.start|date('d/m/Y') }} - {{ formation.end|date('d/m/Y') }} </h4>
 				{% endfor %}

@@ -42,7 +42,7 @@ class UserFixtures extends Fixture
         $user->setPassword($hashedPassword);
         $user->setLastname('Koyékoué');
         $user->setFirstname('Ruben');
-        $this->addReference('user_' . 11, $user);
+        $this->addReference('user_' . 10, $user);
         $manager->persist($user);
 
         $user = new User();
