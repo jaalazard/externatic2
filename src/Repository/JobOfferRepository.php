@@ -39,15 +39,29 @@ class JobOfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeName(string $name): array
+    public function findLikeName(string $name, string $city, string $contract): array
     {
-        $queryBuilder = $this->createQueryBuilder('j')
-            ->where('j.job LIKE :name')
-            ->setParameter('name', '%' . $name . '%')
-            ->orderBy('j.job', 'ASC')
-            ->getQuery();
+        $queryBuilder = $this->createQueryBuilder('j');
 
-        return $queryBuilder->getResult();
+        if (!empty($name)) {
+            $queryBuilder->where('j.job LIKE :name')
+                ->setParameter('name', '%' . $name . '%');
+        }
+
+        if (!empty($city)) {
+            $queryBuilder->andWhere('j.city LIKE :city')
+                ->setParameter('city', $city);
+        }
+
+        if (!empty($contract)) {
+            $queryBuilder->andWhere('j.contract LIKE :contract')
+                ->setParameter('contract', $contract);
+        }
+
+        $queryBuilder
+            ->orderBy('j.job', 'ASC');
+            $query = $queryBuilder->getQuery();
+        return $query->getResult();
     }
 
     //    /**
