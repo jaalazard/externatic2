@@ -19,8 +19,8 @@ class SkillFixtures extends Fixture
         'Chat GPT',
         'Algorithmes',
         'Beau gosse',
-        'gaikri superre bian',
-        'excellent cuisinier'
+        'Jaikri superre bian',
+        'Excellent cuisinier'
     ];
 
     public function load(ObjectManager $manager): void
