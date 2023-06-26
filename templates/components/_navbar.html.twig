@@ -14,25 +14,21 @@
 				</a>
 			</button>
 			<ul class="dropdown-menu">
+			<li class="nav-item my-3">
 				{% if app.user %}
-					<li class="nav-item my-3">
 						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="#">Mon profil</a>
-					</li>
 				{% else %}
-					<li class="nav-item my-3">
+				
 						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="#">Inscription</a>
-					</li>
 				{% endif %}
-				<li class="nav-item">
+				</li>
+				<li class="nav-item my-3">
 					{% if app.user %}
-						<li class="nav-item my-3">
 							<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_logout') }}">DÉCONNEXION</a>
-						</li>
 					{% else %}
-						<li class="nav-item my-3">
 							<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_login') }}">CONNEXION</a>
-						</li>
 					{% endif %}
+					</li>
 				</li>
 			</ul>
 		</div>
@@ -48,7 +44,7 @@
 					<a class="nav-link mx-3" href="{{ path('company_index')}}">ENTREPRISE</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link mx-3" href="{{ path('business-card_index')}}">FICHES METIERS</a>
+					<a class="nav-link mx-3" href="{{ path('business-card_index')}}">FICHES MÉTIERS</a>
 				</li>
 			</ul>
 		</div>
