@@ -67,7 +67,7 @@
 					{% endfor %}
 				</ul>
 				<h3 class="fs-md-6 h2 mt-5">Formations
-					<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_edit', {'id': candidate.id}) }}">Ajouter une formation</a></button>
+					<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_edit_formation', {'id': candidate.id}) }}">Ajouter une formation</a></button>
 				</h3>
 				{% for formation in candidate.formations %}
 					<h4>
