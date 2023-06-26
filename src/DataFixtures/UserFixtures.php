@@ -29,6 +29,8 @@ class UserFixtures extends Fixture
             $user->setRoles(['ROLE_CANDIDATE']);
             $hashedPassword = $this->passwordHasher->hashPassword($user, 'userpassword');
             $user->setPassword($hashedPassword);
+            $user->setLastname($faker->lastName());
+            $user->setFirstname($faker->firstName());
             $this->addReference('user_' . $i, $user);
             $manager->persist($user);
         }
@@ -38,16 +40,20 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_CANDIDATE']);
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'candidatepassword');
         $user->setPassword($hashedPassword);
-        $this->addReference('user_' . 11, $user);
+        $user->setLastname('Koyékoué');
+        $user->setFirstname('Ruben');
+        $this->addReference('user_' . 10, $user);
         $manager->persist($user);
 
-         $user = new User();
-         $user->setEmail('admin@example.com');
-         $user->setRoles(['ROLE_ADMIN']);
-         $hashedPassword = $this->passwordHasher->hashPassword($user, 'adminpassword');
-         $user->setPassword($hashedPassword);
-         $this->addReference('user_admin', $user);
-         $manager->persist($user);
+        $user = new User();
+        $user->setEmail('admin@example.com');
+        $user->setRoles(['ROLE_ADMIN']);
+        $hashedPassword = $this->passwordHasher->hashPassword($user, 'adminpassword');
+        $user->setPassword($hashedPassword);
+        $user->setLastname('Franco');
+        $user->setFirstname('Mathys');
+        $this->addReference('user_admin', $user);
+        $manager->persist($user);
 
         $manager->flush();
     }
