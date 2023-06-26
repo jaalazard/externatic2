@@ -40,8 +40,8 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_CANDIDATE']);
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'candidatepassword');
         $user->setPassword($hashedPassword);
-        $user->setLastname('Koyékoué');
-        $user->setFirstname('Ruben');
+        $user->setLastname('Dupont');
+        $user->setFirstname('Dupond');
         $this->addReference('user_' . 10, $user);
         $manager->persist($user);
 
@@ -50,6 +50,8 @@ class UserFixtures extends Fixture
         $user->setRoles(['ROLE_ADMIN']);
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'adminpassword');
         $user->setPassword($hashedPassword);
+        $user->setLastname('Tintin');
+        $user->setFirstname('Haddock');
         $this->addReference('user_admin', $user);
         $manager->persist($user);
 
