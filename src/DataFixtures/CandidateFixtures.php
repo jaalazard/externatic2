@@ -31,6 +31,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
             $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
             $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
             $candidate->addSkill($this->getReference('skill_' . rand($i, UserFixtures::NB_USERS)));
+            $candidate->setCvitae('');
             $this->addReference('candidate_' . $i, $candidate);
             $manager->persist($candidate);
         }

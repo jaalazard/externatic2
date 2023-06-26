@@ -2,13 +2,19 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CandidateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
+#[Vich\Uploadable]
 class Candidate
 {
     #[ORM\Id]
@@ -21,6 +27,21 @@ class Candidate
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cvitae = null;
+
+    #[Vich\UploadableField(mapping: 'candidate_file', fileNameProperty: 'cvitae')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: [
+            'application/pdf',
+        ],
+    )]
+    private ?File $cvitaeFile = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?DatetimeInterface $updatedAt = null;
 
     #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidates')]
     private Collection $jobOffers;
@@ -215,7 +236,7 @@ class Candidate
         return $this->skills;
     }
 
-    public function addSkill(Skill $skill): static
+    public function addSkill(Skill $skill): Candidate
     {
         if (!$this->skills->contains($skill)) {
             $this->skills->add($skill);
@@ -224,9 +245,44 @@ class Candidate
         return $this;
     }
 
-    public function removeSkill(Skill $skill): static
+    public function removeSkill(Skill $skill): void
     {
         $this->skills->removeElement($skill);
+    }
+
+    public function setCvitaeFile(?File $cvitae = null): Candidate
+    {
+        $this->cvitaeFile = $cvitae;
+        if ($cvitae) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getCvitaeFile(): ?File
+    {
+        return $this->cvitaeFile;
+    }
+
+    public function getCvitae(): ?string
+    {
+        return $this->cvitae;
+    }
+
+    public function setCvitae(?string $cvitae): self
+    {
+        $this->cvitae = $cvitae;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
