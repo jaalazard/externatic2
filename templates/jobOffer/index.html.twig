@@ -11,8 +11,14 @@
 	<section class="container-xl">
 		<h1 class="fw-bold text-dark text-uppercase my-5">Avec
 			<span class="text-primary">
-				externatic</span>,<br> trouvez l’emploi qui vous correspond !</h1>
+				externatic</span>,<br>
+			trouvez l’emploi qui vous correspond !</h1>
 		<h2 class="mb-4 text-dark">Trier les offres d'emplois</h2>
+
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<button>Search</button>
+		{{ form_end(form) }}
 
 		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
@@ -42,9 +48,9 @@
 								<p class="d-block text-light fw-medium mt-2 mb-5">{{ jobOffer.description }}</p>
 							</div>
 							{% if app.user %}
-							<div class="text-center">
-							{{ include('jobOffer/_favorite_form.html.twig') }}
-							</div>
+								<div class="text-center">
+									{{ include('jobOffer/_favorite_form.html.twig') }}
+								</div>
 							{% endif %}
 							<div class="image position-relative">
 								<button type="button" class="btn col-btn-sm btn-primary position-absolute top-0 start-50 translate-middle d-grid col-8 mx-auto border-light">
