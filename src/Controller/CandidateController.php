@@ -55,6 +55,7 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $formationRepository->save($formation, true);
+            $candidate->addFormation($formation);
             return $this->render(
                 'candidate/show.html.twig',
                 ['candidate' => $candidate,]
