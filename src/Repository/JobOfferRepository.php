@@ -39,7 +39,7 @@ class JobOfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeName(string $name, string $city, string $contract): array
+    public function findLikeName(string $name, string $contract): array
     {
         $queryBuilder = $this->createQueryBuilder('j');
 
@@ -48,10 +48,6 @@ class JobOfferRepository extends ServiceEntityRepository
                 ->setParameter('name', '%' . $name . '%');
         }
 
-        if (!empty($city)) {
-            $queryBuilder->andWhere('j.city LIKE :city')
-                ->setParameter('city', $city);
-        }
 
         if (!empty($contract)) {
             $queryBuilder->andWhere('j.contract LIKE :contract')

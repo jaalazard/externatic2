@@ -17,7 +17,7 @@
 
 .form-select {
     border: solid 1px $primary;
-    width: 325px;
+    width: 500px;
     height: 50px;
     margin-left: 10px;
     margin-right: 10px;
@@ -26,18 +26,18 @@
 
 .form-control {
     border: solid 1px $primary;
-    width: 325px;
+    width: 500px;
     height: 50px;
     margin-right: 10px;
     margin-bottom: 3rem;
 }
 
-#search_job {
+.jobOfferForm>form>div{
     display: flex;
 }
 
 .search {
-    width: 325px;
+    width: 500px;
     height: 50px;
     margin-left: 10px;
     margin-top: 4rem;
@@ -58,15 +58,18 @@
     .form-control {
         margin-left: 10px;
         margin-bottom: 0px;
+        width: 325px;
     }
 
     .form-select {
         margin-bottom: 0px;
+        width: 325px;
     }
 
     .search {
         margin-right: 10px;
         margin-top: 30px;
+        width: 325px;
     }
     
 

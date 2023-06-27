@@ -25,10 +25,12 @@ class JobOfferController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'] ?? '';
-            $city = $form->getData()['city'] ? $form->getData()['city']->getCity() : '';
-            $contract = $form->getData()['contract'] ? $form->getData()['contract']->getContract() : '';
+            $contract = $form->getData()['contract'] ?? '';
+            if ($contract === 'n/a') {
+                $contract = '';
+            }
 
-            $jobOffers = $jobOfferRepository->findLikeName($search, $city, $contract);
+            $jobOffers = $jobOfferRepository->findLikeName($search, $contract);
         } else {
             $jobOffers = $jobOfferRepository->findAll();
         }
