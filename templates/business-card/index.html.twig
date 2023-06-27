@@ -81,7 +81,7 @@
 				<div class="col-md-4 my-md-5 mb-5 bg-primary {{loop.index is even ? 'bg-secondary'}}">
 					<h2 class="h3 text-white fw-bold my-5 fs-2 text-uppercase mx-5">{{ category.name}}</h2>
 					{% for businessCard in category.businessCards %}
-						<p class="text-white fw-bold my-3 mx-5">{{ businessCard.name }}</p>
+						<a href="{{ businessCard.link }}"><p class="text-white fw-bold my-3 mx-5">{{ businessCard.name }}</p></a>
 					{% endfor %}
 				</div>
 			</div>
