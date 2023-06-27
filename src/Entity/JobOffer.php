@@ -35,6 +35,9 @@ class JobOffer
     #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
     private Collection $candidates;
 
+    #[ORM\Column(length: 255)]
+    private ?string $entreprise = null;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
@@ -126,6 +129,18 @@ class JobOffer
     public function removeCandidate(Candidate $candidate): static
     {
         $this->candidates->removeElement($candidate);
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?string
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(string $entreprise): static
+    {
+        $this->entreprise = $entreprise;
 
         return $this;
     }

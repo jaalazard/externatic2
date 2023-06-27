@@ -10,26 +10,27 @@ class JobOfferFixtures extends Fixture
 {
     public const JOBOFFERS = [
         [
-            'job' => 'Data analyst', 'contract' => 'Alternance', 'city' => 'Nantes',
+            'job' => 'Data analyst', 'entreprise' => 'Wild code school', 'contract' => 'Alternance', 'city' => 'Nantes',
             'description' => 'Recherche de DATA ANALYST chez NEW-INFO, une grande entreprise d’INFORMATIQUE avec 
             un grand savoir-faire'
         ],
         [
-            'job' => 'Développeur web', 'contract' => 'CDD', 'city' => 'Orléans',
+            'job' => 'Développeur web', 'entreprise' => 'Wild code school', 'contract' => 'CDD', 'city' => 'Orléans',
             'description' => 'Développeur Web Full-Stack H/F - Le guide côtier communautaire leader en Europe '
         ],
         [
-            'job' => 'Dev Back-end', 'contract' => 'CDI', 'city' => 'Angers',
+            'job' => 'Dev Back-end', 'entreprise' => 'Wild code school', 'contract' => 'CDI', 'city' => 'Angers',
             'description' => 'Recherche de DÉVELOPPEUR BACK-END chez BACK’YO, une grande entreprise de DÉVELOPPEUR '
         ],
         [
-            'job' => 'Développeur php', 'contract' => 'CDD', 'city' => 'Olivet',
+            'job' => 'Développeur php', 'entreprise' => 'Wild code school', 'contract' => 'CDD', 'city' => 'Olivet',
             'description' => 'Recherche de DÉVELOPPEUR PHP chez INFORMATIK, une grande entreprise SÉRIEUSE avec 
             un grand savoir-faire'
         ],
         [
-            'job' => 'Analyst Cybersécurité', 'contract' => 'CDI', 'city' => 'Reims',
-            'description' => 'IT Compliance Project Manager H/F - Cybersécurité, résilience, durabilité, RGPD'
+            'job' => 'Analyst Cybersécurité', 'entreprise' => 'Wild code school', 'contract' => 'CDI',
+            'city' => 'Reims', 'description' => 'IT Compliance Project Manager H/F - Cybersécurité, résilience, 
+            durabilité, RGPD'
         ],
     ];
 
@@ -38,6 +39,7 @@ class JobOfferFixtures extends Fixture
         foreach (self::JOBOFFERS as $jobOfferCard) {
             $jobOffer = new JobOffer();
             $jobOffer->setJob($jobOfferCard['job']);
+            $jobOffer->setEntreprise($jobOfferCard['entreprise']);
             $jobOffer->setContract($jobOfferCard['contract']);
             $jobOffer->setCity($jobOfferCard['city']);
             $jobOffer->setDescription($jobOfferCard['description']);
