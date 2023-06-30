@@ -48,7 +48,7 @@
 				</h3>
 				{% for experience in candidate.experience %}
 					<h4>
-						<span class="text-primary">{{ experience.jobTitle }}</span>
+						<span class="text-primary">{{ experience.jobTitle }}</span> 
 						-
 						<span class="text-secondary">{{ experience.company }}</span>
 					</h4>
@@ -71,7 +71,7 @@
 				</h3>
 				{% for formation in candidate.formations %}
 					<h4>
-						<span class="text-primary">{{ formation.diploma }}</span>
+						<span class="text-primary">{{ formation.diploma }}</span> {% include 'formation/_delete_form.html.twig' %}
 						-
 						<span class="text-secondary">{{ formation.establishment }}</span>
 					</h4>
