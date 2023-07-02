@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
+use App\Entity\Experience;
 use App\Entity\Formation;
 use App\Form\CandidateType;
 use App\Form\FormationType;
+use App\Form\ExperienceType;
 use App\Repository\CandidateRepository;
 use App\Repository\FormationRepository;
+use App\Repository\ExperienceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,6 +65,28 @@ class CandidateController extends AbstractController
             );
         }
         return $this->render('formation/edit.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('candidat/{id}/experience', name: 'app_candidate_edit_experience')]
+    public function newExperience(
+        Request $request,
+        ExperienceRepository $experienceRepository,
+        Candidate $candidate
+    ): Response {
+        $experience = new Experience();
+        $form = $this->createForm(ExperienceType::class, $experience);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidate->addexperience($experience);
+            $experienceRepository->save($experience, true);
+            return $this->render(
+                'candidate/show.html.twig',
+                ['candidate' => $candidate,]
+            );
+        }
+        return $this->render('experience/edit.html.twig', [
             'form' => $form,
         ]);
     }
