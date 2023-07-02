@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Candidate;
 use App\Entity\Formation;
+use App\Entity\Skill;
 use App\Form\CandidateType;
+use App\Form\SkillType;
 use App\Form\FormationType;
+use App\Repository\SkillRepository;
 use App\Repository\CandidateRepository;
 use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,6 +65,28 @@ class CandidateController extends AbstractController
             );
         }
         return $this->render('formation/edit.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('candidat/{id}/competence', name: 'app_candidate_edit_skill')]
+    public function newSkill(
+        Request $request,
+        SkillRepository $skillRepository,
+        Candidate $candidate
+    ): Response {
+        $skill = new Skill();
+        $form = $this->createForm(SkillType::class, $skill);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidate->addskill($skill);
+            $skillRepository->save($skill, true);
+            return $this->render(
+                'candidate/show.html.twig',
+                ['candidate' => $candidate,]
+            );
+        }
+        return $this->render('skill/edit.html.twig', [
             'form' => $form,
         ]);
     }
