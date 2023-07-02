@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
+use App\Entity\User;
 use App\Entity\Formation;
 use App\Form\CandidateType;
 use App\Form\FormationType;
@@ -35,6 +36,33 @@ class CandidateController extends AbstractController
         ]);
     }
 
+
+    #[Route('/candidat/{id}', name: 'app_candidate_delete_formation', methods: ['POST'])]
+    public function delete(
+        CandidateRepository $candidateRepository,
+        Request $request,
+        Formation $formation,
+        FormationRepository $formationRepository
+    ): Response {
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        if (
+            $this->isCsrfTokenValid(
+                'delete' . $formation->getId(),
+                $request->request->get('_token')
+            )
+        ) {
+            $formationRepository->remove($formation, true);
+        }
+
+        return $this->redirectToRoute(
+            'app_candidate_show',
+            ['candidate' => $candidate, 'id' => $candidate->getId()],
+            Response::HTTP_SEE_OTHER
+        );
+    }
+
     #[Route('candidat/{id}', name: 'app_candidate_show', methods: ['GET', 'POST'])]
     public function show(Candidate $candidate): Response
     {
@@ -54,6 +82,7 @@ class CandidateController extends AbstractController
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $candidate->addFormation($formation);
             $formationRepository->save($formation, true);
             return $this->render(
                 'candidate/show.html.twig',
