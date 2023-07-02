@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Candidate;
 use App\Entity\User;
 use App\Entity\Formation;
+use App\Entity\Experience;
 use App\Form\CandidateType;
 use App\Form\FormationType;
 use App\Repository\CandidateRepository;
+use App\Repository\ExperienceRepository;
 use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,8 +40,7 @@ class CandidateController extends AbstractController
 
 
     #[Route('/candidat/{id}', name: 'app_candidate_delete_formation', methods: ['POST'])]
-    public function delete(
-        CandidateRepository $candidateRepository,
+    public function deleteFormation(
         Request $request,
         Formation $formation,
         FormationRepository $formationRepository
@@ -54,6 +55,31 @@ class CandidateController extends AbstractController
             )
         ) {
             $formationRepository->remove($formation, true);
+        }
+
+        return $this->redirectToRoute(
+            'app_candidate_show',
+            ['candidate' => $candidate, 'id' => $candidate->getId()],
+            Response::HTTP_SEE_OTHER
+        );
+    }
+
+    #[Route('/candidat/{id}/experience/supprimer', name: 'app_candidate_delete_experience', methods: ['POST'])]
+    public function deleteExperience(
+        Request $request,
+        Experience $experience,
+        ExperienceRepository $experienceRepository
+    ): Response {
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        if (
+            $this->isCsrfTokenValid(
+                'delete' . $experience->getId(),
+                $request->request->get('_token')
+            )
+        ) {
+            $experienceRepository->remove($experience, true);
         }
 
         return $this->redirectToRoute(
