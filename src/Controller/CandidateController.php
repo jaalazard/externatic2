@@ -69,7 +69,7 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('candidat/{id}/competence', name: 'app_candidate_edit_skill')]
+    #[Route('candidat/{id}/competence/ajouter', name: 'app_candidate_add_skill')]
     public function newSkill(
         Request $request,
         SkillRepository $skillRepository,
@@ -86,7 +86,7 @@ class CandidateController extends AbstractController
                 ['candidate' => $candidate,]
             );
         }
-        return $this->render('skill/edit.html.twig', [
+        return $this->render('skill/add.html.twig', [
             'form' => $form,
         ]);
     }
