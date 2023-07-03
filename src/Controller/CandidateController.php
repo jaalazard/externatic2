@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
-use App\Entity\Formation;
-use App\Entity\Skill;
 use App\Entity\User;
+use App\Entity\Skill;
+use App\Entity\Formation;
 use App\Form\CandidateType;
 use App\Form\FormationType;
 use App\Repository\SkillRepository;
 use App\Repository\CandidateRepository;
+use App\Repository\ExperienceRepository;
 use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,6 +83,7 @@ class CandidateController extends AbstractController
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $candidate->addFormation($formation);
             $formationRepository->save($formation, true);
             $candidate->addFormation($formation);
             return $this->render(
