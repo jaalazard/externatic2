@@ -41,8 +41,34 @@ class CandidateController extends AbstractController
         ]);
     }
 
+    #[Route('/candidat/{id}/competence/supprimer', name: 'app_candidate_delete_skill', methods: ['POST'])]
+    public function deleteSkill(
+        Request $request,
+        Skill $skill,
+        SkillRepository $skillRepository
+    ): Response {
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        if (
+            $this->isCsrfTokenValid(
+                'delete' . $skill->getId(),
+                $request->request->get('_token')
+            )
+        ) {
+            $skillRepository->remove($skill, true);
+        }
 
-    #[Route('/candidat/{id}', name: 'app_candidate_delete_formation', methods: ['POST'])]
+        return $this->redirectToRoute(
+            'app_candidate_show',
+            ['candidate' => $candidate, 'id' => $candidate->getId()],
+            Response::HTTP_SEE_OTHER
+        );
+    }
+
+
+
+    #[Route('/candidat/{id}/formation/supprimer', name: 'app_candidate_delete_formation', methods: ['POST'])]
     public function deleteFormation(
         Request $request,
         Formation $formation,
