@@ -5,7 +5,9 @@
 	{{ encore_entry_link_tags('jobOffer') }}
 {% endblock %}
 
-{% block title %}Offres d'emploi
+{% block title %}
+{{ parent() }}
+	|| Offres d'emploi
 {% endblock %}
 {% block body %}
 	<section class="container-xl">

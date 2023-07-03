@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Externatic || S'enregistrer
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid ml-5">
+		<div class="row px-5">
+			<h1 class="text-center fw-bold my-5">S'enregistrer</h1>
+		</div>
+		<div class="form mx-5">
+			<div class="register">
+				{{ form_start(registrationForm) }}
+			</div>
+			<div class="mail mb-4">
+				<label class="form-label fw-bold text-uppercase h5">Email</label>
+				<div class="input-group w-75 w-md-50"></div>
+				{{ form_widget(registrationForm.email) }}
+			</div>
+			<div class="password mb-4">
+				<label class="form-label fw-bold text-uppercase h5">Mot de passe</label>
+				<div class="input-group w-75 w-md-50"></div>
+				{{ form_widget(registrationForm.plainPassword) }}
+			</div>
+			<div class="firstname mb-4">
+				<label class="form-label fw-bold text-uppercase h5">Prénom</label>
+				<div class="input-group w-75 w-md-50"></div>
+				{{ form_widget(registrationForm.firstname) }}
+			</div>
+			<div class="lastname mb-3">
+				<label class="form-label fw-bold text-uppercase h5">Nom</label>
+				<div class="input-group w-75 w-md-50"></div>
+				{{ form_widget(registrationForm.lastname) }}
+			</div>
+			
+			<button type="submit" class="btn btn-primary btn fw-bold text-uppercase my-3 rounded-2">Enregistrer</button>
+			{{ form_end(registrationForm) }}
+		</div>
+	</div>
+{% endblock %}

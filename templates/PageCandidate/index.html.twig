@@ -5,7 +5,8 @@
 	{{ encore_entry_link_tags('pageCandidate') }}
 {% endblock %}
 
-{% block title %}Candidat
+{% block title %}{{ parent() }}
+	|| Candidat
 {% endblock %}
 {% block body %}
 	<section class="container">

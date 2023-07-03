@@ -1,0 +1,13 @@
+<div class="form-row fw-bold">
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<img src="{{ vich_uploader_asset(candidate) }}" alt=""><button class="btn btn-primary btn fw-bold text-uppercase my-3 rounded-2">
+		{{ button_label|default('Envoyer') }}</button>
+		<div class="dropzone-container" data-controller="symfony--ux-dropzone--dropzone">
+			<div class="dropzone w-100 p-3" style="background-color: #eee;">
+				<input type="file" id="dropzone_form_file" name="dropzone_form[file]" required="required" placeholder="Drag and drop a file or click to browse" data-controller="" class="dropzone-input" data-symfony--ux-dropzone--dropzone-target="input" style="display: block;">Test</input>
+			</div>
+		</div>
+	{{ form_start(form) }}
+	{{ form_end(form) }}
+</div>

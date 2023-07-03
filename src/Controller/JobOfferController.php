@@ -35,6 +35,7 @@ class JobOfferController extends AbstractController
         return $this->render('jobOffer/index.html.twig', [
             'jobOffers' => $jobOffers,
             'form' => $form,
+            'candidate' =>  $this->getUser(),
         ]);
     }
 
