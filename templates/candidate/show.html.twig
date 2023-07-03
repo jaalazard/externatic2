@@ -62,9 +62,7 @@
 						{% include 'experience/_delete_form.html.twig' %}</h5>
 				{% endfor %}
 				<h3 class="fs-md-6 h2 mt-5">Compétences
-					<button class="btn btn-primary">
-						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': candidate.id}) }}">Ajouter une compétence</a>
-					</button>
+					<a class="btn btn-primary text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': candidate.id}) }}">Ajouter une compétence</a>
 				</h3>
 				<ul class="list-group-horizontal d-md-flex justify-content-between">
 					{% for skill in candidate.skills %}
@@ -76,9 +74,8 @@
 			{% endfor %}
 		</ul>
 		<h3 class="fs-md-6 h2 mt-5">Formations
-			<button class="btn btn-primary">
-				<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
-			</button>
+			<a class="btn btn-primary text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
+			</a>
 		</h3>
 		{% for formation in candidate.formations %}
 			<h4>
