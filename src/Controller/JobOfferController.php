@@ -21,6 +21,7 @@ class JobOfferController extends AbstractController
     {
         return $this->render('jobOffer/index.html.twig', [
             'jobOffers' => $jobOfferRepository->findAll(),
+            'candidate' =>  $this->getUser(),
         ]);
     }
 

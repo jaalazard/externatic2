@@ -16,7 +16,7 @@
 			<ul class="dropdown-menu">
 			<li class="nav-item my-3">
 				{% if app.user %}
-						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="#">Mon profil</a>
+						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_candidate_show', {'id': candidate.id}) }}">Mon profil</a>
 				{% else %}
 				
 						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="#">Inscription</a>
