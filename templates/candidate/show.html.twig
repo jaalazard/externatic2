@@ -45,6 +45,7 @@
 					{{ app.user.candidate.city }}
 				</h4>
 				<h3 class="fs-md-6 h2 mt-5">Expériences
+				<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': candidate.id}) }}">Ajouter une expérience</a></button>
 				</h3>
 				{% for experience in app.user.candidate.experience %}
 					<h4>
@@ -59,6 +60,7 @@
 						{% include 'experience/_delete_form.html.twig' %}</h5>
 				{% endfor %}
 				<h3 class="fs-md-6 h2 mt-5">Compétences
+				<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': candidate.id}) }}">Ajouter une compétence</a></button>
 				</h3>
 				<ul class="list-group-horizontal d-md-flex justify-content-between">
 					{% for skill in app.user.candidate.skills %}
@@ -69,7 +71,11 @@
 				</ul>
 				<h3 class="fs-md-6 h2 mt-5">Formations
 					<button class="btn btn-primary">
+<<<<<<< HEAD
 						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_edit_formation', {'id': app.user.candidate.id}) }}">Ajouter une formation</a>
+=======
+						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
+>>>>>>> e1b7363cadb06f1a325dbac4aa82c60e7f09cd6f
 					</button>
 				</h3>
 				{% for formation in app.user.candidate.formations %}
