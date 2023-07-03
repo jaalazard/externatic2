@@ -15,6 +15,7 @@ class HomeController extends AbstractController
     public function index(ConsultantRepository $consultantRepository, CompanyRepository $companyRepository): Response
     {
         return $this->render('home/index.html.twig', [
+            'candidate' =>  $this->getUser(),
             'consultants' => $consultantRepository->findBy([], [
                 'firstname' => 'ASC']),
             'companies' => $companyRepository->findBy([], [

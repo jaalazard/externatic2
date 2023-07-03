@@ -62,14 +62,14 @@
 				</h3>
 				<ul class="list-group-horizontal d-md-flex justify-content-between">
 					{% for skill in candidate.skills %}
-						<li class="h6 list-group-item border-0">{{ include('icons/arrow.svg') }} 
-							{{ skill.name }} 
-						</li> {% include 'skill/_delete_form.html.twig' %}
+						<li class="h6 list-group-item border-0">{{ include('icons/arrow.svg') }}
+							{{ skill.name }}
+						</li>
 					{% endfor %}
 				</ul>
 				<h3 class="fs-md-6 h2 mt-5">Formations
 					<button class="btn btn-primary">
-						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_edit_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
+						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
 					</button>
 				</h3>
 				{% for formation in candidate.formations %}
