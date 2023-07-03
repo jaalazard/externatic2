@@ -67,33 +67,6 @@ class CandidateController extends AbstractController
         );
     }
 
-    #[Route('/candidat/{id}/experience/supprimer', name: 'app_candidate_delete_experience', methods: ['POST'])]
-    public function deleteExperience(
-        Request $request,
-        Experience $experience,
-        ExperienceRepository $experienceRepository
-    ): Response {
-        /** @var User */
-        $user = $this->getUser();
-        $candidate = $user->getCandidate();
-        if (
-            $this->isCsrfTokenValid(
-                'delete' . $experience->getId(),
-                $request->request->get('_token')
-            )
-        ) {
-            $experienceRepository->remove($experience, true);
-        }
-
-        return $this->redirectToRoute(
-            'app_candidate_show',
-            ['candidate' => $candidate, 'id' => $candidate->getId()],
-            Response::HTTP_SEE_OTHER
-        );
-    }
-
-
-
     #[Route('/candidat/{id}/formation/supprimer', name: 'app_candidate_delete_formation', methods: ['POST'])]
     public function deleteFormation(
         Request $request,
@@ -110,6 +83,31 @@ class CandidateController extends AbstractController
             )
         ) {
             $formationRepository->remove($formation, true);
+        }
+
+        return $this->redirectToRoute(
+            'app_candidate_show',
+            ['candidate' => $candidate, 'id' => $candidate->getId()],
+            Response::HTTP_SEE_OTHER
+        );
+    }
+
+    #[Route('/candidat/{id}/experience/supprimer', name: 'app_candidate_delete_experience', methods: ['POST'])]
+    public function deleteExperience(
+        Request $request,
+        Experience $experience,
+        ExperienceRepository $experienceRepository
+    ): Response {
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        if (
+            $this->isCsrfTokenValid(
+                'delete' . $experience->getId(),
+                $request->request->get('_token')
+            )
+        ) {
+            $experienceRepository->remove($experience, true);
         }
 
         return $this->redirectToRoute(
