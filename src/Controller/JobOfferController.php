@@ -26,7 +26,7 @@ class JobOfferController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'] ?? '';
             $contract = $form->getData()['contract'] ?? '';
-            if ($contract === 'n/a') {
+            if ($contract === ' ') {
                 $contract = '';
             }
 

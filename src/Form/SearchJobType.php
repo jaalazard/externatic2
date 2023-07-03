@@ -23,7 +23,7 @@ class SearchJobType extends AbstractType
                 'label' => 'MOTS CLÉS',
             ])
             ->add('contract', ChoiceType::class, [
-                'choices' => array_merge(['Non spécifié' => 'n/a'], JobOfferFixtures::CONTRACTS)
+                'choices' => array_merge(['Non spécifié' => ' '], JobOfferFixtures::CONTRACTS)
             ]);
     }
 
