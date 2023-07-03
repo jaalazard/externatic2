@@ -22,78 +22,85 @@
 	</h1>
 
 
-	<section class="container-fluid px-5">
-		<div class="row mt-5">
-			<div class="col text-center d-flex-column d-md-flex justify-content-center align-items-center">
-				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
-				<h2 class="title mx-5 text-center text-primary fw-bold text-uppercase fs-2">{{ candidate.user.lastname }}
-					<span class="text-secondary">{{ candidate.user.firstname }}</h2>
-				</div>
-			</div>
+	<section class="container">
+		<div class="d-flex ">
+			
+				<img src={{ asset('build/images/profil-user.png') }} class="img-fluid w-25 mx-5 mb-5" alt="Placeholder_candidate">
+		
+			<div class="flex-column my-5 mx-5">
+				<h2 class="title text-primary fw-bold text-uppercase fs-1 mb-4">{{ candidate.user.lastname }}
+					<span class="text-secondary text-lowercase mb-4">{{ candidate.user.firstname }}</h2>
 
-			<div class="col mb-5">
-				<h3 class="fs-md-6 h2 mt-5 text-nowrap">Informations personnelles
-				</h3>
-				<h4>Ma date de naissance :
-					{{ candidate.birthday|date('d/m/Y') }}</h4>
-				<h4>Mon téléphone :
-					{{ candidate.phone }}</h4>
-				<h4>Mon adresse e-mail :
-					{{ candidate.user.email }}</h4>
-				<h4>Mon adresse :
-					{{ candidate.address }},
-					{{ candidate.city }}
-				</h4>
-				<h3 class="fs-md-6 h2 mt-5">Expériences
-				<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': candidate.id}) }}">Ajouter une expérience</a></button>
-				</h3>
-				{% for experience in candidate.experience %}
-					<h4>
-						<span class="text-primary">{{ experience.jobTitle }}</span>
-						-
-						<span class="text-secondary">{{ experience.company }}</span>
+
+					<h4><span class="fw-bold">Date de naissance :</span>
+						{{ candidate.birthday|date('d/m/Y') }}</h4>
+					<h4><span class="fw-bold">Téléphone :</span>
+						{{ candidate.phone }}</h4>
+					<h4><span class="fw-bold">Adresse e-mail :</span>
+						{{ candidate.user.email }}</h4>
+					<h4><span class="fw-bold">Adresse :</span>
+						{{ candidate.address }},
+						{{ candidate.city }}
 					</h4>
-					<h5 class="h6">Du
-						{{ experience.start|date('d/m/Y') }}
-						au
-						{{ experience.end|date('d/m/Y') }}
-						{% include 'experience/_delete_form.html.twig' %}</h5>
-				{% endfor %}
-				<h3 class="fs-md-6 h2 mt-5">Compétences
-				<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': candidate.id}) }}">Ajouter une compétence</a></button>
-				</h3>
-				<ul class="list-group-horizontal d-md-flex justify-content-between">
-					{% for skill in candidate.skills %}
-						<li class="h6 list-group-item border-0">{{ include('icons/arrow.svg') }}
-							{{ skill.name }}
-						</li>
-					{% endfor %}
-				</ul>
-				<h3 class="fs-md-6 h2 mt-5">Formations
-					<button class="btn btn-primary">
-						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
-					</button>
-				</h3>
-				{% for formation in candidate.formations %}
-					<h4>
-						<span class="text-primary">{{ formation.diploma }}</span>
-						-
-						<span class="text-secondary">{{ formation.establishment }}</span>
-					</h4>
-					<h5 class="h6 mb-2">Du
-						{{ formation.start|date('d/m/Y') }}
-						au
-						{{ formation.end|date('d/m/Y') }}
-						{% include 'formation/_delete_form.html.twig' %}
-					</h5>
-					
-				{% endfor %}
-
 			</div>
+		</div>
 
-		</section>
-	{% endblock %}
+		<h3 class="fs-md-6 h2 mt-5 fw-bold">Expériences
+			<button class="btn btn-primary">
+				<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': candidate.id}) }}">Ajouter une expérience</a>
+			</button>
+		</h3>
+		{% for experience in candidate.experience %}
+			<h4 class="my-5">
+				<span class="text-primary">{{ experience.jobTitle }}</span>
+				-
+				<span class="text-secondary">{{ experience.company }}</span>
+			</h4>
+			<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
+				{{ experience.start|date('d/m/Y') }}
+				au
+				{{ experience.end|date('d/m/Y') }}
+				</h5>
 
-	{% block footer %}
-		{% include "components/_footer.html.twig" %}
-	{% endblock %}
+			<h5 class="h6 d-flex justify-content-center">
+			{{ experience.description }}
+			</h5>
+
+			{% include 'experience/_delete_form.html.twig' %}
+		{% endfor %}
+		<h3 class="fs-md-6 h2 mt-5">Compétences
+			<button class="btn btn-primary">
+				<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': candidate.id}) }}">Ajouter une compétence</a>
+			</button>
+		</h3>
+		<ul class="list-group-horizontal d-md-flex justify-content-between">
+			{% for skill in candidate.skills %}
+				<li class="h6 list-group-item border-0">{{ include('icons/arrow.svg') }}
+					{{ skill.name }}
+				</li>
+			{% endfor %}
+		</ul>
+		<h3 class="fs-md-6 h2 mt-5">Formations
+			<button class="btn btn-primary">
+				<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
+			</button>
+		</h3>
+		{% for formation in candidate.formations %}
+			<h4>
+				<span class="text-primary">{{ formation.diploma }}</span>
+				-
+				<span class="text-secondary">{{ formation.establishment }}</span>
+			</h4>
+			<h5 class="h6 mb-2">Du
+				{{ formation.start|date('d/m/Y') }}
+				au
+				{{ formation.end|date('d/m/Y') }}
+				{% include 'formation/_delete_form.html.twig' %}
+			</h5>
+
+		{% endfor %}
+
+	</div>
+
+</section>{% endblock %}{% block footer %}
+{% include "components/_footer.html.twig" %}{% endblock %}
