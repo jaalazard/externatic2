@@ -69,7 +69,7 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('candidat/{id}/experience', name: 'app_candidate_edit_experience')]
+    #[Route('candidat/{id}/experience/ajouter', name: 'app_candidate_add_experience')]
     public function newExperience(
         Request $request,
         ExperienceRepository $experienceRepository,
@@ -86,7 +86,7 @@ class CandidateController extends AbstractController
                 ['candidate' => $candidate,]
             );
         }
-        return $this->render('experience/edit.html.twig', [
+        return $this->render('experience/add.html.twig', [
             'form' => $form,
         ]);
     }
