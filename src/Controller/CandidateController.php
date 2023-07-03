@@ -126,7 +126,7 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('candidat/{id}/formation', name: 'app_candidate_add_formation')]
+    #[Route('candidat/{id}/formation/ajouter', name: 'app_candidate_add_formation')]
     public function newFormation(
         Request $request,
         FormationRepository $formationRepository,
