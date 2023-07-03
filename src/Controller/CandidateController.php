@@ -148,6 +148,7 @@ class CandidateController extends AbstractController
         }
         return $this->render('formation/edit.html.twig', [
             'form' => $form,
+            'candidate' => $candidate,
         ]);
     }
 
@@ -170,6 +171,7 @@ class CandidateController extends AbstractController
         }
         return $this->render('experience/add.html.twig', [
             'form' => $form,
+            'candidate' => $candidate,
         ]);
     }
 
@@ -192,6 +194,7 @@ class CandidateController extends AbstractController
         }
         return $this->render('skill/add.html.twig', [
             'form' => $form,
+            'candidate' => $candidate,
         ]);
     }
 }
