@@ -64,31 +64,6 @@ class CandidateController extends AbstractController
         );
     }
 
-    #[Route('/candidat/{id}/experience/supprimer', name: 'app_candidate_delete_experience', methods: ['POST'])]
-    public function deleteExperience(
-        Request $request,
-        Experience $experience,
-        ExperienceRepository $experienceRepository
-    ): Response {
-        /** @var User */
-        $user = $this->getUser();
-        $candidate = $user->getCandidate();
-        if (
-            $this->isCsrfTokenValid(
-                'delete' . $experience->getId(),
-                $request->request->get('_token')
-            )
-        ) {
-            $experienceRepository->remove($experience, true);
-        }
-
-        return $this->redirectToRoute(
-            'app_candidate_show',
-            ['candidate' => $candidate, 'id' => $candidate->getId()],
-            Response::HTTP_SEE_OTHER
-        );
-    }
-
     #[Route('candidat/{id}', name: 'app_candidate_show', methods: ['GET', 'POST'])]
     public function show(Candidate $candidate): Response
     {
@@ -98,7 +73,7 @@ class CandidateController extends AbstractController
         ]);
     }
 
-    #[Route('candidat/{id}/formation', name: 'app_candidate_edit_formation')]
+    #[Route('candidat/{id}/formation', name: 'app_candidate_add_formation')]
     public function newFormation(
         Request $request,
         FormationRepository $formationRepository,
