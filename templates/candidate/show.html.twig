@@ -45,6 +45,7 @@
 					{{ candidate.city }}
 				</h4>
 				<h3 class="fs-md-6 h2 mt-5">Expériences
+				<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': candidate.id}) }}">Ajouter une expérience</a></button>
 				</h3>
 				{% for experience in candidate.experience %}
 					<h4>
