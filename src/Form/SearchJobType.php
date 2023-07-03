@@ -14,6 +14,13 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SearchJobType extends AbstractType
 {
+    public const CONTRACTS = [
+        'Alternance' => 'Alternance',
+        'CDD' => 'CDD',
+        'CDI' => 'CDI',
+    ];
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -23,7 +30,9 @@ class SearchJobType extends AbstractType
                 'label' => 'MOTS CLÉS',
             ])
             ->add('contract', ChoiceType::class, [
-                'choices' => array_merge(['Non spécifié' => ' '], JobOfferFixtures::CONTRACTS)
+                'choices' => self::CONTRACTS,
+                'required' => false,
+                'label' => 'CONTRAT'
             ]);
     }
 

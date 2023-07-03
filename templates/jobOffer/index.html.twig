@@ -14,16 +14,20 @@
 				externatic</span>,<br>
 			trouvez l’emploi qui vous correspond !</h1>
 		<h2 class="mb-4 text-dark">Trier les offres d'emplois</h2>
-		
+
 
 		<div class="jobOfferForm">
-		{{ form_start(form) }}
+			
+				
+					{{ form_start(form) }}
+				
+					{{ form_widget(form, {'attr' : {'class' : 'd-flex flex-md-row flex-column'}}) }}
+				
+					<button class="search btn btn-secondary border border-primary text-uppercase fw-bold">RECHERCHER</button>
 
-		{{ form_widget(form) }}
+					{{ form_end(form) }}
 
-		<button class="search btn btn-secondary border border-primary text-uppercase fw-bold">RECHERCHER</button>
-
-		{{ form_end(form) }}
+				
 		</div>
 
 
