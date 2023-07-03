@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Candidate;
 use App\Entity\User;
-use App\Entity\Skill;
 use App\Entity\Formation;
+use App\Entity\Skill;
 use App\Entity\Experience;
 use App\Form\CandidateType;
+use App\Form\SkillType;
 use App\Form\FormationType;
 use App\Form\ExperienceType;
 use App\Repository\SkillRepository;
@@ -143,6 +144,28 @@ class CandidateController extends AbstractController
             );
         }
         return $this->render('experience/add.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('candidat/{id}/competence/ajouter', name: 'app_candidate_add_skill')]
+    public function newSkill(
+        Request $request,
+        SkillRepository $skillRepository,
+        Candidate $candidate
+    ): Response {
+        $skill = new Skill();
+        $form = $this->createForm(SkillType::class, $skill);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidate->addskill($skill);
+            $skillRepository->save($skill, true);
+            return $this->render(
+                'candidate/show.html.twig',
+                ['candidate' => $candidate,]
+            );
+        }
+        return $this->render('skill/add.html.twig', [
             'form' => $form,
         ]);
     }
