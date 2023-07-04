@@ -120,7 +120,7 @@ class CandidateController extends AbstractController
     #[Route('candidat', name: 'app_candidate_profile', methods: ['GET', 'POST'])]
     public function show(): Response
     {
-        return $this->render('candidate/show.html.twig');
+        return $this->render('candidate/profile.html.twig');
     }
 
     #[Route('candidat/{id}/formation/ajouter', name: 'app_candidate_add_formation')]
