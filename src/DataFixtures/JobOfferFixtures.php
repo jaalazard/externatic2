@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\JobOffer;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class JobOfferFixtures extends Fixture
 {
@@ -41,11 +42,13 @@ class JobOfferFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $faker = Factory::create('fr_FR');
         foreach (self::JOBOFFERS as $jobOfferCard) {
             $jobOffer = new JobOffer();
             $jobOffer->setJob($jobOfferCard['job']);
             $jobOffer->setContract(self::CONTRACTS[array_rand(self::CONTRACTS)]);
             $jobOffer->setDescription($jobOfferCard['description']);
+            $jobOffer->setCity($faker->city());
             $manager->persist($jobOffer);
         }
         $manager->flush();
