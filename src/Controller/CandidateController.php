@@ -24,11 +24,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[IsGranted('ROLE_CANDIDATE')]
 class CandidateController extends AbstractController
 {
-    #[Route('candidat/{id}/edit', name: 'app_candidate_edit_profile', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Candidate $candidate, CandidateRepository $candidateRepository): Response
+    #[Route('candidat/edit', name: 'app_candidate_edit_profile', methods: ['GET', 'POST'])]
+    public function edit(Request $request, CandidateRepository $candidateRepository): Response
     {
         // Create the form, linked with $candidate
-
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
