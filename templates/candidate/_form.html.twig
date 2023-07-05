@@ -1,0 +1,7 @@
+<div class="form-row fw-bold">
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<img src="{{ vich_uploader_asset(candidate) }}" alt=""><button class="btn btn-primary btn fw-bold text-uppercase my-3 rounded-2">
+		{{ button_label|default('Envoyer') }}</button>
+	{{ form_end(form) }}
+</div>
