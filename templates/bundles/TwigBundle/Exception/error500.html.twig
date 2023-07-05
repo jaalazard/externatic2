@@ -4,16 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1 class="d-flex justify-content-center my-4">Erreur serveur interne</h1>
-
-		<p class="d-flex justify-content-center fs-4">
-			Le serveur ne peut pas exécuter la requête demandée.&nbsp;
-			<a class="button btn btn-primary" href="{{ path('app_home') }}">Retour à la page d'accueil</a>
-		</p>
+	<div class="container text-center">
+		<h1 class="my-4">Erreur serveur interne</h1>
+		<div class="d-flex justify-content-center">
+			<p class="fs-4 text-center">
+				Le serveur ne peut pas exécuter la requête demandée.&nbsp;</p>
+		</div>
+		<a class="btn btn-primary my-4" href="{{ path('app_home') }}">Retour à la page d'accueil</a>
 	</div>
-    <div class="djif d-flex justify-content-center mt-5">
-        <img class="Buster w-50 h-50" src="{{ asset('build/images/Bernie_pelle.gif') }}" alt="Buster don't smile" />
-    </div>
+	<div class="djif d-flex justify-content-center mt-4">
+		<img class="Buster w-50 h-50" src="{{ asset('build/images/Bernie_pelle.webp') }}" alt="De la part de Mickey Willis"/>
+	</div>
 
 {% endblock %}
