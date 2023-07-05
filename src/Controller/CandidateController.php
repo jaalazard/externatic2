@@ -137,7 +137,7 @@ class CandidateController extends AbstractController
             $formationRepository->save($formation, true);
             $candidate->addFormation($formation);
             return $this->render(
-                'candidate/show.html.twig',
+                'candidate/profile.html.twig',
                 ['candidate' => $candidate,]
             );
         }
@@ -160,7 +160,7 @@ class CandidateController extends AbstractController
             $candidate->addexperience($experience);
             $experienceRepository->save($experience, true);
             return $this->render(
-                'candidate/show.html.twig',
+                'candidate/profile.html.twig',
                 ['candidate' => $candidate,]
             );
         }
@@ -183,7 +183,7 @@ class CandidateController extends AbstractController
             $candidate->addskill($skill);
             $skillRepository->save($skill, true);
             return $this->render(
-                'candidate/show.html.twig',
+                'candidate/profile.html.twig',
                 ['candidate' => $candidate,]
             );
         }
