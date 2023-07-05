@@ -4,12 +4,10 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{{ encore_entry_link_tags('app') }}
+	{{ parent()}}
+	{{ encore_entry_link_tags('profil') }}
 {% endblock %}
 
-{% block javascripts %}
-	{{ encore_entry_script_tags('app') }}
-{% endblock %}
 
 {% block navbar %}
 	{% include 'components/_navbar.html.twig'%}
@@ -20,91 +18,100 @@
 		<span class="title text-primary fw-bold text-uppercase fs-2">Profil</span>
 		<span class="text-dark fw-bolder text-uppercase fs-2">de l'utilisateur</span>
 	</h1>
+	<section class="container">
+		<div class="d-md-flex d-block pt-5">
+
+			<img src={{ asset('build/images/profil-user.png') }} class="img-fluid w-25 mx-5 mb-md-5 mb-0" alt="Placeholder_candidate">
+
+			<div class="flex-column my-5 mx-5">
+				<h2 class="title text-primary fw-bold text-uppercase fs-1 mb-4 ">{{ app.user.candidate.user.lastname }}
+					<span class="text-secondary text-lowercase mb-4">{{ app.user.candidate.user.firstname }}</h2>
 
 
-	<section class="container-fluid px-5">
-		<div class="row mt-5">
-			<div class="col text-center d-flex-column d-md-flex justify-content-center align-items-center">
-				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
-				<h2 class="title mx-5 text-center text-primary fw-bold text-uppercase fs-2">{{ app.user.lastname }}
-					<span class="text-secondary">{{ app.user.firstname }}</h2>
+					<h4>
+						<span class="fw-bold">Date de naissance :</span>
+						{{ app.user.candidate.birthday|date('d/m/Y') }}</h4>
+					<h4>
+						<span class="fw-bold">Téléphone :</span>
+						{{ app.user.candidate.phone }}</h4>
+					<h4>
+						<span class="fw-bold">Adresse e-mail :</span>
+						{{ app.user.candidate.user.email }}</h4>
+					<h4>
+						<span class="fw-bold">Adresse :</span>
+						{{ app.user.candidate.address }},
+						{{ app.user.candidate.city }}
+					</h4>
 				</div>
 			</div>
 
-			<div class="col mb-5">
-				<h3 class="fs-md-6 h2 mt-5 text-nowrap">Informations personnelles
-				</h3>
-				<h4>Ma date de naissance :
-					{{ app.user.candidate.birthday|date('d/m/Y') }}</h4>
-				<h4>Mon téléphone :
-					{{ app.user.candidate.phone }}</h4>
-				<h4>Mon adresse e-mail :
-					{{ app.user.candidate.user.email }}</h4>
-				<h4>Mon adresse :
-					{{ app.user.candidate.address }},
-					{{ app.user.candidate.city }}
+			<h3 class="fs-md-6 h2 mt-5 fw-bold pt-5 d-flex justify-content-center">Expériences
+				<button class="btn btn-primary mx-4">
+					<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': app.user.candidate.id}) }}">Ajouter une expérience</a>
+				</button>
+			</h3>
+			{% for experience in app.user.candidate.experience %}
+				<h4 class="mt-5 border-top border-secondary pt-5">
+					<span class="text-primary">{{ experience.jobTitle }}</span>
+					-
+					<span class="text-secondary">{{ experience.company }}</span>
 				</h4>
-				<h3 class="fs-md-6 h2 mt-5">Expériences
-					<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': app.user.candidate.id}) }}">Ajouter une expérience</a></button>
-				</h3>
-				{% for experience in app.user.candidate.experience %}
-					<h4>
-						<span class="text-primary">{{ experience.jobTitle }}</span>
-						-
-						<span class="text-secondary">{{ experience.company }}</span>
-					</h4>
-					<h5 class="h6">Du
-						{{ experience.start|date('d/m/Y') }}
-						au
-						{{ experience.end|date('d/m/Y') }}
-						{% include 'experience/_delete_form.html.twig' %}</h5>
+				<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
+					{{ experience.start|date('d/m/Y') }}
+					au
+					{{ experience.end|date('d/m/Y') }}
+				</h5>
+
+				<h5 class="h6 d-flex my-5 justify-content-center">
+					{{ experience.description }}
+				</h5>
+				<div class="mb-5">
+					{% include 'experience/_delete_form.html.twig' %}
 				{% endfor %}
-				<h3 class="fs-md-6 h2 mt-5">Compétences
-					<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': app.user.candidate.id}) }}">Ajouter une compétence</a></button>
+				<h3 class="fs-md-6 h2 mt-5 fw-bold mb-md-5 pt-5 border-top border-secondary d-flex justify-content-center pb-md-5">Compétences
+					<button class="btn btn-primary mx-4">
+						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': app.user.candidate.id}) }}">Ajouter une compétence</a>
+					</button>
 				</h3>
-				<ul class="list-group-horizontal d-md-flex justify-content-between">
+				<ul class="ul">
+
 					{% for skill in app.user.candidate.skills %}
-						<li class="h6 list-group-item border-0">{{ include('icons/arrow.svg') }}
-							{{ skill.name }}{% include 'skill/_delete_form.html.twig' %}
+
+						<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
+
+							{{ skill.name }}
 						</li>
 					{% endfor %}
 				</ul>
-				<h3 class="fs-md-6 h2 mt-5">Formations
-					<button class="btn btn-primary">
+
+				<h3 class="fs-md-6 h2 mt-5 fw-bold my-5 pt-5 d-flex justify-content-center">Formations
+					<button class="btn btn-primary mx-4">
 						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': app.user.candidate.id}) }}">Ajouter une formation</a>
 					</button>
 				</h3>
 				{% for formation in app.user.candidate.formations %}
-					<h4>
+					<h4 class="border-top border-secondary pt-5">
 						<span class="text-primary">{{ formation.diploma }}</span>
 						-
 						<span class="text-secondary">{{ formation.establishment }}</span>
 					</h4>
-					<h5 class="h6 mb-2">Du
+					<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
 						{{ formation.start|date('d/m/Y') }}
 						au
 						{{ formation.end|date('d/m/Y') }}
 					</h5>
-				</li>
-			{% endfor %}
-		</ul>
-		<h3 class="fs-md-6 h2 mt-5">Formations
-			<a class="btn btn-primary text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': app.user.candidate.id}) }}">Ajouter une formation</a>
-		</a>
-	</h3>
-	{% for formation in app.user.candidate.formations %}
-		<h4>
-			<span class="text-primary">{{ formation.diploma }}</span>
-			-
-			<span class="text-secondary">{{ formation.establishment }}</span>
-		</h4>
-		<h5 class="h6 mb-2">Du
-			{{ formation.start|date('d/m/Y') }}
-			au
-			{{ formation.end|date('d/m/Y') }}
-			{% include 'formation/_delete_form.html.twig' %}
-		</h5>
 
-	{% endfor %}
+					<h5 class="h6 d-flex justify-content-center my-5">
+						{{ formation.description }}
+					</h5>
 
-</div></section>{% endblock %}{% block footer %}{% include "components/_footer.html.twig" %}{% endblock %}
+					<div class="mb-5">
+						{% include 'formation/_delete_form.html.twig' %}
+					</div>
+				{% endfor %}
+			</div>
+		</section>
+	{% endblock %}
+	{% block footer %}
+		{% include "components/_footer.html.twig" %}
+	{% endblock %}

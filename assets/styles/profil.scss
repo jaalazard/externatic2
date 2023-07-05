@@ -1,0 +1,13 @@
+@import "variables";
+
+.ul {
+    columns: 2;
+    margin-left: 200px;
+}
+
+@media screen and (max-width:600px){
+    .ul {
+        columns: 1;
+        margin-left: 0;
+    }
+}
