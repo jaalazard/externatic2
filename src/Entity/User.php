@@ -155,7 +155,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             'id' => $this->id,
             'email' => $this->email,
             'password' => $this->password,
-            //......
         ];
     }
 
@@ -164,7 +163,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->id = $serialized['id'];
         $this->email = $serialized['email'];
         $this->password = $serialized['password'];
-
-        // .....
     }
 }
