@@ -21,6 +21,13 @@ class CandidateType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+            ])
+            ->add('photoFile', VichFileType::class, [
+                'label' => 'Format jpg, webp ou png',
+                'attr' => [
+                    'class' => 'border-primary',
+                ],
+                'required'      => false,
             ]);
     }
 

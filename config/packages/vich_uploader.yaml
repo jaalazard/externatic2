@@ -14,6 +14,10 @@ vich_uploader:
             upload_destination: '%upload_directory%/images/company'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
         candidate_file:
-            uri_prefix: /uploads/images/candidates
+            uri_prefix: /uploads/images/candidates/cv
+            upload_destination: '%upload_directory%/images/candidate'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        candidate__photo_file:
+            uri_prefix: /uploads/images/candidates/photo
             upload_destination: '%upload_directory%/images/candidate'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
