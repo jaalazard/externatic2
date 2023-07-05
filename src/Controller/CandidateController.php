@@ -55,7 +55,7 @@ class CandidateController extends AbstractController
             $candidateRepository->save($candidate, true);
             return $this->redirectToRoute('app_candidate_profile', ['id' => $candidate->getId()]);
         }
-        return $this->render('candidate/edit.html.twig', [
+        return $this->render('candidate/edit_profilePic.html.twig', [
             'candidate' => $candidate, 'form' => $form,
         ]);
     }
