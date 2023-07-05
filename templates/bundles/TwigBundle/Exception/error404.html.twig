@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Externatic || Erreur
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="d-flex justify-content-center my-4">Page non trouvée</h1>
+
+		<p class="d-flex justify-content-center fs-4">
+			La page que vous cherchez n'existe pas.&nbsp;
+			<a class="button btn btn-primary" href="{{ path('app_home') }}">Retour à la page d'accueil</a>
+		</p>
+	</div>
+    <div class="djif d-flex justify-content-center mt-5">
+        <img class="Buster w-50 h-50" src="{{ asset('build/images/BusterK.gif') }}" alt="Buster don't smile" />
+    </div>
+
+{% endblock %}
