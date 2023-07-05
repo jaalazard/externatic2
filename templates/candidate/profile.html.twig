@@ -25,8 +25,8 @@
 	<section class="container-fluid px-5">
 		<div class="row mt-5">
 			<div class="col text-center d-flex-column d-md-flex justify-content-center align-items-center">
-				<img class="img-fluid rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
-				<a class="btn btn-primary text-light fw-bold text-decoration-none" href="{{ path('app_candidate_edit_profilePic', {'id': app.user.candidate.id}) }}">Changer ma photo</a>
+				<img style="width: 250px; height: 250px;" class="img-fluid rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
+				<a class="btn btn-primary text-light fw-bold text-decoration-none" href="{{ path('app_candidate_edit_profilePic', {'id': app.user.candidate.id}) }}">{{ include('icons/edit.svg') }}</a>
 				<h2 class="title mx-5 text-center text-primary fw-bold text-uppercase fs-2">{{ app.user.lastname }}
 					<span class="text-secondary">{{ app.user.firstname }}</h2>
 				</div>
