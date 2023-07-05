@@ -14,19 +14,23 @@
 				</a>
 			</button>
 			<ul class="dropdown-menu">
-			<li class="nav-item my-3">
 				{% if app.user %}
-						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_candidate_show', {'id': candidate.id}) }}">Mon profil</a>
+				<li class="nav-item my-3">
+						<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_candidate_profile') }}">Mon profil</a>
+						</li>
+
+						<li class="nav-item my-3">
+						<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_favourite') }}">Mes favoris</a>
+						</li>
 				{% else %}
-				
-						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="#">Inscription</a>
+						<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_register') }}">Inscription</a>
 				{% endif %}
 				</li>
 				<li class="nav-item my-3">
 					{% if app.user %}
-							<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_logout') }}">DÉCONNEXION</a>
+							<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_logout') }}">Déconnexion</a>
 					{% else %}
-							<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_login') }}">CONNEXION</a>
+							<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_login') }}">Connexion</a>
 					{% endif %}
 					</li>
 				</li>

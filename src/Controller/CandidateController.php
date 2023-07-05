@@ -35,7 +35,7 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $candidateRepository->save($candidate, true);
-            return $this->redirectToRoute('app_candidate_show', ['id' => $candidate->getId()]);
+            return $this->redirectToRoute('app_candidate_profile', ['id' => $candidate->getId()]);
         }
         // Render the form
 
@@ -63,7 +63,7 @@ class CandidateController extends AbstractController
         }
 
         return $this->redirectToRoute(
-            'app_candidate_show',
+            'app_candidate_profile',
             ['candidate' => $candidate, 'id' => $candidate->getId()],
             Response::HTTP_SEE_OTHER
         );
@@ -88,7 +88,7 @@ class CandidateController extends AbstractController
         }
 
         return $this->redirectToRoute(
-            'app_candidate_show',
+            'app_candidate_profile',
             ['candidate' => $candidate, 'id' => $candidate->getId()],
             Response::HTTP_SEE_OTHER
         );
@@ -113,19 +113,16 @@ class CandidateController extends AbstractController
         }
 
         return $this->redirectToRoute(
-            'app_candidate_show',
+            'app_candidate_profile',
             ['candidate' => $candidate, 'id' => $candidate->getId()],
             Response::HTTP_SEE_OTHER
         );
     }
 
-    #[Route('candidat/{id}', name: 'app_candidate_show', methods: ['GET', 'POST'])]
-    public function show(Candidate $candidate): Response
+    #[Route('candidat', name: 'app_candidate_profile', methods: ['GET', 'POST'])]
+    public function show(): Response
     {
-
-        return $this->render('candidate/show.html.twig', [
-            'candidate' => $candidate,
-        ]);
+        return $this->render('candidate/profile.html.twig');
     }
 
     #[Route('candidat/{id}/formation/ajouter', name: 'app_candidate_add_formation')]
@@ -142,7 +139,7 @@ class CandidateController extends AbstractController
             $formationRepository->save($formation, true);
             $candidate->addFormation($formation);
             return $this->render(
-                'candidate/show.html.twig',
+                'candidate/profile.html.twig',
                 ['candidate' => $candidate,]
             );
         }
@@ -165,7 +162,7 @@ class CandidateController extends AbstractController
             $candidate->addexperience($experience);
             $experienceRepository->save($experience, true);
             return $this->render(
-                'candidate/show.html.twig',
+                'candidate/profile.html.twig',
                 ['candidate' => $candidate,]
             );
         }
@@ -188,7 +185,7 @@ class CandidateController extends AbstractController
             $candidate->addskill($skill);
             $skillRepository->save($skill, true);
             return $this->render(
-                'candidate/show.html.twig',
+                'candidate/profile.html.twig',
                 ['candidate' => $candidate,]
             );
         }
