@@ -3,18 +3,35 @@
 
 
 body {
-    background: $background;
-
+    background-image: url("../images/backgroundCardExternatic11.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-size: 60%;
 }
 
 .scrollbar {
     height: 100vh;
+    position: relative;
+    padding: 20px 10px 20px 10px;
+    overflow-y: auto;
 }
+
 
 h2 {
     font-weight: 900;
 }
 
+.card {
+    background-image: url("../images/backgroundCardExternatic21.png");
+    background-position-x: right;
+    background-size: cover;
+}
+
 .btn {
     font-weight: 900;
+}
+
+.btn:hover {
+    background-color: $dark;
+    color: $light;
 }
