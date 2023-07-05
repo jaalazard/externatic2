@@ -25,7 +25,8 @@
 	<section class="container-fluid px-5">
 		<div class="row mt-5">
 			<div class="col text-center d-flex-column d-md-flex justify-content-center align-items-center">
-				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
+				<img class="img-fluid rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
+				<a class="btn btn-primary text-light fw-bold text-decoration-none" href="{{ path('app_candidate_edit_profilePic', {'id': app.user.candidate.id}) }}">Changer ma photo</a>
 				<h2 class="title mx-5 text-center text-primary fw-bold text-uppercase fs-2">{{ app.user.lastname }}
 					<span class="text-secondary">{{ app.user.firstname }}</h2>
 				</div>
@@ -45,7 +46,9 @@
 					{{ app.user.candidate.city }}
 				</h4>
 				<h3 class="fs-md-6 h2 mt-5">Expériences
-					<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': app.user.candidate.id}) }}">Ajouter une expérience</a></button>
+					<button class="btn btn-primary">
+						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': app.user.candidate.id}) }}">Ajouter une expérience</a>
+					</button>
 				</h3>
 				{% for experience in app.user.candidate.experience %}
 					<h4>
@@ -60,7 +63,9 @@
 						{% include 'experience/_delete_form.html.twig' %}</h5>
 				{% endfor %}
 				<h3 class="fs-md-6 h2 mt-5">Compétences
-					<button class="btn btn-primary"><a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': app.user.candidate.id}) }}">Ajouter une compétence</a></button>
+					<button class="btn btn-primary">
+						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': app.user.candidate.id}) }}">Ajouter une compétence</a>
+					</button>
 				</h3>
 				<ul class="list-group-horizontal d-md-flex justify-content-between">
 					{% for skill in app.user.candidate.skills %}

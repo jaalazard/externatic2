@@ -9,6 +9,7 @@ use App\Entity\Skill;
 use App\Entity\Experience;
 use App\Form\CandidateType;
 use App\Form\SkillType;
+use App\Form\ProfilePicType;
 use App\Form\FormationType;
 use App\Form\ExperienceType;
 use App\Repository\SkillRepository;
@@ -37,6 +38,23 @@ class CandidateController extends AbstractController
         }
         // Render the form
 
+        return $this->render('candidate/edit.html.twig', [
+            'candidate' => $candidate, 'form' => $form,
+        ]);
+    }
+
+    #[Route('candidat/{id}/photo', name: 'app_candidate_edit_profilePic', methods: ['GET', 'POST'])]
+    public function editProfilePic(
+        Request $request,
+        Candidate $candidate,
+        CandidateRepository $candidateRepository
+    ): Response {
+        $form = $this->createForm(ProfilePicType::class, $candidate);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $candidateRepository->save($candidate, true);
+            return $this->redirectToRoute('app_candidate_profile', ['id' => $candidate->getId()]);
+        }
         return $this->render('candidate/edit.html.twig', [
             'candidate' => $candidate, 'form' => $form,
         ]);
