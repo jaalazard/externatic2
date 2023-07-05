@@ -14,49 +14,42 @@
 		offres d’emploi</h1>
 	<h2 class="text-light text-uppercase fw-bold text-center bg-primary m-5 p-5">Trier les offres d'emplois</h2>
 	<section class="container">
-
 		<div class="d-flex">
 			<div class="col-4 g-3 overflow-auto scrollbar">
-
 				{% for jobOffer in jobOffers %}
-					<div class="col m-3">
-						<div class="card rounded-0 bg-light shadow">
-							<div class="card-body p-2">
-
-								<h2 class="jobOffer fs-4 fw-bold text-dark text-center text-uppercase mb-4 mt-3">
-									{{ jobOffer.job }}
-								</h2>
-								<div class="container mx-2">
-									<h3 class="fw-bold fs-6 text-dark text-uppercase mx-2">
-										{{ jobOffer.entreprise }}
-									</h3>
-									<div class="d-flex">
-										{% include 'icons/contract.svg' %}
-										<h3 class="fw-bold fs-6 text-dark ">{{ jobOffer.contract }}</h3>
-									</div>
-									<div class="d-flex">
-										{% include 'icons/location.svg' %}
-										<h3 class="fst-italic fs-6 fw-bold text-dark">
-											{{ jobOffer.city }}</h3>
-									</div>
-								</div>
-								<h5 class="fw-bold fs-6 text-dark opacity-50 text-end mb-4 mx-3">
-									{% set now = "now"|date("Y-m-d") %}
-									{% set nombersDays = ((date("now")|date('U') - jobOffer.createdAt|date('U'))) / (3600 * 24) %}
-									Publié il y a
-									{{ nombersDays|round }}
-									jours
-								</h5>
-								<div class="container">
-									<a type="button" class="btn col-12 col-btn-sm btn-transparent border-dark text-dark text-decoration-none fw-bold" href="{{ path("admin_consultant_show", { id: jobOffer.id }) }}">VOIR +</a>
-									<div class="bouton d-flex justify-content-between">
-										<a type="button" class="btn col-3 col-btn-sm btn-dark my-3 text-light text-decoration-none fw-bold">
-											{% include 'icons/people.svg' %}
-											20</a>
-										<a type="button" class="btn col-8 col-btn-sm btn-dark border-dark my-3 text-light text-decoration-none fw-bold" href="{{ path("jobOffer_index", { id: jobOffer.id}) }}">PROFILS INTÉRESSÉS
-										</a>
-									</div>
-								</div>
+					<div class="card p-2 m-3 rounded-2 bg-transparent border border-dark shadow">
+						<h2 class="jobOffer fs-4 text-dark text-center text-uppercase my-4">
+							{{ jobOffer.job }}
+						</h2>
+						<div class="container mx-2">
+							<h3 class="fw-bold fs-6 text-dark text-uppercase mx-2">
+								{{ jobOffer.entreprise }}
+							</h3>
+							<div class="d-flex">
+								{% include 'icons/contract.svg' %}
+								<h3 class="fw-bold fs-6 text-dark ">{{ jobOffer.contract }}</h3>
+							</div>
+							<div class="d-flex">
+								{% include 'icons/location.svg' %}
+								<h3 class="fst-italic fs-6 fw-bold text-dark">
+									{{ jobOffer.city }}</h3>
+							</div>
+						</div>
+						<h5 class="fw-bold fs-6 text-dark opacity-50 text-end mb-4 mx-3">
+							{% set now = "now"|date("Y-m-d") %}
+							{% set nombersDays = ((date("now")|date('U') - jobOffer.createdAt|date('U'))) / (3600 * 24) %}
+							Publié il y a
+							{{ nombersDays|round }}
+							jours
+						</h5>
+						<div class="container">
+							<a class="btn col-12 btn-outline-primary btn-transparent border-dark rounded-3 text-dark text-outline-light text-decoration-none" href="{{ path("admin_consultant_index", { id: jobOffer.id }) }}">VOIR +</a>
+							<div class="bouton d-flex justify-content-between">
+								<a class="btn col-3 btn-dark my-3 text-light rounded-3 text-decoration-none">
+									{% include 'icons/people.svg' %}
+									20</a>
+								<a class="btn col-8 btn-outline-primary btn-transparent border-dark my-3 rounded-3 text-dark text-decoration-none " href="{{ path("jobOffer_index", { id: jobOffer.id}) }}">PROFILS INTÉRESSÉS
+								</a>
 							</div>
 						</div>
 					</div>
@@ -64,8 +57,30 @@
 					Aucune offre trouvée.
 				{% endfor %}
 			</div>
-			<div class="col-8 bg-white mx-5 p-5">
-				<p class="fs-6 fst-italic text-dark opacity-50">Ici vous visualisez les détails de votre offre d'emploi choisi ...</p>
+			<div class="col-8 bg-transparent rounded-4 border border-dark mx-5 p-4">
+				{% if selectedJobOffer is not empty %}
+					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mb-4 mt-3">
+						{{ selectedJobOffer.job }}
+					</h2>
+					<div class="container d-inline-flex justify-content-center mb-4">
+						<h3 class="fw-bold fs-6 text-dark border border-dark rounded-3 p-2 mx-2">
+							{{ selectedJobOffer.entreprise }}
+						</h3>
+						<h3 class="fw-bold fs-6 text-dark border border-dark rounded-3 p-2 mx-2">{{ selectedJobOffer.contract }}</h3>
+						<h3 class="fst-italic fs-6 fw-bold text-dark border border-dark rounded-3 p-2 mx-2">
+							{{ selectedJobOffer.city }}</h3>
+					</div>
+					<p class="fs-6 fw-medium text-dark m-4">
+						{{ selectedJobOffer.description }}
+					</p>
+					<h5 class="fw-bold fs-6 text-dark mx-5 text-end">
+						{% set now = "now"|date("Y-m-d") %}
+						{% set nombersDays = ((date("now")|date('U') - selectedJobOffer.createdAt|date('U'))) / (3600 * 24) %}
+						Publié il y a
+						{{ nombersDays|round }}
+						jours
+					</h5>
+				{% endif %}
 			</div>
 		</div>
 	</section>
