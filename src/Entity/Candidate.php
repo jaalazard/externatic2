@@ -29,6 +29,18 @@ class Candidate
     private ?string $city = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    private ?string $photo = null;
+
+    #[Vich\UploadableField(mapping: 'candidate_file', fileNameProperty: 'photo')]
+    #[Assert\File(
+        maxSize: '2M',
+        mimeTypes: [
+            'image/jpeg', 'image/png', 'image/webp',
+        ],
+    )]
+    private ?File $photoFile = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $cvitae = null;
 
     #[Vich\UploadableField(mapping: 'candidate_file', fileNameProperty: 'cvitae')]
@@ -285,5 +297,31 @@ class Candidate
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): static
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function setPhotoFile(?File $photo = null): Candidate
+    {
+        $this->photoFile = $photo;
+        if ($photo) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getPhotoFile(): ?File
+    {
+        return $this->photoFile;
     }
 }
