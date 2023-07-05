@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}|| Mes favoris
+{% endblock %}
+
+{% block body %}
+	<section class="container-xl">
+
+			<h1 class="fw-bold text-dark text-uppercase my-5">Avec
+			<span class="text-primary">
+				externatic</span>,<br>
+			Retrouvez vos offres préférées !</h1>
+
+		<div class="row g-5 mb-5">
+			{% for jobOffer in app.user.candidate.favorites %}
+				{% include '/components/jobOffer-card.html.twig' %}
+			{% else %}
+				<p class="my-5 fw-bold text-primary fs-4">Aucune offre mise en favorite n'a été détéctée.</p>
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}
