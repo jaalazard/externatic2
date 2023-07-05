@@ -21,6 +21,7 @@ class ExperienceFixtures extends Fixture implements DependentFixtureInterface
             $experience->setCompany($faker->company());
             $experience->setStart($faker->dateTime());
             $experience->setEnd($faker->dateTime());
+            $experience->setDescription($faker->realText(250));
             $experience->setCandidates($this->getReference(
                 'candidate_' . $faker->numberBetween(0, UserFixtures::NB_USERS)
             ));

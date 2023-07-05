@@ -18,41 +18,39 @@
 		<span class="title text-primary fw-bold text-uppercase fs-2">Profil</span>
 		<span class="text-dark fw-bolder text-uppercase fs-2">de l'utilisateur</span>
 	</h1>
-
-
 	<section class="container">
 		<div class="d-md-flex d-block pt-5">
 
 			<img src={{ asset('build/images/profil-user.png') }} class="img-fluid w-25 mx-5 mb-md-5 mb-0" alt="Placeholder_candidate">
 
 			<div class="flex-column my-5 mx-5">
-				<h2 class="title text-primary fw-bold text-uppercase fs-1 mb-4 ">{{ candidate.user.lastname }}
-					<span class="text-secondary text-lowercase mb-4">{{ candidate.user.firstname }}</h2>
+				<h2 class="title text-primary fw-bold text-uppercase fs-1 mb-4 ">{{ app.user.candidate.user.lastname }}
+					<span class="text-secondary text-lowercase mb-4">{{ app.user.candidate.user.firstname }}</h2>
 
 
 					<h4>
 						<span class="fw-bold">Date de naissance :</span>
-						{{ candidate.birthday|date('d/m/Y') }}</h4>
+						{{ app.user.candidate.birthday|date('d/m/Y') }}</h4>
 					<h4>
 						<span class="fw-bold">Téléphone :</span>
-						{{ candidate.phone }}</h4>
+						{{ app.user.candidate.phone }}</h4>
 					<h4>
 						<span class="fw-bold">Adresse e-mail :</span>
-						{{ candidate.user.email }}</h4>
+						{{ app.user.candidate.user.email }}</h4>
 					<h4>
 						<span class="fw-bold">Adresse :</span>
-						{{ candidate.address }},
-						{{ candidate.city }}
+						{{ app.user.candidate.address }},
+						{{ app.user.candidate.city }}
 					</h4>
 				</div>
 			</div>
 
-			<h3 class="fs-md-6 h2 mt-5 fw-bold pt-5 d-flex justify-content-center">Expériences 
+			<h3 class="fs-md-6 h2 mt-5 fw-bold pt-5 d-flex justify-content-center">Expériences
 				<button class="btn btn-primary mx-4">
-					<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': candidate.id}) }}">Ajouter une expérience</a>
+					<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_experience', {'id': app.user.candidate.id}) }}">Ajouter une expérience</a>
 				</button>
 			</h3>
-			{% for experience in candidate.experience %}
+			{% for experience in app.user.candidate.experience %}
 				<h4 class="mt-5 border-top border-secondary pt-5">
 					<span class="text-primary">{{ experience.jobTitle }}</span>
 					-
@@ -72,26 +70,26 @@
 				{% endfor %}
 				<h3 class="fs-md-6 h2 mt-5 fw-bold mb-md-5 pt-5 border-top border-secondary d-flex justify-content-center pb-md-5">Compétences
 					<button class="btn btn-primary mx-4">
-						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': candidate.id}) }}">Ajouter une compétence</a>
+						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': app.user.candidate.id}) }}">Ajouter une compétence</a>
 					</button>
 				</h3>
 				<ul class="ul">
-					
-						{% for skill in candidate.skills %}
-					
+
+					{% for skill in app.user.candidate.skills %}
+
 						<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
-					
+
 							{{ skill.name }}
 						</li>
 					{% endfor %}
 				</ul>
-				
+
 				<h3 class="fs-md-6 h2 mt-5 fw-bold my-5 pt-5 d-flex justify-content-center">Formations
 					<button class="btn btn-primary mx-4">
-						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': candidate.id}) }}">Ajouter une formation</a>
+						<a class="text-light fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': app.user.candidate.id}) }}">Ajouter une formation</a>
 					</button>
 				</h3>
-				{% for formation in candidate.formations %}
+				{% for formation in app.user.candidate.formations %}
 					<h4 class="border-top border-secondary pt-5">
 						<span class="text-primary">{{ formation.diploma }}</span>
 						-
@@ -103,17 +101,15 @@
 						{{ formation.end|date('d/m/Y') }}
 					</h5>
 
-						<h5 class="h6 d-flex justify-content-center my-5">
-					{{ formation.description }}
-				</h5>
+					<h5 class="h6 d-flex justify-content-center my-5">
+						{{ formation.description }}
+					</h5>
 
 					<div class="mb-5">
 						{% include 'formation/_delete_form.html.twig' %}
 					</div>
 				{% endfor %}
-
 			</div>
-
 		</section>
 	{% endblock %}
 	{% block footer %}
