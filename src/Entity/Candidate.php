@@ -31,7 +31,7 @@ class Candidate
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photo = null;
 
-    #[Vich\UploadableField(mapping: 'candidate_photo_file', fileNameProperty: 'photo')]
+    #[Vich\UploadableField(mapping: 'candidate_file', fileNameProperty: 'photo')]
     #[Assert\File(
         maxSize: '2M',
         mimeTypes: [

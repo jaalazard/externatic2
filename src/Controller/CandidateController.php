@@ -33,7 +33,7 @@ class CandidateController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $candidateRepository->save($candidate, true);
-            return $this->redirectToRoute('app_candidate_show', ['id' => $candidate->getId()]);
+            return $this->redirectToRoute('app_candidate_edit_profile', ['id' => $candidate->getId()]);
         }
         // Render the form
 
