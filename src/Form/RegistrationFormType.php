@@ -19,7 +19,10 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'attr' => ['class' => 'border-primary'],
+                'attr' => [
+                    'class' => 'border-white',
+                    'placeholder' => 'exemple@exemple.com',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un email valide.',
@@ -30,8 +33,11 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password',
-                        'class' => 'border-primary'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                    'placeholder' => 'Mot de passe',
+                    'class' => 'border-white'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un nouveau mot de passe.',
@@ -45,7 +51,10 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('firstname', TextType::class, [
-                'attr' => ['class' => 'border-primary'],
+                'attr' => [
+                    'class' => 'border-white',
+                    'placeholder' => 'John',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre prénom',
@@ -60,7 +69,10 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('lastname', TextType::class, [
-                'attr' => ['class' => 'border-primary'],
+                'attr' => [
+                    'class' => 'border-white',
+                    'placeholder' => 'Doe',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre nom',
