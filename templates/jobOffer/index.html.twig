@@ -11,8 +11,8 @@
 	|| Offres d'emploi
 {% endblock %}
 {% block body %}
-	<section class="container-xl">
-	<div style="height: 180px" id ="map"></div>
+	<section class="container-xl" {{ stimulus_controller('map') }}>
+		<div style="height: 180px" id="map"></div>
 		<h1 class="fw-bold text-dark text-uppercase my-5">Avec
 			<span class="text-primary">
 				externatic</span>,<br>
@@ -26,17 +26,20 @@
 			{{ form_end(form) }}
 		</div>
 
-		<div class="row g-5 mb-5" {{ stimulus_controller('map') }}>
-		{{ stimulus_target('map', 'jobOffer') }}
+		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
-			
-				{% include '/components/jobOffer-card.html.twig' %}
-			{% else %}
-				Aucune offre trouvée.
-			{% endfor %}
+				<div class="card mb-3 border border-0" {{ stimulus_target('map', 'jobOffer' )}} data-longitude="{{ jobOffer.longitude }}" data-latitude="{{ jobOffer.latitude }}">
 
+					{% include '/components/jobOffer-card.html.twig' %}
+				{% else %}
+					Aucune offre trouvée.
+				{% endfor %}
+
+			</div>
 		</div>
-	</div>
-</section>{% endblock %}{% block javascripts %}
-{{ parent() }}
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>{% endblock %}
+	</section>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+{% endblock %}
