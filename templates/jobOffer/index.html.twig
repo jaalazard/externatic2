@@ -18,38 +18,25 @@
 			trouvez l’emploi qui vous correspond !</h1>
 		<h2 class="mb-4 text-dark">Trier les offres d'emplois</h2>
 
-
 		<div class="jobOfferForm">
-
-
 			{{ form_start(form) }}
-
 			{{ form_widget(form, {'attr' : {'class' : 'd-flex flex-md-row flex-column'}}) }}
-
 			<button class="search btn btn-secondary border border-primary text-uppercase fw-bold">RECHERCHER</button>
-
 			{{ form_end(form) }}
-
-
 		</div>
 
-
-		<div class="row g-5 mb-5">
+		<div class="row g-5 mb-5" >
 			{% for jobOffer in jobOffers %}
+				
 				{% include '/components/jobOffer-card.html.twig' %}
 			{% else %}
 				Aucune offre trouvée.
-
 			{% endfor %}
 
 		</div>
 
 		<div id="map" style="height: 180px;" class="col-5 map"></div>
-	</section>
-{% endblock %}
-
-
-{% block javascripts %}
-	{{ parent() }}
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-{% endblock %}
+	</div>
+</section>{% endblock %}{% block javascripts %}
+{{ parent() }}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>{% endblock %}

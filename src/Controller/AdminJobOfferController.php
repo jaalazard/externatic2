@@ -53,12 +53,19 @@ class AdminJobOfferController extends AbstractController
     }
 
     #[Route('/{id}/editer', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
-    {
+    public function edit(
+        Request $request,
+        Locator $locator,
+        JobOffer $jobOffer,
+        JobOfferRepository $jobOfferRepository
+    ): Response {
         $form = $this->createForm(JobOfferType::class, $jobOffer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $coordinates = $locator->getCoordinates($jobOffer);
+            $jobOffer->setLongitude($coordinates[0]);
+            $jobOffer->setLatitude($coordinates[1]);
             $jobOfferRepository->save($jobOffer, true);
 
             return $this->redirectToRoute('admin_jobOffer_index', [], Response::HTTP_SEE_OTHER);
