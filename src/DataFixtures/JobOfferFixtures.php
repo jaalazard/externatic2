@@ -49,6 +49,9 @@ class JobOfferFixtures extends Fixture
             $jobOffer->setContract(self::CONTRACTS[array_rand(self::CONTRACTS)]);
             $jobOffer->setDescription($jobOfferCard['description']);
             $jobOffer->setCity($faker->city());
+            $jobOffer->setLatitude($faker->latitude(42, 52));
+            $jobOffer->setLongitude($faker->longitude(-3, 7));
+
             $manager->persist($jobOffer);
         }
         $manager->flush();
