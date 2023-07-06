@@ -17,21 +17,23 @@
 
 				{% if app.user %}
 					<li class="nav-item my-3">
-						<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_candidate_profile') }}">Mon profil</a>
+						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_candidate_profile') }}">Mon profil</a>
 					</li>
 
 					<li class="nav-item my-3">
-						<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_favorite') }}">Mes favoris</a>
-					</li>
+						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_favorite') }}">Mes favoris</a>
+					
 				{% else %}
-					<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_register') }}">Inscription</a>
+				<li class="nav-item my-3">
+					<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_register') }}">Inscription</a>
+					</li>
 				{% endif %}
 			</li>
 			<li class="nav-item my-3">
 				{% if app.user %}
-					<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_logout') }}">Déconnexion</a>
+					<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_logout') }}">Déconnexion</a>
 				{% else %}
-					<a class="mx-3 text-decoration-none text-secondary" href="{{ path('app_login') }}">Connexion</a>
+					<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_login') }}">Connexion</a>
 				{% endif %}
 			</li>
 		</li>
