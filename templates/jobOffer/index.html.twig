@@ -12,6 +12,7 @@
 {% endblock %}
 {% block body %}
 	<section class="container-xl">
+	<div style="height: 180px" id ="map"></div>
 		<h1 class="fw-bold text-dark text-uppercase my-5">Avec
 			<span class="text-primary">
 				externatic</span>,<br>
@@ -25,17 +26,16 @@
 			{{ form_end(form) }}
 		</div>
 
-		<div class="row g-5 mb-5" >
+		<div class="row g-5 mb-5" {{ stimulus_controller('map') }}>
+		{{ stimulus_target('map', 'jobOffer') }}
 			{% for jobOffer in jobOffers %}
-				
+			
 				{% include '/components/jobOffer-card.html.twig' %}
 			{% else %}
 				Aucune offre trouvée.
 			{% endfor %}
 
 		</div>
-
-		<div id="map" style="height: 180px;" class="col-5 map"></div>
 	</div>
 </section>{% endblock %}{% block javascripts %}
 {{ parent() }}
