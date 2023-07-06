@@ -43,12 +43,12 @@
 							jours
 						</h5>
 						<div class="container">
-							<a class="btn col-12 btn-dark border-light rounded-3 text-light text-decoration-none" href="{{ path("admin_consultant_index", { id: jobOffer.id }) }}">VOIR +</a>
+							<a class="btn col-12 btn-dark border-light rounded-3 text-light text-decoration-none" href="{{ path("admin_consultant_index", { jobOffer: jobOffer.id }) }}">VOIR +</a>
 							<div class="bouton d-flex justify-content-between">
 								<a class="btn col-3 btn-light my-3 text-dark rounded-3 text-decoration-none">
 									{% include 'icons/people.svg' %}
 									20</a>
-								<a class="btn col-8 btn-transparent border-light my-3 rounded-3 text-light text-decoration-none " href="{{ path("jobOffer_index", { id: jobOffer.id}) }}">PROFILS INTÉRESSÉS
+								<a class="btn col-8 btn-transparent border-light my-3 rounded-3 text-light text-decoration-none " href="{{ path("jobOffer_index", { jobOffer: jobOffer.id}) }}">PROFILS INTÉRESSÉS
 								</a>
 							</div>
 						</div>

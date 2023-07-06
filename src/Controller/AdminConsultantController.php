@@ -11,8 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/consultant', name: 'admin_consultant_')]
 class AdminConsultantController extends AbstractController
 {
-    #[Route('/{id}', name: 'index', methods: ['GET'])]
-    public function index(?JobOffer $jobOffer = null, JobOfferRepository $jobOfferRepository): Response
+    #[Route('/{jobOffer}', name: 'index', methods: ['GET'])]
+    public function index(JobOfferRepository $jobOfferRepository, JobOffer $jobOffer = null): Response
     {
         return $this->render('admin_consultant/index.html.twig', [
             'jobOffers' => $jobOfferRepository->findAll(),
