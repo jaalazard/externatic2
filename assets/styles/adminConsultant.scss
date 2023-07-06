@@ -21,17 +21,10 @@ h2 {
     font-weight: 900;
 }
 
-.card {
-    background-image: url("../images/backgroundCardExternatic21.png");
-    background-position-x: right;
-    background-size: cover;
-}
-
 .btn {
     font-weight: 900;
 }
 
 .btn:hover {
-    background-color: $dark;
-    color: $light;
+    background-color: $primary;
 }
