@@ -4,19 +4,20 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
+use App\Service\Localizable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CandidateRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 #[Vich\Uploadable]
 /** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
-class Candidate
+class Candidate implements Localizable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -366,5 +367,10 @@ class Candidate
         $this->longitude = $longitude;
 
         return $this;
+    }
+
+    public function getLocalization(): ?string
+    {
+        return $this->getAddress() . ', ' . $this->getCity();
     }
 }
