@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 #[Vich\Uploadable]
+/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
 class Candidate
 {
     #[ORM\Id]
@@ -76,6 +77,16 @@ class Candidate
 
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'candidates')]
     private Collection $skills;
+
+    #[ORM\Column(length: 255)]
+    private ?int $mobility = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $latitude = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $longitude = null;
+
 
     public function __construct()
     {
@@ -143,11 +154,7 @@ class Candidate
 
     public function isFavorite(JobOffer $jobOffer): bool
     {
-        if (in_array($jobOffer, $this->getFavorites()->toArray())) {
-            return true;
-        } else {
-            return false;
-        }
+        return in_array($jobOffer, $this->getFavorites()->toArray());
     }
 
     public function getUser(): ?User
@@ -323,5 +330,41 @@ class Candidate
     public function getPhotoFile(): ?File
     {
         return $this->photoFile;
+    }
+
+    public function getMobility(): ?int
+    {
+        return $this->mobility;
+    }
+
+    public function setMobility(int $mobility): static
+    {
+        $this->mobility = $mobility;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
     }
 }
