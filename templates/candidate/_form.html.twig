@@ -1,7 +1,10 @@
 <div class="form-row fw-bold">
 	{{ form_start(form) }}
 	{{ form_widget(form) }}
-	<img src="{{ vich_uploader_asset(candidate) }}" alt=""><button class="btn btn-primary btn fw-bold text-uppercase my-3 rounded-2">
+	<img src="{{ vich_uploader_asset(candidate) }}" alt=""><button class="btn btn-primary btn fw-bold  w-50 text-uppercase my-3 rounded-2">
 		{{ button_label|default('Envoyer') }}</button>
+			<a href="{{ path('app_candidate_profile')}}" class="btn btn-primary fw-bold text-uppercase mb-5 px-md-5 px-3 mx-5 my-5 rounded-10">Retour</a>
+
 	{{ form_end(form) }}
+	
 </div>
