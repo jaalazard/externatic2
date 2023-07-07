@@ -38,6 +38,12 @@ class JobOffer
     #[ORM\Column(length: 255)]
     private ?string $entreprise = null;
 
+    #[ORM\Column]
+    private ?float $latitude = null;
+
+    #[ORM\Column]
+    private ?float $longitude = null;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
@@ -138,9 +144,31 @@ class JobOffer
         return $this->entreprise;
     }
 
-    public function setEntreprise(string $entreprise): static
+    public function setEntreprise(string $entreprise): void
     {
         $this->entreprise = $entreprise;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(float $latitude): static
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(float $longitude): static
+    {
+        $this->longitude = $longitude;
 
         return $this;
     }

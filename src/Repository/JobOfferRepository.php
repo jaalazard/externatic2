@@ -39,6 +39,27 @@ class JobOfferRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLikeName(string $name, string $contract): array
+    {
+        $queryBuilder = $this->createQueryBuilder('j');
+
+        if (!empty($name)) {
+            $queryBuilder->where('j.job LIKE :name')
+                ->setParameter('name', '%' . $name . '%');
+        }
+
+
+        if (!empty($contract)) {
+            $queryBuilder->andWhere('j.contract LIKE :contract')
+                ->setParameter('contract', $contract);
+        }
+
+        $queryBuilder
+            ->orderBy('j.job', 'ASC');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
     //    /**
     //     * @return JobOffer[] Returns an array of JobOffer objects
     //     */

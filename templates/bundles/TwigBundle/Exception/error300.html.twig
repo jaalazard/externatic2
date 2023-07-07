@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Externatic || Erreur
+{% endblock %}
+
+{% block body %}
+	<div class="container text-center">
+		<h1 class="my-4">Erreur inconnue</h1>
+		<div class="d-flex justify-content-center">
+			<p class="fs-4 text-center">
+				La page est inaccessible ou a changé d'adresse.&nbsp;</p>
+		</div>
+		<a class="btn btn-primary my-4" href="{{ path('app_home') }}">Retour à la page d'accueil</a>
+	</div>
+	<div class="djif d-flex justify-content-center mt-4">
+		<img class="Buster w-50 h-50" src="{{ asset('build/images/Marx_bro_dig.webp') }}" alt="Two is company, three is a crowd"/>
+	</div>
+
+{% endblock %}

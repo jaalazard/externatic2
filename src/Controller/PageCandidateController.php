@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/candidat', name: 'candidate_')]
+#[Route('/accueil-candidat', name: 'candidate_')]
 class PageCandidateController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]

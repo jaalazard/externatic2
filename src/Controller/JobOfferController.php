@@ -12,15 +12,30 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\SearchJobType;
 
 #[Route('/offres', name: 'jobOffer_')]
 class JobOfferController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(JobOfferRepository $jobOfferRepository): Response
+    public function index(Request $request, JobOfferRepository $jobOfferRepository): Response
     {
+
+        $form = $this->createForm(SearchJobType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['search'] ?? '';
+            $contract = $form->getData()['contract'] ?? '';
+
+            $jobOffers = $jobOfferRepository->findLikeName($search, $contract);
+        } else {
+            $jobOffers = $jobOfferRepository->findAll();
+        }
+
         return $this->render('jobOffer/index.html.twig', [
-            'jobOffers' => $jobOfferRepository->findAll(),
+            'jobOffers' => $jobOffers,
+            'form' => $form,
+            'candidate' =>  $this->getUser(),
         ]);
     }
 

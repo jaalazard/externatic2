@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{{ encore_entry_link_tags('app') }}
+	{{parent()}}
+	{{ encore_entry_link_tags('profil') }}
 {% endblock %}
 
 {% block javascripts %}
@@ -16,23 +17,83 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="profil mr-4 my-5 py-5 text-center">
-		<span class="title text-primary fw-bold text-uppercase fs-2">Profil</span>
-		<span class="text-dark fw-bolder text-uppercase fs-2">de l'utilisateur</span>
-	</h1>
-	<section class="container-fluid">
-		<div class="row mt-5">
-			<div class="col-sm-6 col-md-4">
-				<img src={{ asset('build/images/profil.png') }} class="img-fluid" alt="Placeholder_candidate">
-            </div>
-            <div class="col-sm-6 col-md-8- text-center">
-                <p class="Name text-center fs-md-6">Prénom Nom </p>
-                <p class="mail text-center fs-md-6">Votre email :
-				<a href="email">{{ candidate.user.email }}</a>
-			</p>
+	<section class="container">
+		<div class="d-flex justify-content-center my-5">
+			<h1>
+				<span class="title text-primary fw-bold text-uppercase fs-2">Profil</span>
+				<span class="text-dark fw-bolder text-uppercase fs-2">de l'utilisateur</span>
+			</h1>
+		</div>
+		<div class="d-md-flex d-block pt-5">
+
+			<img src={{ asset('build/images/profil-user.png') }} class="img-fluid w-25 mx-5 mb-md-5 mb-0" alt="Placeholder_candidate">
+
+			<div class="flex-column my-5 mx-5">
+				<h2 class="title text-primary fw-bold text-uppercase fs-1 mb-4 ">{{ app.user.candidate.user.lastname }}
+					<span class="text-secondary text-lowercase mb-4">{{ app.user.candidate.user.firstname }}</h2>
+
+					<h4>
+						<span class="fw-bold">Téléphone :</span>
+						{{ app.user.candidate.phone }}</h4>
+					<h4>
+						<span class="fw-bold">Adresse e-mail :</span>
+						{{ app.user.candidate.user.email }}</h4>
+
+				</div>
 			</div>
-        </div>
+
+			<h3 class="fs-md-6 h2 mt-5 fw-bold pt-5 d-flex justify-content-center">Expériences
+			</h3>
+			{% for experience in app.user.candidate.experience %}
+				<h4 class="mt-5 border-top border-secondary pt-5">
+					<span class="text-primary">{{ experience.jobTitle }}</span>
+					-
+					<span class="text-secondary">{{ experience.company }}</span>
+				</h4>
+				<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
+					{{ experience.start|date('d/m/Y') }}
+					au
+					{{ experience.end|date('d/m/Y') }}
+				</h5>
+
+				<h5 class="h6 d-flex my-5 justify-content-center">
+					{{ experience.description }}
+				</h5>
+			{% endfor %}
+			<h3 class="fs-md-6 h2 mt-5 fw-bold mb-md-5 pt-5 border-top border-secondary d-flex justify-content-center pb-md-5">Compétences
+			</h3>
+			<ul class="ul">
+
+				{% for skill in app.user.candidate.skills %}
+
+					<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
+
+						{{ skill.name }}
+					</li>
+				{% endfor %}
+			</ul>
+
+			<h3 class="fs-md-6 h2 mt-5 fw-bold my-5 pt-5 d-flex justify-content-center">Formations
+			</h3>
+			{% for formation in app.user.candidate.formations %}
+				<h4 class="border-top border-secondary pt-5">
+					<span class="text-primary">{{ formation.diploma }}</span>
+					-
+					<span class="text-secondary">{{ formation.establishment }}</span>
+				</h4>
+				<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
+					{{ formation.start|date('d/m/Y') }}
+					au
+					{{ formation.end|date('d/m/Y') }}
+				</h5>
+
+				<h5 class="h6 d-flex justify-content-center my-5">
+					{{ formation.description }}
+				</h5>
+			{% endfor %}
+		</div>
 	</section>
-
-
-	{% endblock %}
+{% endblock %}
+{% block footer %}
+	{% include "components/_footer.html.twig" %}
+{% endblock %}

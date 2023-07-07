@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+
+<div class="errors">
+	{{ form_errors(form) }}
+</div>
+
+<div class="form-row fw-bold">
+	{{ form_row(form.jobTitle) }}
+</div>
+<div class="form-row fw-bold">
+	{{ form_row(form.company) }}
+</div>
+<div class="col form-row fw-bold">
+	{{ form_row(form.start) }}
+</div>
+
+<div class="col form-row fw-bold">
+	{{ form_row(form.end) }}
+</div>
+<div class="col form-row fw-bold">
+	{{ form_row(form.description) }}
+</div>
+<div class="text-center">
+	<button class="btn btn-primary w-50 w-md-25 fw-bold text-uppercase">Valider</button>
+		<a href="{{ path('app_candidate_profile')}}" class="btn btn-primary fw-bold text-uppercase mb-5 px-md-5 px-3 mx-5 my-5 rounded-10">Retour</a>
+
+</div>
+{{ form_end(form) }}

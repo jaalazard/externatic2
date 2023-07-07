@@ -28,12 +28,12 @@ class JobOfferType extends AbstractType
                     'placeholder' => 'Ville',
                 ]
             ])
-            ->add('contract', ChoiceType::class, [
-                'label' => 'Contrat',
-                'placeholder' => 'Sélectionnez un contrat pour cette offre',
-
-
-            ])
+            ->add('contract', TextType::class, [
+                'label' => 'contract',
+                'attr' => [
+                    'placeholder' => 'Sélectionnez un métier pour cette offre',
+                ]
+                ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [
