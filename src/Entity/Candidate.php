@@ -79,7 +79,7 @@ class Candidate implements Localizable
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'candidates')]
     private Collection $skills;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?int $mobility = null;
 
     #[ORM\Column(nullable: true)]
@@ -338,7 +338,7 @@ class Candidate implements Localizable
         return $this->mobility;
     }
 
-    public function setMobility(int $mobility): static
+    public function setMobility(?int $mobility): static
     {
         $this->mobility = $mobility;
 
