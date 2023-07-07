@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
 use DateTime;
+use App\Service\Localizable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: JobOfferRepository::class)]
-class JobOffer
+class JobOffer implements Localizable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -158,5 +159,10 @@ class JobOffer
         $this->longitude = $longitude;
 
         return $this;
+    }
+
+    public function getLocalization(): ?string
+    {
+        return $this->getCity();
     }
 }
