@@ -78,11 +78,12 @@
 				<ul class="ul">
 
 					{% for skill in app.user.candidate.skills %}
-
+					<div class="d-flex"
+					{% include 'skill/_delete_form.html.twig' %}
 						<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
-
-							{{ skill.name }}
+							{{ skill.name }} 
 						</li>
+						</div>
 					{% endfor %}
 				</ul>
 
