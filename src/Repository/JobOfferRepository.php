@@ -56,7 +56,7 @@ class JobOfferRepository extends ServiceEntityRepository
 
         $queryBuilder
             ->orderBy('j.job', 'ASC');
-            $query = $queryBuilder->getQuery();
+        $query = $queryBuilder->getQuery();
         return $query->getResult();
     }
 

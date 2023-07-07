@@ -25,9 +25,9 @@
 			{{ form_end(form) }}
 		</div>
 
-		<div class="row g-5 mb-5" >
+		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
-				
+
 				{% include '/components/jobOffer-card.html.twig' %}
 			{% else %}
 				Aucune offre trouvée.
