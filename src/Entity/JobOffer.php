@@ -36,6 +36,9 @@ class JobOffer implements Localizable
     #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
     private Collection $candidates;
 
+    #[ORM\Column(length: 255)]
+    private ?string $entreprise = null;
+
     #[ORM\Column]
     private ?float $latitude = null;
 
@@ -135,6 +138,16 @@ class JobOffer implements Localizable
         $this->candidates->removeElement($candidate);
 
         return $this;
+    }
+
+    public function getEntreprise(): ?string
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(string $entreprise): void
+    {
+        $this->entreprise = $entreprise;
     }
 
     public function getLatitude(): ?float
