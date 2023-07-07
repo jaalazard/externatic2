@@ -2,16 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\Candidate;
 use App\Entity\User;
-use App\Entity\Formation;
 use App\Entity\Skill;
+use App\Form\SkillType;
+use App\Service\Locator;
+use App\Entity\Candidate;
+use App\Entity\Formation;
 use App\Entity\Experience;
 use App\Form\CandidateType;
-use App\Form\SkillType;
-use App\Form\ProfilePicType;
 use App\Form\FormationType;
 use App\Form\ExperienceType;
+use App\Form\ProfilePicType;
 use App\Repository\SkillRepository;
 use App\Repository\CandidateRepository;
 use App\Repository\FormationRepository;
@@ -26,7 +27,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CandidateController extends AbstractController
 {
     #[Route('candidat/edit', name: 'app_candidate_edit_profile', methods: ['GET', 'POST'])]
-    public function edit(Request $request, CandidateRepository $candidateRepository): Response
+    public function edit(Request $request, CandidateRepository $candidateRepository, Locator $locator): Response
     {
         // Create the form, linked with $candidate
         /** @var User */
@@ -35,6 +36,10 @@ class CandidateController extends AbstractController
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($candidate->getLocalization()) {
+                [$longitude, $latitude] = $locator->getCoordinates($candidate);
+                $candidate->setLongitude($longitude)->setLatitude($latitude);
+            }
             $candidateRepository->save($candidate, true);
             return $this->redirectToRoute('app_candidate_profile', ['id' => $candidate->getId()]);
         }
@@ -211,5 +216,11 @@ class CandidateController extends AbstractController
             'form' => $form,
             'candidate' => $candidate,
         ]);
+    }
+
+    #[Route('/profil-candidat', name: 'app_candidate_show', methods: ['GET'])]
+    public function index(): Response
+    {
+        return $this->render('candidate/show.html.twig');
     }
 }

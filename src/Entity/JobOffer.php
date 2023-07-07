@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
 use DateTime;
+use App\Service\Localizable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: JobOfferRepository::class)]
-class JobOffer
+class JobOffer implements Localizable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,6 +35,9 @@ class JobOffer
 
     #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
     private Collection $candidates;
+
+    #[ORM\Column(length: 255)]
+    private ?string $entreprise = null;
 
     #[ORM\Column]
     private ?float $latitude = null;
@@ -136,6 +140,16 @@ class JobOffer
         return $this;
     }
 
+    public function getEntreprise(): ?string
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(string $entreprise): void
+    {
+        $this->entreprise = $entreprise;
+    }
+
     public function getLatitude(): ?float
     {
         return $this->latitude;
@@ -158,5 +172,10 @@ class JobOffer
         $this->longitude = $longitude;
 
         return $this;
+    }
+
+    public function getLocalization(): ?string
+    {
+        return $this->getCity();
     }
 }

@@ -4,18 +4,20 @@ namespace App\Entity;
 
 use DateTime;
 use DateTimeInterface;
+use App\Service\Localizable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CandidateRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 #[Vich\Uploadable]
-class Candidate
+/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
+class Candidate implements Localizable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -76,6 +78,16 @@ class Candidate
 
     #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'candidates')]
     private Collection $skills;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?int $mobility = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $latitude = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $longitude = null;
+
 
     public function __construct()
     {
@@ -143,11 +155,7 @@ class Candidate
 
     public function isFavorite(JobOffer $jobOffer): bool
     {
-        if (in_array($jobOffer, $this->getFavorites()->toArray())) {
-            return true;
-        } else {
-            return false;
-        }
+        return in_array($jobOffer, $this->getFavorites()->toArray());
     }
 
     public function getUser(): ?User
@@ -323,5 +331,46 @@ class Candidate
     public function getPhotoFile(): ?File
     {
         return $this->photoFile;
+    }
+
+    public function getMobility(): ?int
+    {
+        return $this->mobility;
+    }
+
+    public function setMobility(?int $mobility): static
+    {
+        $this->mobility = $mobility;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getLocalization(): ?string
+    {
+        return $this->getAddress() . ', ' . $this->getCity();
     }
 }
