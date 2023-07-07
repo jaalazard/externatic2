@@ -212,4 +212,10 @@ class CandidateController extends AbstractController
             'candidate' => $candidate,
         ]);
     }
+
+    #[Route('/profil-candidat', name: 'app_candidate_show', methods: ['GET'])]
+    public function index(): Response
+    {
+        return $this->render('candidate/show.html.twig');
+    }
 }

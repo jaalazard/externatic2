@@ -40,6 +40,10 @@ class JobOfferFixtures extends Fixture
         'CDI' => 'CDI',
     ];
 
+    public const TOWNS = [
+        'Paris', 'Lyon', 'Bordeaux', 'Marseille', 'Metz', 'Strasbourg', 'Rennes', 'Nantes', 'Agen', 'Orléans'
+    ];
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
@@ -48,7 +52,10 @@ class JobOfferFixtures extends Fixture
             $jobOffer->setJob($jobOfferCard['job']);
             $jobOffer->setContract(self::CONTRACTS[array_rand(self::CONTRACTS)]);
             $jobOffer->setDescription($jobOfferCard['description']);
-            $jobOffer->setCity($faker->city());
+            $jobOffer->setCity(self::TOWNS[rand(0, count(self::TOWNS))]);
+            $jobOffer->setLatitude($faker->latitude(42, 52));
+            $jobOffer->setLongitude($faker->longitude(-3, 7));
+
             $manager->persist($jobOffer);
         }
         $manager->flush();
