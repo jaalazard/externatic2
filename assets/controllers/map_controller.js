@@ -2,8 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 import L from "leaflet";
 
 export default class extends Controller {
-    // eslint-disable-next-line
-   static targets = ['jobOffer']; 
+   static targets = ['jobOffer']; // eslint-disable-line
 
     connect() {
         let map = L.map('map').setView([45, 1], 6);
@@ -14,7 +13,6 @@ export default class extends Controller {
    
    for(let jobOffer of this.jobOfferTargets){
     let marker = L.marker([jobOffer.dataset.latitude, jobOffer.dataset.longitude]).addTo(map);
-   marker.bindPopup('<h2>Offre</h2>').openPopup();
    }
      }
 }
