@@ -24,21 +24,18 @@
 			<button class="search btn btn-secondary border border-primary text-uppercase fw-bold">RECHERCHER</button>
 			{{ form_end(form) }}
 		</div>
-		<div id="map" class="map border border-primary mb-5"></div>
+		<div id="map" class="map mb-5 border border-primary"></div>
 
-		<div class="row g-5 mb-5 d-flex">
+
+		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
-				<div class="map-data d-flex" {{ stimulus_target('map', 'jobOffer' )}} data-longitude="{{ jobOffer.longitude }}" data-latitude="{{ jobOffer.latitude }}">
-				</div>
 					{% include '/components/jobOffer-card.html.twig' %}
-				{% else %}
-					Aucune offre trouvée.
-				{% endfor %}
-
+			{% else %}
+				Aucune offre trouvée.
+			{% endfor %}
 			
-
-			<div id="map" style="height: 180px;" class="col-5 map"></div>
 		</div>
+
 	</section>
 {% endblock %}
 {% block javascripts %}
