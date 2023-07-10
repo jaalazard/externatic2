@@ -12,7 +12,6 @@ security:
                 property: email
     role_hierarchy:
         ROLE_CANDIDATE: ROLE_USER
-        ROLE_ADMIN: [ROLE_ADMIN, ROLE_USER]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
