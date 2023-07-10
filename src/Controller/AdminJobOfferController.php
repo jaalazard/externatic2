@@ -43,7 +43,7 @@ class AdminJobOfferController extends AbstractController
             return $this->redirectToRoute('admin_jobOffer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_jobOffer/new.html.twig', [
+        return $this->render('admin_jobOffer/new.html.twig', [
             'jobOffer' => $jobOffer,
             'form' => $form,
         ]);
