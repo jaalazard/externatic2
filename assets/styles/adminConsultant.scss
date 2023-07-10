@@ -32,5 +32,43 @@ h2 {
 
 .card {
     background-color: $grey;
+}
 
+.form-label {
+    color: $dark-grey;
+    font-weight: bold;
+    margin: 1rem;
+
+}
+
+.jobOfferForm>form {
+    display: flex;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.form-select {
+    border: solid 1px $dark;
+    margin-inline: 3rem;
+    width: 20rem;
+    height: 2.5rem;
+}
+
+.form-control {
+    border: solid 1px $dark;
+    width: 20rem;
+    height: 2.5rem;
+}
+
+.jobOfferForm>form>div {
+    display: flex;
+}
+
+.search {
+    background-color: $dark;
+    width: 3rem;
+    height: 2.5rem;
+    margin-top: 2rem;
+    border-radius: 8px;
 }
