@@ -12,14 +12,16 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class SearchJobType extends AbstractType
+class ConsultantSearchJobType extends AbstractType
 {
     public const CONTRACTS = [
         'Alternance' => 'Alternance',
         'CDD' => 'CDD',
         'CDI' => 'CDI',
     ];
-
+    public const TOWNS = [
+        'Paris', 'Lyon', 'Bordeaux', 'Marseille', 'Metz', 'Strasbourg', 'Rennes', 'Nantes', 'Agen', 'Orléans'
+    ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -29,10 +31,10 @@ class SearchJobType extends AbstractType
                 'required' => false,
                 'label' => 'MOTS CLÉS',
             ])
-            ->add('contract', ChoiceType::class, [
-                'choices' => self::CONTRACTS,
+            ->add('towns', ChoiceType::class, [
+                'choices' => array_flip(self::TOWNS),
                 'required' => false,
-                'label' => 'CONTRAT',
+                'label' => 'VILLE',
             ]);
     }
 
@@ -40,7 +42,6 @@ class SearchJobType extends AbstractType
     {
         $resolver->setDefaults([
             'csrf_protection' => false,
-
         ]);
     }
 
