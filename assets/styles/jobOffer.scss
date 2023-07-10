@@ -44,6 +44,10 @@
     margin-bottom: 3rem;
 }
 
+.map {
+    height : 500px;
+}
+
 @media screen and (max-width:600px){
     .jobOfferForm>form {
         flex-direction: column;
@@ -72,9 +76,6 @@
         width: 325px;
     }
 
-    .map{
-        height : 500px;
-    }
     
 
 }
