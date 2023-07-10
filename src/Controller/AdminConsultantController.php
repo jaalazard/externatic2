@@ -16,19 +16,19 @@ class AdminConsultantController extends AbstractController
     #[Route('/{jobOffer}', name: 'index', methods: ['GET'])]
     public function index(JobOfferRepository $jobOfferRepository, Request $request, JobOffer $jobOffer = null): Response
     {
+        $jobOffers = $jobOfferRepository->findAll();
         $form = $this->createForm(ConsultantSearchJobType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->getData()['search'] ?? '';
             $towns = $form->getData()['towns'] ?? '';
-            $searchOffers = $jobOfferRepository->findLikeName($search, $towns);
+            $jobOffers = $jobOfferRepository->findLikeName($search, $towns);
         } else {
-            $searchOffers = $jobOfferRepository->findAll();
+            $jobOffers = $jobOfferRepository->findAll();
         }
 
         return $this->render('admin_consultant/index.html.twig', [
-            'jobOffers' => $jobOfferRepository->findAll(),
-            'searchOffers' => $searchOffers,
+            'jobOffers' => $jobOffers,
             'jobOffer' => $jobOffer,
             'form' => $form,
         ]);
