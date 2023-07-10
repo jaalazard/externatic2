@@ -53,7 +53,11 @@
 						
 						{% elseif (is_granted('ROLE_CANDIDATE')) %}
 
-							<input type="hidden" name="_target_path" value="app_candidate_edit_profile">
+							<input type="hidden" name="_target_path" value="/candidat/edit">
+
+						{% else %}
+
+							<input type="hidden" name="_target_path" value="/_error/403">
 
 						{% endif %}
 
