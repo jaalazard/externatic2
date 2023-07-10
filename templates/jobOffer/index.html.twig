@@ -11,7 +11,7 @@
 	|| Offres d'emploi
 {% endblock %}
 {% block body %}
-	<section class="container-xl">
+	<section class="container" {{ stimulus_controller('map') }}>
 		<h1 class="fw-bold text-dark text-uppercase my-5">Avec
 			<span class="text-primary">
 				externatic</span>,<br>
@@ -24,19 +24,21 @@
 			<button class="search btn btn-secondary border border-primary text-uppercase fw-bold">RECHERCHER</button>
 			{{ form_end(form) }}
 		</div>
+		<div id="map" class="map mb-5 border border-primary"></div>
 
-		<div class="row g-5 mb-5" >
+
+		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
-				
-				{% include '/components/jobOffer-card.html.twig' %}
+					{% include '/components/jobOffer-card.html.twig' %}
 			{% else %}
 				Aucune offre trouvée.
 			{% endfor %}
-
+			
 		</div>
 
-		<div id="map" style="height: 180px;" class="col-5 map"></div>
-	</div>
-</section>{% endblock %}{% block javascripts %}
-{{ parent() }}
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>{% endblock %}
+	</section>
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+{% endblock %}

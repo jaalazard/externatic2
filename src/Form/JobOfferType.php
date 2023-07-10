@@ -33,7 +33,13 @@ class JobOfferType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Sélectionnez un métier pour cette offre',
                 ]
-                ])
+            ])
+            ->add('entreprise', TextType::class, [
+                'label' => 'entreprise',
+                'attr' => [
+                    'placeholder' => 'Indiquez l\'entreprise',
+                ]
+            ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'attr' => [

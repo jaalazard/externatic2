@@ -10,22 +10,22 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230624124826 extends AbstractMigration
+final class Version20230706152922 extends AbstractMigration
 {
     public function getDescription(): string
     {
         return '';
     }
-    
+
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE user ADD lastname VARCHAR(255) NOT NULL, ADD firstname VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE candidate ADD mobility INT DEFAULT NULL, ADD latitude DOUBLE PRECISION DEFAULT NULL, ADD longitude DOUBLE PRECISION DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE user DROP lastname, DROP firstname');
+        $this->addSql('ALTER TABLE candidate DROP mobility, DROP latitude, DROP longitude');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Candidate;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use App\Entity\JobOffer;
 
@@ -12,11 +13,11 @@ class Locator
     {
     }
 
-    public function getCoordinates(JobOffer $jobOffer): array
+    public function getCoordinates(Localizable $localizable): array
     {
         $response = $this->client->request('GET', self::BASE_URL . '/search', [
             'query' => [
-                'q' => $jobOffer->getCity()
+                'q' => $localizable->getLocalization()
             ]
         ]);
         if ($response->getStatusCode() === 200) {

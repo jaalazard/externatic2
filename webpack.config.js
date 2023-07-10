@@ -38,6 +38,7 @@ Encore
     .addStyleEntry('pageCandidate', './assets/styles/pageCandidate.scss')
     .addStyleEntry('pageCompany', './assets/styles/pagecompany.scss')
     .addStyleEntry('login', './assets/styles/login.scss')
+    .addStyleEntry('adminConsultant', './assets/styles/adminConsultant.scss')
     .addStyleEntry('register', './assets/styles/register.scss')
     .addStyleEntry('profil', './assets/styles/profil.scss')
 

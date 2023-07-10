@@ -1,11 +1,11 @@
 {
     "controllers": {
-        "@symfony/ux-dropzone": {
-            "dropzone": {
+        "@symfony/ux-live-component": {
+            "live": {
                 "enabled": true,
                 "fetch": "eager",
                 "autoimport": {
-                    "@symfony/ux-dropzone/dist/style.min.css": true
+                    "@symfony/ux-live-component/dist/live.min.css": true
                 }
             }
         },

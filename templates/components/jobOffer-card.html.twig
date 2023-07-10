@@ -1,12 +1,13 @@
 <div class="col-lg-6">
-	<div class="card bg-primary border-light shadow ">
-		<div class="card-body" data-longitude="{{ jobOffer.longitude }}" data-latitude=" {{ jobOffer.latitude }}" >
+	<div class="card bg-primary border-light shadow" {{ stimulus_target('map', 'jobOffer' )}} data-longitude="{{ jobOffer.longitude }}" data-latitude="{{ jobOffer.latitude }}">
+		<div class="card-body">
 			<h3 class="fw-bold fs-4 text-light text-uppercase">
 				{{ jobOffer.createdAt|date('d/m/Y')}}
 			</h3>
 			<h3 class="fw-bold text-light text-center text-uppercase mt-3">
 				{{ jobOffer.job }}
 			</h3>
+			
 			<div class="container p-block-5">
 				<div class="d-flex">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard2-check-fill mx-3 text-light" viewbox="0 0 16 16">
@@ -32,11 +33,7 @@
 				<button type="button" class="btn col-btn-sm btn-primary position-absolute top-0 start-50 translate-middle d-grid col-8 mx-auto border-light">
 					<a class="text-light text-decoration-none fs-3 fw-bold" href="{{ path("jobOffer_index", { id: jobOffer.id}) }}">INTÉRESSÉ ?</a>
 				</button>
-				<img src={{ asset('build/images/jobOffercardfooter.jpg') }} class="d-flex justify-content-center object-fit-cover rounded w-100">
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
