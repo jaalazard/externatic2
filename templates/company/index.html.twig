@@ -4,24 +4,24 @@
 
 {% block body %}
 <section class="container">
-        <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Les Entreprises</h1>
+        <h1 class="text-primary fw-bold text-uppercase d-flex my-5">Les Entreprises</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Nom</th>
-                <th class="text-dark fw-400 text-uppercase fs-5 mx-md-5 mx-0 my-5">Lien</th>
+                <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Nom</th>
+                <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Lien</th>
             </tr>
         </thead>
         <tbody>
         {% for company in companies %}
             <tr>
-                <td class="fs-5">{{ company.name }}</td>
-                <td class="fs-5">{{ company.link }}</td>
+                <td class="fs-5 fw-medium">{{ company.name }}</td>
+                <td class="fs-5 fw-medium">{{ company.link }}</td>
                 <td>
-                    <a class="btn btn-primary btn fw-bold text-uppercase  mx-2 my-3 rounded-0" href="{{ path('app_company_edit', {'id': company.id}) }}">
+                    <a  href="{{ path('app_company_edit', {'id': company.id}) }}">
                     {% include 'icons/edit.svg' %}
-                    Modifier</a>
+                   </a>
                 </td>
             </tr>
         {% else %}
@@ -32,8 +32,7 @@
         </tbody>
     </table>
 
-    <a <a class="btn btn-primary btn fw-bold text-uppercase my-3 mx-2 rounded-0" href="{{ path('app_company_new') }}">
-    {% include 'icons/new.svg' %}
-    Nouveau</a>
+    <a <a class="btn btn-secondary btn fs-5 fw-bold text-uppercase my-3 px-3 rounded" href="{{ path('app_company_new') }}">
+    Ajouter une nouvelle entreprise</a>
     </section>
 {% endblock %}
