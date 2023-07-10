@@ -47,20 +47,6 @@
 								<input type="password" placeholder="Mot de passe" class="form-control" id="password" name="_password">
 							</div>
 
-						{% if (is_granted('ROLE_ADMIN')) %}
-						
-							<input type="hidden" name="_target_path" value="app_accueil_admin">
-						
-						{% elseif (is_granted('ROLE_CANDIDATE')) %}
-
-							<input type="hidden" name="_target_path" value="/candidat/edit">
-
-						{% else %}
-
-							<input type="hidden" name="_target_path" value="/_error/403">
-
-						{% endif %}
-
 							<button class="w-50 mt-4 btn btn-primary fw-bold text-uppercase" type="submit">Valider</button>
 						</div>
 					</form>
