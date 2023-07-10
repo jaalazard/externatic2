@@ -23,8 +23,14 @@ h2 {
 
 .btn {
     font-weight: 900;
+    background-color: $dark-grey;
 }
 
 .btn:hover {
-    background-color: $primary;
+    background-color: $light-grey;
+}
+
+.card {
+    background-color: $grey;
+
 }
