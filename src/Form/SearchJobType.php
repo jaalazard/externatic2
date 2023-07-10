@@ -32,7 +32,7 @@ class SearchJobType extends AbstractType
             ->add('contract', ChoiceType::class, [
                 'choices' => self::CONTRACTS,
                 'required' => false,
-                'label' => 'CONTRAT'
+                'label' => 'CONTRAT',
             ]);
     }
 
