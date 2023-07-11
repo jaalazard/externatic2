@@ -23,11 +23,6 @@ class LogoutSubscriber extends AbstractController implements EventSubscriberInte
 
     public function onLogout(LogoutEvent $event): void
     {
-        // get the security token of the session that is about to be logged out
-        $token = $event->getToken();
-
-        // get the current request
-        $request = $event->getRequest();
 
         // get the current response, if it is already set by another listener
         $response = $event->getResponse();
