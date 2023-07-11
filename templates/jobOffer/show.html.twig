@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('jobOffer') }}
+{% endblock %}
+
+{% block title %}
+	{{ parent() }}
+	|| Détails de l'offre
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<h1 class="text-black fw-bold text-uppercase d-flex my-5">
+			<span class="text-primary">Détails&nbsp</span>de l'offre</h1>
+
+		<h2 class="text-black fw-bold text-uppercase d-flex my-5">Renseignements sur l'offre de :
+			<span class="text-primary">
+				&nbsp{{ jobOffer.job }}
+			</span>
+		</h2>
+		<p class="fw-bold fs-4 mt-4 mb-5 text-uppercase">
+			Ajoutée le
+			<span class="text-secondary">
+				{{ jobOffer.createdAt|date('d/m/Y') }}
+			</span>
+		</p>
+		<p class="fw-bold fs-4">
+			Ville :
+			<span class="text-primary">
+				{{ jobOffer.city }}
+			</span>
+		</p>
+		<p class="fw-bold fs-4">
+			Type de contrat :
+			<span class="text-primary">
+				{{ jobOffer.contract }}
+			</span>
+		</p>
+		<p class="fw-bold fs-4">
+			Entreprise :
+			<span class="text-primary">
+				{{ jobOffer.entreprise }}
+			</span>
+		</p>
+
+		<h2 class="text-black fw-bold text-uppercase d-flex mt-5">
+			Profil recherché :</h2>
+		<p class="mt-4 fs-4">
+			{{ jobOffer.profil}}
+		</p>
+
+		<h2 class="text-black fw-bold text-uppercase d-flex mt-5">
+			Description de l'emploi :</h2>
+		<p class="mt-4 mb-5 fs-4">
+			{{ jobOffer.synopsis}}
+		</p>
+
+		<div class="row">
+			<div class="col-8">
+				<a class="btn btn-primary btn d-flex justify-content-center my-5 fs-5 fw-bold text-uppercase px-3 rounded" href="">
+					Postuler à cette offre</a>
+			</div>
+			<div class="col-4">
+				<a class="btn btn-secondary btn d-flex justify-content-center my-5 fs-5 fw-bold text-uppercase px-3 rounded" href="{{ path('jobOffer_index')}}">
+					Retour à la liste des offres</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}
