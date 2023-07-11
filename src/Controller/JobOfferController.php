@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\SearchJobType;
+use App\Repository\BusinessCardCategoryRepository;
+use App\Repository\BusinessRepository;
 
 #[Route('/offres', name: 'jobOffer_')]
 class JobOfferController extends AbstractController
@@ -61,5 +63,19 @@ class JobOfferController extends AbstractController
             $candidateRepository->save($candidate, true);
         }
         return $this->redirectToRoute('jobOffer_index', ['jobOffer' => $jobOffer], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/details-offre/{id}/', name: 'show')]
+    public function show(
+        int $id,
+        JobOfferRepository $jobOfferRepository,
+        BusinessRepository $businessRepository,
+    ): Response {
+        $jobOffer = $jobOfferRepository->find($id);
+        $businessCard = $businessRepository->find($id);
+        return $this->render('/jobOffer/show.html.twig', [
+        'jobOffer' => $jobOffer,
+        'businessCard' => $businessCard,
+        ]);
     }
 }

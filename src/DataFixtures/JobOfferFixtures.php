@@ -13,25 +13,85 @@ class JobOfferFixtures extends Fixture
         [
             'job' => 'Data analyst', 'entreprise' => 'Wild code school', 'contract' => 'Alternance', 'city' => 'Nantes',
             'description' => 'Recherche de DATA ANALYST chez NEW-INFO, une grande entreprise d’INFORMATIQUE avec 
-            un grand savoir-faire'
+            un grand savoir-faire',
+            'synopsis' => 'A ce titre, vos missions sont les suivantes :
+            Identification des sources de données pertinentes et les mettre en relation
+            Modélisation et mise à jour des bases de donnéesÉlaboration et adaptation des outils de reporting,
+             d\'analyse et des indicateurs clés de pilotage
+            Identification, mesure et analysé des écarts sous forme de statistiques, de tableaux de bord et 
+            de rapports d\'activité
+            Reporting mensuel et suivi de budget', 'profil' => 'Vous justifiez d\'une expérience d\'au moins
+             3 années dans la gestion de données (financières, administratives, comptables, de production,
+              sociale, environnementale).
+            Vous maîtrisez les outils informatiques suivants : Excel, Power BI. Oracle Netsuite BI/SQL 
+            est un plus.
+            Anglais courant impératif.',
         ],
         [
             'job' => 'Développeur web', 'entreprise' => 'Wild code school', 'contract' => 'CDD', 'city' => 'Orléans',
-            'description' => 'Développeur Web Full-Stack H/F - Le guide côtier communautaire leader en Europe '
+            'description' => 'Développeur Web Full-Stack H/F - Le guide côtier communautaire leader en Europe ',
+            'synopsis' => 'A ce titre, vos missions sont les suivantes :
+            Identification des sources de données pertinentes et les mettre en relation
+            Modélisation et mise à jour des bases de donnéesÉlaboration et adaptation des outils
+             de reporting, d\'analyse et des indicateurs clés de pilotage
+            Identification, mesure et analysé des écarts sous forme de statistiques, de tableaux
+             de bord et de rapports d\'activité
+            Reporting mensuel et suivi de budget', 'profil' => 'Vous justifiez d\'une expérience
+             d\'au moins 3 années dans la gestion de données (financières, administratives,
+              comptables, de production,
+              sociale, environnementale).
+            Vous maîtrisez les outils informatiques suivants : Excel, Power BI. Oracle Netsuite 
+            BI/SQL est un plus.
+            Anglais courant impératif.',
         ],
         [
             'job' => 'Dev Back-end', 'entreprise' => 'Wild code school', 'contract' => 'CDI', 'city' => 'Angers',
-            'description' => 'Recherche de DÉVELOPPEUR BACK-END chez BACK’YO, une grande entreprise de DÉVELOPPEUR '
+            'description' => 'Recherche de DÉVELOPPEUR BACK-END chez BACK’YO, une grande entreprise de DÉVELOPPEUR ',
+            'synopsis' => 'A ce titre, vos missions sont les suivantes :
+            Identification des sources de données pertinentes et les mettre en relation
+            Modélisation et mise à jour des bases de donnéesÉlaboration et adaptation des outils
+             de reporting, d\'analyse et des indicateurs clés de pilotage
+            Identification, mesure et analysé des écarts sous forme de statistiques, de tableaux
+             de bord et de rapports d\'activité
+            Reporting mensuel et suivi de budget', 'profil' => 'Vous justifiez d\'une expérience
+             d\'au moins 3 années dans la gestion de données (financières, administratives, comptables,
+              de production, sociale, environnementale).
+            Vous maîtrisez les outils informatiques suivants : Excel, Power BI. Oracle Netsuite BI/SQL
+             est un plus.
+            Anglais courant impératif.',
         ],
         [
             'job' => 'Développeur php', 'entreprise' => 'Wild code school', 'contract' => 'CDD', 'city' => 'Olivet',
             'description' => 'Recherche de DÉVELOPPEUR PHP chez INFORMATIK, une grande entreprise SÉRIEUSE avec 
-            un grand savoir-faire'
+            un grand savoir-faire',
+            'synopsis' => 'A ce titre, vos missions sont les suivantes :
+            Identification des sources de données pertinentes et les mettre en relation
+            Modélisation et mise à jour des bases de donnéesÉlaboration et adaptation des outils
+             de reporting, d\'analyse et des indicateurs clés de pilotage
+            Identification, mesure et analysé des écarts sous forme de statistiques, de tableaux
+             de bord et de rapports d\'activité
+            Reporting mensuel et suivi de budget', 'profil' => 'Vous justifiez d\'une expérience
+            d\'au moins 3 années dans la gestion de données (financières, administratives, comptables,
+             de production, sociale, environnementale).
+            Vous maîtrisez les outils informatiques suivants : Excel, Power BI. Oracle Netsuite BI/SQL 
+            est un plus.
+            Anglais courant impératif.',
         ],
         [
             'job' => 'Analyst Cybersécurité', 'entreprise' => 'Wild code school', 'contract' => 'CDI',
             'city' => 'Reims', 'description' => 'IT Compliance Project Manager H/F - Cybersécurité, résilience, 
-            durabilité, RGPD'
+            durabilité, RGPD','synopsis' => 'A ce titre, vos missions sont les suivantes :
+            Identification des sources de données pertinentes et les mettre en relation
+            Modélisation et mise à jour des bases de donnéesÉlaboration et adaptation des outils
+             de reporting, d\'analyse et des indicateurs clés de pilotage
+            Identification, mesure et analysé des écarts sous forme de statistiques, de tableaux
+             de bord et de rapports d\'activité
+            Reporting mensuel et suivi de budget', 'profil' => 'Vous justifiez d\'une expérience
+             d\'au moins 3 années dans la gestion de données (financières, administratives, comptables,
+              de production, sociale, environnementale).
+            Vous maîtrisez les outils informatiques suivants : Excel, Power BI. Oracle Netsuite
+             BI/SQL est un plus.
+            Anglais courant impératif.',
         ],
     ];
 
@@ -57,7 +117,8 @@ class JobOfferFixtures extends Fixture
             $jobOffer->setCity(self::TOWNS[rand(0, count(self::TOWNS) - 1)]);
             $jobOffer->setLatitude($faker->latitude(42, 52));
             $jobOffer->setLongitude($faker->longitude(-3, 7));
-
+            $jobOffer->setProfil($jobOfferCard['profil']);
+            $jobOffer->setSynopsis($jobOfferCard['synopsis']);
             $manager->persist($jobOffer);
         }
         $manager->flush();
