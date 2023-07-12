@@ -15,11 +15,14 @@
 		<h1 class="text-black fw-bold text-uppercase d-flex my-5">
 			<span class="text-primary">Détails&nbsp</span>de l'offre</h1>
 
-		<h2 class="text-black fw-bold text-uppercase d-flex my-5">Renseignements sur l'offre de :
-			<span class="text-primary">
-				&nbsp{{ jobOffer.job }}
+<div class="row">
+		<h2 class="text-black fw-bold text-uppercase d-flex mt-5 mb-3">Renseignements sur l'offre de :
+		</div>
+			<span class="h2 text-primary fw-bold text-uppercase d-flex mb-5">
+				{{ jobOffer.job }}
 			</span>
 		</h2>
+		
 		<p class="fw-bold fs-4 mt-4 mb-5 text-uppercase">
 			Ajoutée le
 			<span class="text-secondary">
@@ -58,12 +61,14 @@
 		</p>
 
 		<div class="row">
-			<div class="col-8">
+		{% if app.user %}
+			<div class="col-md-8 row mx-auto">
 				<a class="btn btn-primary btn d-flex justify-content-center my-5 fs-5 fw-bold text-uppercase px-3 rounded" href="">
 					Postuler à cette offre</a>
 			</div>
-			<div class="col-4">
-				<a class="btn btn-secondary btn d-flex justify-content-center my-5 fs-5 fw-bold text-uppercase px-3 rounded" href="{{ path('jobOffer_index')}}">
+		{% endif %}
+			<div class="col-md-4 row mx-auto">
+				<a class="btn btn-secondary btn d-flex justify-content-center my-md-5 my-0 mb-5 fs-5 fw-bold text-uppercase px-3 rounded" href="{{ path('jobOffer_index')}}">
 					Retour à la liste des offres</a>
 			</div>
 		</div>
