@@ -18,10 +18,37 @@
 			trouvez l’emploi qui vous correspond !</h1>
 		<h2 class="mb-4 text-dark">Trier les offres d'emplois</h2>
 
-		<div class="jobOfferForm">
-			{{ form_start(form) }}
-			{{ form_widget(form, {'attr' : {'class' : 'd-flex flex-md-row flex-column'}}) }}
-			<button class="search btn btn-secondary border border-primary text-uppercase fw-bold">RECHERCHER</button>
+		<div class="justify-content-center">
+			<div class="row">
+				{{ form_start(form) }}
+				<div class="col-sm-10 col-lg-6 col-xl-3">
+					{{ form_label(form.search)}}
+					{{ form_widget(form.search)}}
+					{{ form_errors(form.search)}}
+				</div>
+				<div class="col-sm-10 col-lg-6 col-xl-3">
+					{{ form_label(form.contract)}}
+					{{ form_widget(form.contract)}}
+					{{ form_errors(form.contract)}}
+				</div>
+				<div class="ccol-sm-10 col-lg-6 col-xl-3">
+					{{ form_label(form.localization)}}
+					{{ form_widget(form.localization)}}
+					{{ form_errors(form.localization)}}
+				</div>
+				<div class="col-sm-10 col-lg-6 col-xl-3">
+					{{ form_label(form.radius)}}
+					{{ form_widget(form.radius, {attr: {'data-action': 'map#radiusChange'}}
+					)}}
+					<span id="radius" {{ stimulus_target('map', 'radius')}}>1km</span>
+					{{ form_errors(form.radius)}}
+				</div>
+				<div>
+					<button class="search btn btn-secondary border border-primary text-uppercase fw-bold ml-0">RECHERCHER</button>
+				</div>
+			</div>
+		</div>
+
 			{{ form_end(form) }}
 		</div>
 		<div id="map" class="map mb-5 border border-primary"></div>
@@ -29,11 +56,11 @@
 
 		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
-					{% include '/components/jobOffer-card.html.twig' %}
+				{% include '/components/jobOffer-card.html.twig' %}
 			{% else %}
 				Aucune offre trouvée.
 			{% endfor %}
-			
+
 		</div>
 
 	</section>
