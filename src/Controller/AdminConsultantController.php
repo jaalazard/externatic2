@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Candidate;
 use App\Entity\JobOffer;
-use App\Form\ConsultantSearchJobType;
-use App\Repository\CandidateRepository;
+use App\Entity\Candidate;
+use App\Form\SearchJobType;
+use App\Entity\JobOfferSearch;
 use App\Repository\JobOfferRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/consultant', name: 'admin_consultant_')]
 class AdminConsultantController extends AbstractController
@@ -18,13 +18,11 @@ class AdminConsultantController extends AbstractController
     #[Route('/{jobOffer}', name: 'index', methods: ['GET'])]
     public function index(JobOfferRepository $jobOfferRepository, Request $request, JobOffer $jobOffer = null): Response
     {
-        $jobOffers = $jobOfferRepository->findAll();
-        $form = $this->createForm(ConsultantSearchJobType::class);
+        $jobOfferSearch = new JobOfferSearch();
+        $form = $this->createForm(SearchJobType::class, $jobOfferSearch);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $search = $form->getData()['search'] ?? '';
-            $towns = $form->getData()['towns'] ?? '';
-            $jobOffers = $jobOfferRepository->findLikeName($search, $towns);
+            $jobOffers = $jobOfferRepository->findLikeName($jobOfferSearch);
         } else {
             $jobOffers = $jobOfferRepository->findAll();
         }

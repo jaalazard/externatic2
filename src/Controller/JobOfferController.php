@@ -33,7 +33,6 @@ class JobOfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($jobOfferSearch);
             $jobOffers = $jobOfferRepository->findLikeName($jobOfferSearch);
             if ($jobOfferSearch->getLocalization()) {
                 [$longitude, $latitude] = $locator->getCoordinates($jobOfferSearch);
