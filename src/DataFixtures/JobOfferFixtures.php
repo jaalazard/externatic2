@@ -61,7 +61,8 @@ class JobOfferFixtures extends Fixture implements DependentFixtureInterface
 
             $manager->persist($jobOffer);
 
-            $jobOffer->addCandidate($this->getReference('candidate_' . $faker->numberBetween(0, UserFixtures::NB_USERS - 1)));
+            $jobOffer->addCandidate($this->getReference('candidate_' .
+                $faker->numberBetween(0, UserFixtures::NB_USERS - 1)));
         }
         $manager->flush();
     }
