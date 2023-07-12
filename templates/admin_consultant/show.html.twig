@@ -12,38 +12,28 @@
 		<span class="text-primary">
 			les</span>
 		offres d’emploi</h1>
-	<a class="btn col-4 text-uppercase btn-transparent text-light text-center rounded-2 text-decoration-none m-3" href="{{ path("admin_consultant_index") }}">
-		Revenir a la liste des offres</a>
+	<div class="d-flex justify-content-center">
+		<a class="btn col-4 text-uppercase btn-transparent text-light text-center rounded-2 text-decoration-none m-3" href="{{ path("admin_consultant_index") }}">
+			Revenir a la liste des offres</a>
+	</div>
 	<section class="container">
 		<div class="d-flex">
-			<div class="col-4 g-3 bg-light rounded-3 px-4 overflow-auto scrollbar">
+			<div class="col-4 g-3 bg-light rounded-3 px-2 overflow-auto scrollbar">
 				{% for candidate in jobOffer.candidates %}
 					<div class="card p-2 my-3 rounded-2 shadow">
-						<h2 class="jobOffer fs-4 text-light text-center text-uppercase m-2">
+						<h2 class="jobOffer fs-5 text-light text-center text-uppercase m-3">
 							{{ candidate.user.lastname }}
 							{{ candidate.user.firstname }}
-
-
 						</h2>
 						<div class="container">
-							<h3 class="fw-bold fs-6 text-light text-uppercase mx-1">
+							<h3 class="fw-bold fs-6 text-light text-uppercase">
 								{% include 'icons/location.svg' %}
 								{{ candidate.city }}
 							</h3>
-							<div class="d-flex text-light">
-								{% include 'icons/contract.svg' %}
-								<h3 class="fw-bold fs-6 ">{{ candidate.city }}</h3>
-							</div>
-							<div class="d-flex text-light">
-								<h3 class="fst-italic fs-6 fw-bold">
-									{{ candidate.phone }}</h3>
-							</div>
-							<div class="bouton d-flex justify-content-around my-2">
-
-								<a class="btn col-11 btn-transparent text-light rounded-3 text-decoration-none" href="{{ path("admin_consultant_show", { jobOffer: jobOffer.id, candidate: candidate.id }) }}">
+							<div class="bouton d-flex justify-content-around my-3">
+								<a class="btn col btn-transparent text-light rounded-3 text-decoration-none" href="{{ path("admin_consultant_show", { jobOffer: jobOffer.id, candidate: candidate.id }) }}">
 									{% include 'icons/see.svg' %}
 								</a>
-
 							</div>
 						</div>
 					</div>
@@ -51,26 +41,64 @@
 					Aucune offre trouvée.
 				{% endfor %}
 			</div>
-			<div class="col-8 bg-transparent rounded-4 border border-dark mx-5 py-3 px-5">
+			<div class="col-8 bg-transparent rounded-4 border border-dark mx-3 py-3 px-5">
 				{% if candidate is not empty %}
 					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mb-4 mt-3">
 						{{ candidate.user.lastname }}
 						{{ candidate.user.firstname }}
 					</h2>
-					<div class="container m-0 col-8 d-flex flex-column">
+					<div class="d-flex flex-column">
 						{{ candidate.photo }}
-						<div class="information">
-							<h3 class="fs-6 text-dark border border-dark rounded-3 p-2 mx-2">
-								{{ candidate.address }}
-								{{ candidate.city }}
-							</h3>
-							<h3 class="fs-6 text-dark border border-dark rounded-3 p-2 mx-2">{{ candidate.user.email }}</h3>
-							<h3 class="fs-6 text-dark border border-dark rounded-3 p-2 mx-2">
-								{{ candidate.phone }}</h3>
+						<div class="d-flex align-items-end flex-column information my-2 mx-4">
+							<h3 class="fs-6 text-dark fw-semibold fst-italic">{{ candidate.address }}</h3>
+							<h3 class="fs-6 text-dark fw-semibold fst-italic">{{ candidate.city }}</h3>
+							<h3 class="fs-6 text-dark fw-semibold fst-italic">{{ candidate.user.email }}</h3>
+							<h3 class="fs-6 text-dark fw-semibold fst-italic">{{ candidate.phone }}</h3>
 						</div>
 					</div>
-
-
+					<div class="mb-4">
+						<h3 class="mx-2 text-dark fs-4 fw-bold">Formation</h3>
+						{% for formation in candidate.formations %}
+							<div class="border border-dark rounded-2 my-3 pt-3 pb-1 px-2">
+								<div class="d-flex-inline">
+									<h3 class="fs-6 fw-bold text-uppercase text-dark mx-2">{{ formation.establishment }}</h3>
+									<h4 class="fs-6 fw-semibold text-dark mx-2">{{ formation.diploma }}</h4>
+									<div class="d-flex flex-row justify-content-center">
+										<h6 class="fs-6 fw-bold fst-italic text-dark mx-2">{{ formation.start|date("m/d/Y") }}</h6>
+										<h6 class="fs-6 fw-bold text-dark mx-2">-</h6>
+										<h6 class="fs-6 fw-bold fst-italic text-dark mx-2">{{ formation.end|date("m/d/Y") }}</h6>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<div class="mb-4">
+						<h3 class="mx-2 text-dark fs-4 fw-bold">Expérience</h3>
+						{% for experience in candidate.experience %}
+							<div class="border border-dark rounded-2 my-3 pt-3 pb-1 px-2">
+								<div class="d-flex-inline">
+									<h3 class="fs-6 fw-bold text-uppercase text-dark mx-2">{{ experience. jobTitle }}</h3>
+									<h4 class="fs-6 fw-semibold text-dark mx-2">{{ experience.company }}</h4>
+									<p class="fs-6 fw-medium text-dark mx-2">{{ experience.description }}</p>
+									<div class="d-flex flex-row justify-content-center">
+										<h6 class="fs-6 fw-bold fst-italic text-dark mx-2">{{ experience.start|date("m/d/Y") }}</h6>
+										<h6 class="fs-6 fw-bold text-dark mx-2">-</h6>
+										<h6 class="fs-6 fw-bold fst-italic text-dark mx-2">{{ experience.end|date("m/d/Y") }}</h6>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<div class="">
+						<h3 class="mx-2 text-dark fs-4 fw-bold">Skill</h3>
+						<div class="row mx-1 d-flex justify-content-between">
+							{% for skill in candidate.skills %}
+								<div class="col-5 text-center border border-dark rounded-2 m-2 pt-3 pb-1 px-2">
+									<h3 class="fs-6 fw-bold text-uppercase text-dark mx-2">{{ skill.name }}</h3>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
 				{% endif %}
 			</div>
 		</div>

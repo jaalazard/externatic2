@@ -40,7 +40,6 @@ class AdminConsultantController extends AbstractController
         return $this->render('admin_consultant/show.html.twig', [
             'candidate' => $candidate,
             'jobOffer' => $jobOffer,
-
         ]);
     }
 }

@@ -45,7 +45,7 @@ class JobOffer implements Localizable
     #[ORM\Column]
     private ?float $longitude = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $synopsis = null;
 
     #[ORM\Column(type: Types::TEXT)]

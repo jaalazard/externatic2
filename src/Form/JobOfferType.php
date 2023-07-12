@@ -29,21 +29,35 @@ class JobOfferType extends AbstractType
                 ]
             ])
             ->add('contract', TextType::class, [
-                'label' => 'contract',
+                'label' => 'Contract',
                 'attr' => [
                     'placeholder' => 'Sélectionnez un métier pour cette offre',
                 ]
             ])
             ->add('entreprise', TextType::class, [
-                'label' => 'entreprise',
+                'label' => 'Entreprise',
                 'attr' => [
                     'placeholder' => 'Indiquez l\'entreprise',
                 ]
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Description',
+                'label' => 'Description brève',
                 'attr' => [
-                    'placeholder' => 'Décrivez cette offre',
+                    'placeholder' => 'Décrivez cette offre brièvement',
+                ]
+            ])
+
+            ->add('synopsis', TextareaType::class, [
+                'label' => 'Description complète',
+                'attr' => [
+                    'placeholder' => 'Décrivez cette offre dans les détails',
+                ]
+            ])
+
+            ->add('profil', TextareaType::class, [
+                'label' => 'Profil',
+                'attr' => [
+                    'placeholder' => 'Décrivez le profil recherché',
                 ]
             ])
             ->add('createdAt', DateType::class, [
