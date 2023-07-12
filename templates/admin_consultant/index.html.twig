@@ -61,16 +61,23 @@
 			</div>
 			<div class="col-8 bg-transparent rounded-4 border border-dark mx-5 p-4">
 				{% if jobOffer is not empty %}
-					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mb-4 mt-3">
+					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mt-3">
 						{{ jobOffer.job }}
 					</h2>
-					<div class="container d-inline-flex justify-content-center">
-						<h3 class="fw-bold fs-6 text-dark border border-dark rounded-3 p-2 mx-2">
+					<div class="container d-flex justify-content-center">
+						<h3 class="fw-bold fs-6 text-dark rounded-3 p-2 mx-2">
 							{{ jobOffer.entreprise }}
+							/
+							{{ jobOffer.contract }}
+							/
+							{{ jobOffer.city }}
 						</h3>
-						<h3 class="fw-bold fs-6 text-dark border border-dark rounded-3 p-2 mx-1">{{ jobOffer.contract }}</h3>
-						<h3 class="fst-italic fs-6 fw-bold text-dark border border-dark rounded-3 p-2 mx-2">
-							{{ jobOffer.city }}</h3>
+					</div>
+					<div class="bouton d-flex justify-content-around mb-3">
+						<a class="btn btn-transparent text-light rounded-3 text-decoration-none px-3" href="{{ path("admin_consultant_show", { jobOffer: jobOffer.id }) }}">
+							Candidats
+							{% include 'icons/people.svg' %}
+						</a>
 					</div>
 					<p class="fs-6 fw-medium text-dark m-4">
 						{{ jobOffer.description }}
@@ -82,12 +89,6 @@
 						{{ nombersDays|round }}
 						jours
 					</h5>
-					<div class="bouton d-flex justify-content-around mb-3">
-						<a class="btn btn-transparent text-light rounded-3 text-decoration-none py-2 px-4" href="{{ path("admin_consultant_show", { jobOffer: jobOffer.id }) }}">
-							Candidats
-							{% include 'icons/people.svg' %}
-						</a>
-					</div>
 				{% endif %}
 			</div>
 		</div>

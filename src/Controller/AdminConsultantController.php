@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
+use App\Entity\Formation;
 use App\Entity\JobOffer;
 use App\Form\ConsultantSearchJobType;
 use App\Repository\CandidateRepository;
@@ -42,7 +43,6 @@ class AdminConsultantController extends AbstractController
         return $this->render('admin_consultant/show.html.twig', [
             'candidate' => $candidate,
             'jobOffer' => $jobOffer,
-
         ]);
     }
 }
