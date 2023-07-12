@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\JobOfferSearch;
 use App\DataFixtures\JobOfferFixtures;
 use App\Entity\JobOffer;
 use Symfony\Component\Form\AbstractType;
@@ -11,6 +12,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SearchJobType extends AbstractType
 {
@@ -33,6 +36,18 @@ class SearchJobType extends AbstractType
                 'choices' => self::CONTRACTS,
                 'required' => false,
                 'label' => 'CONTRAT',
+            ])
+            ->add('localization', TextType::class, [
+                'required' => false,
+                'label' => 'Ville'
+            ])
+            ->add('radius', RangeType::class, [
+                'required' => false,
+                'label' => 'Rayon',
+                'attr' => [
+                    'min' => 1,
+                    'max' => 500,
+                ],
             ]);
     }
 
