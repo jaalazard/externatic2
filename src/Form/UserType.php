@@ -24,6 +24,9 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
                 'choices' => self::ROLES,
+                'attr' => [
+                    'class' => 'h4 my-auto',
+                ]
             ]);
     }
 }
