@@ -81,7 +81,7 @@ class JobOfferFixtures extends Fixture implements DependentFixtureInterface
         [
             'job' => 'Analyst Cybersécurité', 'entreprise' => 'Wild code school', 'contract' => 'CDI',
             'city' => 'Reims', 'description' => 'IT Compliance Project Manager H/F - Cybersécurité, résilience, 
-            durabilité, RGPD','synopsis' => 'A ce titre, vos missions sont les suivantes :
+            durabilité, RGPD', 'synopsis' => 'A ce titre, vos missions sont les suivantes :
             Identification des sources de données pertinentes et les mettre en relation
             Modélisation et mise à jour des bases de donnéesÉlaboration et adaptation des outils
              de reporting, d\'analyse et des indicateurs clés de pilotage
@@ -109,23 +109,25 @@ class JobOfferFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        foreach (self::JOBOFFERS as $jobOfferCard) {
-            $jobOffer = new JobOffer();
-            $jobOffer->setJob($jobOfferCard['job']);
-            $jobOffer->setEntreprise($jobOfferCard['entreprise']);
-            $jobOffer->setContract(self::CONTRACTS[array_rand(self::CONTRACTS)]);
-            $jobOffer->setDescription($jobOfferCard['description']);
-            $jobOffer->setCity(self::TOWNS[rand(0, count(self::TOWNS) - 1)]);
-            $jobOffer->setLatitude($faker->latitude(42, 52));
-            $jobOffer->setLongitude($faker->longitude(-3, 7));
-            $jobOffer->setProfil($jobOfferCard['profil']);
-            $jobOffer->setSynopsis($jobOfferCard['synopsis']);
-            $manager->persist($jobOffer);
+        for ($i = 0; $i < 10; $i++) {
+            foreach (self::JOBOFFERS as $jobOfferCard) {
+                $jobOffer = new JobOffer();
+                $jobOffer->setJob($jobOfferCard['job']);
+                $jobOffer->setEntreprise($jobOfferCard['entreprise']);
+                $jobOffer->setContract(self::CONTRACTS[array_rand(self::CONTRACTS)]);
+                $jobOffer->setDescription($jobOfferCard['description']);
+                $jobOffer->setCity(self::TOWNS[rand(0, count(self::TOWNS) - 1)]);
+                $jobOffer->setLatitude($faker->latitude(42, 52));
+                $jobOffer->setLongitude($faker->longitude(-3, 7));
+                $jobOffer->setProfil($jobOfferCard['profil']);
+                $jobOffer->setSynopsis($jobOfferCard['synopsis']);
+                $manager->persist($jobOffer);
 
-            $jobOffer->addCandidate($this->getReference('candidate_' .
-                $faker->numberBetween(0, UserFixtures::NB_USERS - 1)));
+                $jobOffer->addCandidate($this->getReference('candidate_' .
+                    $faker->numberBetween(0, UserFixtures::NB_USERS - 1)));
+            }
+            $manager->flush();
         }
-        $manager->flush();
     }
 
     public function getDependencies()
