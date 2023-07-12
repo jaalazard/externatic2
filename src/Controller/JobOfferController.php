@@ -4,32 +4,52 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\JobOffer;
-use App\Entity\Candidate;
-use App\Repository\CandidateRepository;
+use App\Service\Locator;
+use App\Entity\JobOfferSearch;
+use App\Form\SearchJobType;
+use App\Service\DistanceCalculator;
+use App\Repository\BusinessRepository;
 use App\Repository\JobOfferRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CandidateRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Component\HttpFoundation\Request;
-use App\Form\SearchJobType;
-use App\Repository\BusinessCardCategoryRepository;
-use App\Repository\BusinessRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Exception;
 
 #[Route('/offres', name: 'jobOffer_')]
 class JobOfferController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(Request $request, JobOfferRepository $jobOfferRepository): Response
-    {
-
-        $form = $this->createForm(SearchJobType::class);
+    public function index(
+        Request $request,
+        JobOfferRepository $jobOfferRepository,
+        Locator $locator,
+        DistanceCalculator $distanceCalculator
+    ): Response {
+        $jobOfferSearch = new JobOfferSearch();
+        $form = $this->createForm(SearchJobType::class, $jobOfferSearch);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $search = $form->getData()['search'] ?? '';
-            $contract = $form->getData()['contract'] ?? '';
 
-            $jobOffers = $jobOfferRepository->findLikeName($search, $contract);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $jobOffers = $jobOfferRepository->findLikeName($jobOfferSearch);
+            if ($jobOfferSearch->getLocalization()) {
+                [$longitude, $latitude] = $locator->getCoordinates($jobOfferSearch);
+                $jobOfferSearch->setLongitude($longitude)->setLatitude($latitude);
+                try {
+                    $jobOffers = array_filter(
+                        $jobOffers,
+                        fn ($jobOffer) => $distanceCalculator->isClose(
+                            $jobOfferSearch,
+                            $jobOffer,
+                            $jobOfferSearch->getRadius()
+                        )
+                    );
+                } catch (Exception $e) {
+                    $this->addFlash('danger', $e->getMessage());
+                }
+            }
         } else {
             $jobOffers = $jobOfferRepository->findAll();
         }
@@ -74,8 +94,8 @@ class JobOfferController extends AbstractController
         $jobOffer = $jobOfferRepository->find($id);
         $businessCard = $businessRepository->find($id);
         return $this->render('/jobOffer/show.html.twig', [
-        'jobOffer' => $jobOffer,
-        'businessCard' => $businessCard,
+            'jobOffer' => $jobOffer,
+            'businessCard' => $businessCard,
         ]);
     }
 }
