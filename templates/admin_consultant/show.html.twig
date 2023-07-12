@@ -1,0 +1,78 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('adminConsultant') }}
+{% endblock %}
+
+{% block title %}Offres d'emploi
+{% endblock %}
+{% block body %}
+	<h1 class="fw-bold fs-2 text-center text-dark text-uppercase mt-3">
+		<span class="text-primary">
+			les</span>
+		offres d’emploi</h1>
+	<a class="btn col-4 text-uppercase btn-transparent text-light text-center rounded-2 text-decoration-none m-3" href="{{ path("admin_consultant_index") }}">
+		Revenir a la liste des offres</a>
+	<section class="container">
+		<div class="d-flex">
+			<div class="col-4 g-3 bg-light rounded-3 px-4 overflow-auto scrollbar">
+				{% for candidate in jobOffer.candidates %}
+					<div class="card p-2 my-3 rounded-2 shadow">
+						<h2 class="jobOffer fs-4 text-light text-center text-uppercase m-2">
+							{{ candidate.user.lastname }}
+							{{ candidate.user.firstname }}
+
+
+						</h2>
+						<div class="container">
+							<h3 class="fw-bold fs-6 text-light text-uppercase mx-1">
+								{% include 'icons/location.svg' %}
+								{{ candidate.city }}
+							</h3>
+							<div class="d-flex text-light">
+								{% include 'icons/contract.svg' %}
+								<h3 class="fw-bold fs-6 ">{{ candidate.city }}</h3>
+							</div>
+							<div class="d-flex text-light">
+								<h3 class="fst-italic fs-6 fw-bold">
+									{{ candidate.phone }}</h3>
+							</div>
+							<div class="bouton d-flex justify-content-around my-2">
+
+								<a class="btn col-11 btn-transparent text-light rounded-3 text-decoration-none" href="{{ path("admin_consultant_show", { jobOffer: jobOffer.id, candidate: candidate.id }) }}">
+									{% include 'icons/see.svg' %}
+								</a>
+
+							</div>
+						</div>
+					</div>
+				{% else %}
+					Aucune offre trouvée.
+				{% endfor %}
+			</div>
+			<div class="col-8 bg-transparent rounded-4 border border-dark mx-5 py-3 px-5">
+				{% if candidate is not empty %}
+					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mb-4 mt-3">
+						{{ candidate.user.lastname }}
+						{{ candidate.user.firstname }}
+					</h2>
+					<div class="container m-0 col-8 d-flex flex-column">
+						{{ candidate.photo }}
+						<div class="information">
+							<h3 class="fs-6 text-dark border border-dark rounded-3 p-2 mx-2">
+								{{ candidate.address }}
+								{{ candidate.city }}
+							</h3>
+							<h3 class="fs-6 text-dark border border-dark rounded-3 p-2 mx-2">{{ candidate.user.email }}</h3>
+							<h3 class="fs-6 text-dark border border-dark rounded-3 p-2 mx-2">
+								{{ candidate.phone }}</h3>
+						</div>
+					</div>
+
+
+				{% endif %}
+			</div>
+		</div>
+	</section>
+{% endblock %}
