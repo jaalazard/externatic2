@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\JobOffer;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class JobOfferFixtures extends Fixture
+class JobOfferFixtures extends Fixture implements DependentFixtureInterface
 {
     public const JOBOFFERS = [
         [
@@ -120,7 +121,18 @@ class JobOfferFixtures extends Fixture
             $jobOffer->setProfil($jobOfferCard['profil']);
             $jobOffer->setSynopsis($jobOfferCard['synopsis']);
             $manager->persist($jobOffer);
+
+            $jobOffer->addCandidate($this->getReference('candidate_' .
+                $faker->numberBetween(0, UserFixtures::NB_USERS - 1)));
         }
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            CandidateFixtures::class,
+
+        ];
     }
 }
