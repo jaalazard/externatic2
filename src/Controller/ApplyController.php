@@ -11,8 +11,6 @@ class ApplyController extends AbstractController
     #[Route('/apply', name: 'app_apply')]
     public function index(): Response
     {
-        return $this->render('apply/index.html.twig', [
-            'controller_name' => 'ApplyController',
-        ]);
+        return $this->render('apply/index.html.twig');
     }
 }
