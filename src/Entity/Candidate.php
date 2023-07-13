@@ -11,6 +11,7 @@ use App\Repository\CandidateRepository;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\JoinTable;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -92,6 +93,7 @@ class Candidate implements Localizable
     private ?float $longitude = null;
 
     #[ORM\ManyToMany(targetEntity: JobOffer::class, inversedBy: 'apply')]
+    #[JoinTable(name: "apply")]
     private Collection $apply;
 
 

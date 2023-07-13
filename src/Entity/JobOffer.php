@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 #[ORM\Entity(repositoryClass: JobOfferRepository::class)]
 class JobOffer implements Localizable
@@ -34,6 +35,7 @@ class JobOffer implements Localizable
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
+    #[JoinTable(name: "favorites")]
     private Collection $candidates;
 
     #[ORM\Column(length: 255)]
