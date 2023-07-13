@@ -98,4 +98,28 @@ class JobOfferController extends AbstractController
             'businessCard' => $businessCard,
         ]);
     }
+
+    #[IsGranted('ROLE_CANDIDATE')]
+    #[Route('/{id}/postuler', name: 'apply', methods: ['POST', 'GET'])]
+    public function apply(
+        int $id,
+        Request $request,
+        JobOffer $jobOffer,
+        CandidateRepository $candidateRepository,
+        JobOfferRepository $jobOfferRepository
+    ): Response {
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        $jobOffer = $jobOfferRepository->find($id);
+        if ($this->isCsrfTokenValid('apply' . $jobOffer->getId(), $request->request->get('_token'))) {
+            if ($candidate->isApply($jobOffer)) {
+                $candidate->removeApply($jobOffer);
+            } else {
+                $candidate->addApply($jobOffer);
+            }
+            $candidateRepository->save($candidate, true);
+        }
+        return $this->redirectToRoute('jobOffer_index', ['jobOffer' => $jobOffer], Response::HTTP_SEE_OTHER);
+    }
 }
