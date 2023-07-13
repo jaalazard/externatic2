@@ -8,14 +8,22 @@
 {% block title %}Offres d'emploi
 {% endblock %}
 {% block body %}
-	<h1 class="fw-bold fs-2 text-center text-dark text-uppercase mt-3">
-		<span class="text-primary">
-			les</span>
-		offres d’emploi</h1>
-	<div class="d-flex justify-content-center">
-		<a class="btn col-4 text-uppercase btn-transparent text-light text-center rounded-2 text-decoration-none m-3" href="{{ path("admin_consultant_index") }}">
-			Revenir a la liste des offres</a>
+
+	<div class="d-flex justify-content-around align-items-center mt-5 mb-3">
+		<div>
+			<a class="btn text-uppercase btn-dark mx-5 text-light text-center rounded-2 text-decoration-none py-2 px-3" href="{{ path("admin_consultant_index") }}">
+				{% include 'icons/door.svg' %}
+				liste des offres</a>
+		</div>
+		<h1 class="fw-bolder fs-3 mx-5 text-dark text-uppercase">
+			{{ jobOffer.job }}
+		</h1>
+		<h1 class="fw-bolder p-2 fs-5 mx-5 text-dark text-uppercase">
+			{% include 'icons/phone.svg' %}
+			{{ jobOffer.phone }}
+		</h1>
 	</div>
+
 	<section class="container">
 		<div class="d-flex">
 			<div class="col-4 g-3 bg-light rounded-3 px-2 overflow-auto scrollbar">

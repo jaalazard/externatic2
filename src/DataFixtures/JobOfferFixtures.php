@@ -121,6 +121,8 @@ class JobOfferFixtures extends Fixture implements DependentFixtureInterface
                 $jobOffer->setLongitude($faker->longitude(-3, 7));
                 $jobOffer->setProfil($jobOfferCard['profil']);
                 $jobOffer->setSynopsis($jobOfferCard['synopsis']);
+                $jobOffer->setPhone($faker->phoneNumber());
+
                 $manager->persist($jobOffer);
 
                 $jobOffer->addCandidate($this->getReference('candidate_' .
