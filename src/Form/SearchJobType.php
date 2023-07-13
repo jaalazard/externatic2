@@ -41,7 +41,7 @@ class SearchJobType extends AbstractType
                 'required' => false,
                 'label' => 'Ville'
             ])
-            ->add('radius', RangeType::class, [
+            ->add('radius', rangeType::class, [
                 'required' => false,
                 'label' => 'Rayon',
                 'attr' => [
