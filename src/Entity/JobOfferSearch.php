@@ -16,7 +16,7 @@ class JobOfferSearch implements Localizable
 
     private ?string $search = null;
 
-    private ?int $radius = 20;
+    private ?int $radius = 500;
 
     public function getCity(): ?string
     {
