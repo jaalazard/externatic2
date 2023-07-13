@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\JobOffer;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\JobOfferSearch;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<JobOffer>
@@ -39,19 +40,19 @@ class JobOfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function findLikeName(string $name, string $contract): array
+    public function findLikeName(JobOfferSearch $jobOfferSearch): array
     {
         $queryBuilder = $this->createQueryBuilder('j');
 
-        if (!empty($name)) {
+        if (!empty($jobOfferSearch->getSearch())) {
             $queryBuilder->where('j.job LIKE :name')
-                ->setParameter('name', '%' . $name . '%');
+                ->setParameter('name', '%' . $jobOfferSearch->getSearch() . '%');
         }
 
 
-        if (!empty($contract)) {
+        if (!empty($jobOfferSearch->getContract())) {
             $queryBuilder->andWhere('j.contract LIKE :contract')
-                ->setParameter('contract', $contract);
+                ->setParameter('contract', $jobOfferSearch->getContract());
         }
 
         $queryBuilder

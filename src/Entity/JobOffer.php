@@ -45,6 +45,12 @@ class JobOffer implements Localizable
     #[ORM\Column]
     private ?float $longitude = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $synopsis = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $profil = null;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
@@ -177,5 +183,29 @@ class JobOffer implements Localizable
     public function getLocalization(): ?string
     {
         return $this->getCity();
+    }
+
+    public function getSynopsis(): ?string
+    {
+        return $this->synopsis;
+    }
+
+    public function setSynopsis(string $synopsis): static
+    {
+        $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    public function getProfil(): ?string
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(?string $profil): static
+    {
+        $this->profil = $profil;
+
+        return $this;
     }
 }
