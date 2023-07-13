@@ -10,8 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Locator;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Exception;
 
+#[IsGranted('ROLE_ADMIN')]
 #[Route('/admin/offres', name: 'admin_jobOffer_')]
 class AdminJobOfferController extends AbstractController
 {

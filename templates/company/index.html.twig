@@ -18,11 +18,13 @@
             <tr>
                 <td class="fs-5">{{ company.name }}</td>
                 <td class="fs-5">{{ company.link }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
                 <td>
                     <a class="btn btn-primary btn fw-bold text-uppercase  mx-2 my-3 rounded-0" href="{{ path('app_company_edit', {'id': company.id}) }}">
                     {% include 'icons/edit.svg' %}
                     Modifier</a>
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -32,8 +34,10 @@
         </tbody>
     </table>
 
+{% if is_granted('ROLE_ADMIN') %}
     <a <a class="btn btn-primary btn fw-bold text-uppercase my-3 mx-2 rounded-0" href="{{ path('app_company_new') }}">
     {% include 'icons/new.svg' %}
     Nouveau</a>
+    {% endif %}
     </section>
 {% endblock %}
