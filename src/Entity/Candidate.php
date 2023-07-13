@@ -16,7 +16,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 #[Vich\Uploadable]
-/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
+/**
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+*/
 class Candidate implements Localizable
 {
     #[ORM\Id]
@@ -88,6 +91,9 @@ class Candidate implements Localizable
     #[ORM\Column(nullable: true)]
     private ?float $longitude = null;
 
+    #[ORM\ManyToMany(targetEntity: JobOffer::class, inversedBy: 'apply')]
+    private Collection $apply;
+
 
     public function __construct()
     {
@@ -95,6 +101,7 @@ class Candidate implements Localizable
         $this->formations = new ArrayCollection();
         $this->experience = new ArrayCollection();
         $this->skills = new ArrayCollection();
+        $this->apply = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -372,5 +379,34 @@ class Candidate implements Localizable
     public function getLocalization(): ?string
     {
         return $this->getAddress() . ', ' . $this->getCity();
+    }
+
+    /**
+     * @return Collection<int, JobOffer>
+     */
+    public function getApply(): Collection
+    {
+        return $this->apply;
+    }
+
+    public function addApply(JobOffer $apply): static
+    {
+        if (!$this->apply->contains($apply)) {
+            $this->apply->add($apply);
+        }
+
+        return $this;
+    }
+
+    public function removeApply(JobOffer $apply): static
+    {
+        $this->apply->removeElement($apply);
+
+        return $this;
+    }
+
+    public function isApply(JobOffer $jobOffer): bool
+    {
+        return in_array($jobOffer, $this->getApply()->toArray());
     }
 }

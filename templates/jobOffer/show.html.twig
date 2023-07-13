@@ -60,17 +60,16 @@
 			{{ jobOffer.synopsis}}
 		</p>
 
-		<div class="row">
-		{% if app.user %}
-			<div class="col-md-8 row mx-auto">
-				<a class="btn btn-primary btn d-flex justify-content-center my-5 fs-5 fw-bold text-uppercase px-3 rounded" href="">
-					Postuler à cette offre</a>
-			</div>
-		{% endif %}
-			<div class="col-md-4 row mx-auto">
-				<a class="btn btn-secondary btn d-flex justify-content-center my-md-5 my-0 mb-5 fs-5 fw-bold text-uppercase px-3 rounded" href="{{ path('jobOffer_index')}}">
-					Retour à la liste des offres</a>
-			</div>
-		</div>
+        <div class="row">
+        {% if app.user %}
+            <div class="col-md-8 row mx-auto">
+                {% include 'jobOffer/_apply_form.html.twig'%}
+            </div>
+        {% endif %}
+            <div class="col-md-4 row mx-auto">
+                <a class="btn btn-secondary btn d-flex justify-content-center my-md-5 my-0 mb-5 fs-5 fw-bold text-uppercase px-3 rounded" href="{{ path('jobOffer_index')}}">
+                    Retour à la liste des offres</a>
+            </div>
+        </div>
 	</section>
 {% endblock %}
