@@ -59,7 +59,7 @@ class CandidateFixtures extends Fixture implements DependentFixtureInterface
         $candidate->addSkill($this->getReference('skill_2'));
         $candidate->setLatitude(null);
         $candidate->setLongitude(null);
-        $candidate->setMobility(null);
+        $candidate->setMobility(4);
         $this->addReference('candidate_' . 10, $candidate);
         $manager->persist($candidate);
 

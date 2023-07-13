@@ -37,9 +37,10 @@ class SearchJobType extends AbstractType
                 'required' => false,
                 'label' => 'CONTRAT',
             ])
-            ->add('localization', TextType::class, [
+            ->add('city', TextType::class, [
                 'required' => false,
-                'label' => 'Ville'
+                'label' => 'Ville',
+                'help' => 'Si aucune ville n\'est mentionnée, la ville du candidat est prise par défaut'
             ])
             ->add('radius', rangeType::class, [
                 'required' => false,
@@ -55,7 +56,7 @@ class SearchJobType extends AbstractType
     {
         $resolver->setDefaults([
             'csrf_protection' => false,
-
+            'data_class' => JobOfferSearch::class,
         ]);
     }
 
