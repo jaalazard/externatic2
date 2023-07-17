@@ -1,5 +1,5 @@
 <div class="col-lg-6">
-	<div class="card bg-transparent rounded-4 border border-dark shadow" {{ stimulus_target('map', 'jobOffer' )}} data-longitude="{{ jobOffer.longitude }}" data-latitude="{{ jobOffer.latitude }}">
+	<div class="card bg-transparent rounded-4 border border-primary shadow" {{ stimulus_target('map', 'jobOffer' )}} data-longitude="{{ jobOffer.longitude }}" data-latitude="{{ jobOffer.latitude }}">
 		<div class="card-body">
 
 			<h3 class="fw-bold text-dark text-center text-uppercase mt-3 fs-4">
@@ -25,7 +25,7 @@
 						jours
 					</h5>
 				<p class="d-block text-dark-grey fw-medium mt-3 px-3">{{ jobOffer.description }}</p>
-				<a class="btn col-12 btn-transparent btn-outline-dark text-uppercase fw-bolder fs-5 rounded-3 text-decoration-none border border-dark my-2" href=" {{ path("jobOffer_show", {'id': jobOffer.id }) }}">En savoir +</a>
+				<a class="btn col-12 btn-transparent btn-outline-primary text-uppercase fw-bolder fs-5 rounded-3 text-decoration-none border border-primary my-2" href=" {{ path("jobOffer_show", {'id': jobOffer.id }) }}">En savoir +</a>
 			</div>
 			{% if app.user %}
 				<div class="text-center">
