@@ -1,6 +1,11 @@
 <div class="col-lg-6">
 	<div class="card bg-transparent rounded-4 border border-primary shadow" {{ stimulus_target('map', 'jobOffer' )}} data-longitude="{{ jobOffer.longitude }}" data-latitude="{{ jobOffer.latitude }}">
 		<div class="card-body">
+			<div class="position-absolute top-0 end-0 mt-1">
+				{% if app.user %}
+					{{ include('jobOffer/_favorite_form.html.twig') }}
+				{% endif %}
+			</div>
 
 			<h3 class="fw-bold text-primary text-center text-uppercase mt-3 fs-4">
 				{{ jobOffer.job }}
@@ -8,31 +13,25 @@
 
 			<div class="container p-block-5">
 				<div class="d-flex">
-				{% include 'icons/contract.svg' %}
+					{% include 'icons/contract.svg' %}
 					<h3 class="fw-bold fs-5 ">
-					{{ jobOffer.contract }}</h4>
+						{{ jobOffer.contract }}</h4>
 				</div>
 				<div class="d-flex">
 					{% include 'icons/location.svg' %}
 					<h3 class="fst-italic fs-5 fw-bold">
-					{{ jobOffer.city }}</h3>
+						{{ jobOffer.city }}</h3>
 				</div>
 				<h5 class="fw-bold fs-6 text-dark mx-5 text-end">
-						{% set now = "now"|date("Y-m-d") %}
-						{% set nombersDays = ((date("now")|date('U') - jobOffer.createdAt|date('U'))) / (3600 * 24) %}
-						Publié il y a
-						{{ nombersDays|round }}
-						jours
-					</h5>
-				<p class="d-block text-dark-grey fw-medium mt-3 px-3">{{ jobOffer.description }}</p>
+					{% set now = "now"|date("Y-m-d") %}
+					{% set nombersDays = ((date("now")|date('U') - jobOffer.createdAt|date('U'))) / (3600 * 24) %}
+					Publié il y a
+					{{ nombersDays|round }}
+					jours
+				</h5>
+				<p class="d-block text-dark-grey fw-medium mt-3 px-3">{{ jobOffer.description|u.truncate(150, '...') }}</p>
 				<a class="btn col-12 btn-transparent btn-outline-primary text-uppercase fw-bolder fs-5 rounded-3 text-decoration-none border border-primary my-2" href=" {{ path("jobOffer_show", {'id': jobOffer.id }) }}">En savoir +</a>
 			</div>
-			{% if app.user %}
-				<div class="text-center">
-					{{ include('jobOffer/_favorite_form.html.twig') }}
-				</div>
-			{% endif %}
-				
 		</div>
 	</div>
 </div>
