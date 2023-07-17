@@ -28,6 +28,10 @@ nav {
     --bs-navbar-toggler-border-color: none;
 }
 
+.nav-link {
+    border-bottom: 3px solid transparent;
+}
+
 .nav-link:hover {
     border-bottom: 3px solid $primary;
     transition: all 0.3s;
