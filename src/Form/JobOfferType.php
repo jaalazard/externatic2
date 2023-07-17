@@ -6,6 +6,7 @@ use App\Entity\JobOffer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -62,6 +63,13 @@ class JobOfferType extends AbstractType
             ])
             ->add('createdAt', DateType::class, [
                 'label' => 'Date de la publication de cette offre',
+            ])
+
+            ->add('phone', TelType::class, [
+                'label' => 'Téléphone',
+                'attr' => [
+                    'placeholder' => 'Rentrez votre numéro de mobile',
+                ]
             ]);
     }
 
