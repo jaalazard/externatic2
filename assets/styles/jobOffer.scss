@@ -15,9 +15,13 @@
 
 }
 
+form {
+    display: flex;
+}
+
 .form-select {
     border: solid 1px $primary;
-    width: 500px;
+    width: 375px;
     height: 50px;
     margin-right: 10px;
     margin-bottom: 3rem;
@@ -25,7 +29,7 @@
 
 .form-control {
     border: solid 1px $primary;
-    width: 700px;
+    width: 375px;
     height: 50px;
     margin-right: 10px;
     margin-bottom: 3rem;
@@ -36,11 +40,15 @@
 }
 
 .search {
-    width: 500px;
+    width: 425px;
     height: 50px;
     margin-left: 10px;
     margin-top: 4rem;
     margin-bottom: 3rem;
+}
+
+.form-range {
+    width: 325px;
 }
 
 .map {
@@ -72,6 +80,7 @@
     .form-select {
         margin-bottom: 0px;
         width: 325px;
+        margin-left: 10px;
     }
 
     .search {
@@ -80,6 +89,15 @@
         width: 325px;
     }
 
+    .form-range {
+        margin-top: 30px;
+        margin-left: 10px;
+        width: 325px;
+    }
+
+    form {
+        display: block;
+    }
     
 
 }

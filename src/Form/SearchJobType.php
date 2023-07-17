@@ -40,7 +40,6 @@ class SearchJobType extends AbstractType
             ->add('city', TextType::class, [
                 'required' => false,
                 'label' => 'Ville',
-                'help' => 'Si aucune ville n\'est mentionnée, la ville du candidat est prise par défaut'
             ])
             ->add('radius', rangeType::class, [
                 'required' => false,
