@@ -13,10 +13,10 @@ export default class extends Controller {
 
     for (let jobOffer of this.jobOfferTargets) {
       let marker = L.marker([jobOffer.dataset.latitude, jobOffer.dataset.longitude]).addTo(map);
-      // marker.bindPopup(jobOffer.querySelector('h3').textContent);
+      marker.bindPopup(jobOffer.querySelector('h3').textContent);
       let popup = L.popup().setContent("<p>" + jobOffer.querySelector('h3').textContent + "</p><p>" + jobOffer.querySelector('.jobContract').textContent + "</p>");
       marker.bindPopup(popup);
-      // marker.bindPopup(jobOffer.querySelector('h3').textContent , "test");
+      marker.bindPopup(jobOffer.querySelector('h3').textContent , "test");
 
     }
   }
