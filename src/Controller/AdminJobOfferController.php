@@ -10,7 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\Locator;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Exception;
 
+#[IsGranted('ROLE_ADMIN')]
 #[Route('/admin/offres', name: 'admin_jobOffer_')]
 class AdminJobOfferController extends AbstractController
 {
@@ -30,15 +33,19 @@ class AdminJobOfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $coordinates = $locator->getCoordinates($jobOffer);
-            $jobOffer->setLongitude($coordinates[0]);
-            $jobOffer->setLatitude($coordinates[1]);
+            try {
+                [$longitude, $latitude] = $locator->getCoordinates($jobOffer);
+                $jobOffer->setLongitude($longitude);
+                $jobOffer->setLatitude($latitude);
+            } catch (Exception $e) {
+                $this->addFlash('danger', $e->getMessage());
+            }
             $jobOfferRepository->save($jobOffer, true);
 
             return $this->redirectToRoute('admin_jobOffer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_jobOffer/new.html.twig', [
+        return $this->render('admin_jobOffer/new.html.twig', [
             'jobOffer' => $jobOffer,
             'form' => $form,
         ]);
@@ -63,15 +70,20 @@ class AdminJobOfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $coordinates = $locator->getCoordinates($jobOffer);
-            $jobOffer->setLongitude($coordinates[0]);
-            $jobOffer->setLatitude($coordinates[1]);
+            try {
+                [$longitude, $latitude] = $locator->getCoordinates($jobOffer);
+                $jobOffer->setLongitude($longitude);
+                $jobOffer->setLatitude($latitude);
+            } catch (Exception $e) {
+                $this->addFlash('danger', $e->getMessage());
+                $jobOffer->setLongitude(0)->setLatitude(0);
+            }
             $jobOfferRepository->save($jobOffer, true);
 
             return $this->redirectToRoute('admin_jobOffer_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_jobOffer/edit.html.twig', [
+        return $this->render('admin_jobOffer/edit.html.twig', [
             'jobOffer' => $jobOffer,
             'form' => $form,
         ]);

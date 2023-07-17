@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/consultant')]
 class ConsultantController extends AbstractController
@@ -23,6 +24,7 @@ class ConsultantController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/new', name: 'app_consultant_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ConsultantRepository $consultantRepository): Response
     {
@@ -50,6 +52,7 @@ class ConsultantController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_consultant_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Consultant $consultant, ConsultantRepository $consultantRepository): Response
     {
@@ -68,6 +71,7 @@ class ConsultantController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_consultant_delete', methods: ['POST'])]
     public function delete(
         Request $request,

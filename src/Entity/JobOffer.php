@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 #[ORM\Entity(repositoryClass: JobOfferRepository::class)]
 class JobOffer implements Localizable
@@ -34,6 +35,7 @@ class JobOffer implements Localizable
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
+    #[JoinTable(name: "favorites")]
     private Collection $candidates;
 
     #[ORM\Column(length: 255)]
@@ -45,10 +47,23 @@ class JobOffer implements Localizable
     #[ORM\Column]
     private ?float $longitude = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $synopsis = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $profil = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $phone = null;
+
+    #[ORM\ManyToMany(targetEntity: Candidate::class, mappedBy: 'apply')]
+    private Collection $apply;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
         $this->candidates = new ArrayCollection();
+        $this->apply = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,5 +192,68 @@ class JobOffer implements Localizable
     public function getLocalization(): ?string
     {
         return $this->getCity();
+    }
+
+    public function getSynopsis(): ?string
+    {
+        return $this->synopsis;
+    }
+
+    public function setSynopsis(string $synopsis): static
+    {
+        $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    public function getProfil(): ?string
+    {
+        return $this->profil;
+    }
+
+    public function setProfil(?string $profil): static
+    {
+        $this->profil = $profil;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidate>
+     */
+    public function getApply(): Collection
+    {
+        return $this->apply;
+    }
+
+    public function addApply(Candidate $apply): static
+    {
+        if (!$this->apply->contains($apply)) {
+            $this->apply->add($apply);
+            $apply->addApply($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApply(Candidate $apply): static
+    {
+        if ($this->apply->removeElement($apply)) {
+            $apply->removeApply($this);
+        }
+
+        return $this;
     }
 }
