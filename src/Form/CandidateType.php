@@ -39,7 +39,7 @@ class CandidateType extends AbstractType
                 ]
             ])
             ->add('address', TextType::class, [
-                'label' => 'Rue et n° de rue',
+                'label' => 'Adresse postale',
                 'attr' => [
                     'placeholder' => 'Ex : 1 Avenue du Général de Gaulle',
                     'class' => 'border-primary',

@@ -37,18 +37,21 @@ class JobOfferController extends AbstractController
             if ($jobOfferSearch->getLocalization()) {
                 [$longitude, $latitude] = $locator->getCoordinates($jobOfferSearch);
                 $jobOfferSearch->setLongitude($longitude)->setLatitude($latitude);
-                try {
-                    $jobOffers = array_filter(
-                        $jobOffers,
-                        fn ($jobOffer) => $distanceCalculator->isClose(
-                            $jobOfferSearch,
-                            $jobOffer,
-                            $jobOfferSearch->getRadius()
-                        )
-                    );
-                } catch (Exception $e) {
-                    $this->addFlash('danger', $e->getMessage());
-                }
+            }
+
+            try {
+                /** @var \App\Entity\User */
+                $user = $this->getUser();
+                $jobOffers = array_filter(
+                    $jobOffers,
+                    fn ($jobOffer) => $distanceCalculator->isClose(
+                        $jobOfferSearch->getLocalization() ? $jobOfferSearch : $user->getCandidate(),
+                        $jobOffer,
+                        $jobOfferSearch->getRadius()
+                    )
+                );
+            } catch (Exception $e) {
+                $this->addFlash('danger', $e->getMessage());
             }
         } else {
             $jobOffers = $jobOfferRepository->findAll();
@@ -97,5 +100,29 @@ class JobOfferController extends AbstractController
             'jobOffer' => $jobOffer,
             'businessCard' => $businessCard,
         ]);
+    }
+
+    #[IsGranted('ROLE_CANDIDATE')]
+    #[Route('/{id}/postuler', name: 'apply', methods: ['POST', 'GET'])]
+    public function apply(
+        int $id,
+        Request $request,
+        JobOffer $jobOffer,
+        CandidateRepository $candidateRepository,
+        JobOfferRepository $jobOfferRepository
+    ): Response {
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        $jobOffer = $jobOfferRepository->find($id);
+        if ($this->isCsrfTokenValid('apply' . $jobOffer->getId(), $request->request->get('_token'))) {
+            if ($candidate->isApply($jobOffer)) {
+                $candidate->removeApply($jobOffer);
+            } else {
+                $candidate->addApply($jobOffer);
+            }
+            $candidateRepository->save($candidate, true);
+        }
+        return $this->redirectToRoute('jobOffer_index', ['jobOffer' => $jobOffer], Response::HTTP_SEE_OTHER);
     }
 }
