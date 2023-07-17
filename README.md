@@ -1,25 +1,17 @@
-# Project 3 - Starter Kit - Symfony
+# WCS Project 3 - Externatic
 
-## Presentation
+## Project Description
 
-This starter kit is here to easily start a repository for Wild Code School students.
+This website is designed to allow candidates to search and apply for job offers in the field of IT. Users willing to apply can register, connect and bookmark offers. Candidates can upload CV, update their profile and locate offers on a map depending on their home and mobility.
 
-It's symfony website-skeleton project with some additional library (webpack, fixtures) and tools to validate code standards.
+Externatic's consultants can reach job offers and check candidates' data in order to find the best match.
 
-* GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
+Admin can fully manage the website with dedicated pages that allows creation, update and deletion of candidates, consultants, companies and job offers. 
 
-    * PHP_CodeSniffer to check PSR12
-    * PHPStan focuses on finding errors in your code (without actually running it)
-    * PHPmd will check if you follow PHP best practices
 
-  If tests fail, the commit is canceled and a warning message is displayed to developper.
+## Technical Presentation
 
-* Github Action as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
-
-    * Tasks to check if vendor, .idea, env.local are not versionned,
-    * PHP_CodeSniffer, PHPStan and PHPmd with same configuration as GrumPHP.
-
-## Getting Started for Students
+You can clone this project to explore Externatic's website features.
 
 ### Prerequisites
 
@@ -95,7 +87,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-Wild Code School trainers team
+Wild Code School students Spring-summer 2023 : Jean-Antoine Alazard, Mathys Franco, Cédrick Marie, Aimery Pineau.
 
 ## License
 
