@@ -10,9 +10,9 @@
 			<thead>
 				<tr>
 					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Date d'ajout</th>
-					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Job</th>
-					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">City</th>
-					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Contract</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Poste</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Ville</th>
+					<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Contrat</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,7 +24,7 @@
 						<td class="fs-5 fw-medium">{{ jobOffer.contract }}</td>
 						<td class="fs-5 fw-medium">{{ jobOffer.latitude }}</td>
 						<td class="fs-5 fw-medium">{{ jobOffer.longitude }}</td>
-						
+
 
 						<td>
 							<a href="{{ path('admin_jobOffer_show', {'id': jobOffer.id}) }}">
