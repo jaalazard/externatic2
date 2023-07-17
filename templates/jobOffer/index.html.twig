@@ -10,6 +10,7 @@
 	{{ parent() }}
 	|| Offres d'emploi
 {% endblock %}
+
 {% block body %}
 	<section class="container" {{ stimulus_controller('map') }}>
 		<h1 class="fw-bold text-dark text-uppercase my-5">Avec
@@ -18,57 +19,53 @@
 			trouvez l’emploi qui vous correspond !</h1>
 		<h2 class="mb-4 text-dark">Trier les offres d'emplois</h2>
 
-		<div class="my-3 container d-flex justify-content-center">
-			<div class="row my-3">
+		<div class="mt-3 container d-flex justify-content-center">
+			<div class="row mt-3">
 				{{ form_start(form) }}
-				<div class="col-md-8">
+				<div class="col-md-4">
 					{{ form_label(form.search)}}
 					{{ form_widget(form.search)}}
 					{{ form_errors(form.search)}}
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-4">
 					{{ form_label(form.contract)}}
 					{{ form_widget(form.contract)}}
 					{{ form_errors(form.contract)}}
 				</div>
-			<div class="row my-3">
-				<div class="col-md-8">
+				<div class="col-md-4">
 					{{ form_label(form.city)}}
 					{{ form_widget(form.city)}}
 					{{ form_help(form.city)}}
 					{{ form_errors(form.city)}}
 				</div>
-				<div class="col-md-8">
+			</div>
+		</div>
+		<div class="container d-flex justify-content-center">
+			<div class="row">
+				<div class="col-md-5">
 					{{ form_label(form.radius)}}
 					{{ form_widget(form.radius, {attr: {'data-action': 'map#radiusChange'}}
 					)}}
 					<span id="radius" {{ stimulus_target('map', 'radius')}}>1km</span>
 					{{ form_errors(form.radius)}}
 				</div>
-			</div>
-				<div>
+
+				<div class="col-md-6">
 					<button class="search btn btn-secondary border border-primary text-uppercase fw-bold ml-0">RECHERCHER</button>
 				</div>
+				{{ form_end(form) }}
 			</div>
 		</div>
-
-			{{ form_end(form) }}
-		</div>
 		<div id="map" class="map mb-5 border border-primary"></div>
-
-
 		<div class="row g-5 mb-5">
 			{% for jobOffer in jobOffers %}
 				{% include '/components/jobOffer-card.html.twig' %}
 			{% else %}
 				Aucune offre trouvée.
 			{% endfor %}
-
 		</div>
-
 	</section>
 {% endblock %}
 {% block javascripts %}
-	{{ parent() }}
-	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+	{{ parent() }}<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 {% endblock %}
