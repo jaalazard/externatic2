@@ -27,7 +27,7 @@
 		
 		<div class="d-md-flex d-block pt-md-5 pt-2">
 		
-			<img style="width: 250px; height: 250px;" class="img-fluid  my-3 ms-5 rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
+			<img style="width: 250px; height: 250px;" class="object-fit-cover img-fluid  my-3 ms-5 rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
 			<a class="btn btn-primary h-25 text-light d-flex justify-content-center my-3 fw-bold me-md-5 text-decoration-none" href="{{ path('app_candidate_edit_profilePic', {'id': app.user.candidate.id}) }}">{{ include('icons/camera.svg') }}</a>
 
 			<div class="flex-column my-5 mx-md-5">
