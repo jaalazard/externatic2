@@ -9,12 +9,15 @@
 				<img class="logo-nav-res img-fluid d-md-none d-block mt-5" src=" {{ asset('build/images/logo-res.png') }} " alt="Logo Externatic">
 			</a>
 			<ul class="nav nav-pills flex-column mb-sm-auto mb-0  mx-auto mt-5" id="menu">
+			{% if (is_granted('ROLE_ADMIN')) %}
 				<li>
 					<a href="{{ path('app_consultant_index')}}" class="nav-link px-0 align-middle my-3">
 						<i class="fs-4"></i>
 						<span class="text-light text-uppercase fs-6 fw-bold">Consultant</span>
 					</a>
 				</li>
+				{% endif %}
+				{% if (is_granted('ROLE_CONSULTANT')) %}
 				<li>
 					<a href="{{path('admin_jobOffer_index')}}" class="nav-link px-0 align-middle my-3">
 						<i class="fs-4"></i>
@@ -33,6 +36,7 @@
 						<span class="text-light text-uppercase fs-6 fw-bold">Mettre en relation</span>
 					</a>
 				</li>
+				{% endif %}
 			</ul>
 			<div class="dropdown">
 				<a href="#" class="text-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">

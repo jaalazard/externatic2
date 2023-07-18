@@ -39,7 +39,7 @@ security:
     
     access_control:
         # require ROLE_ADMIN for /admin*
-        - { path: '^/admin', roles: ROLE_ADMIN }
+        - { path: '^/admin', roles: [ ROLE_ADMIN, ROLE_CONSULTANT ] }
 
         # the 'path' value can be any valid regular expression
         # (this one will match URLs like /api/post/7298 and /api/comment/528491)
