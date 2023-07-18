@@ -18,13 +18,12 @@
             <tr>
                 <td class="fs-5">{{ company.name }}</td>
                 <td class="fs-5">{{ company.link }}</td>
-                {% if is_granted('ROLE_ADMIN') %}
                 <td>
                     <a  href="{{ path('app_company_edit', {'id': company.id}) }}">
                     {% include 'icons/edit.svg' %}
                    </a>
                 </td>
-                {% endif %}
+                
             </tr>
         {% else %}
             <tr>

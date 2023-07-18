@@ -20,7 +20,13 @@
 						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('accueil_admin') }}">Admin</a>
 					</li>
 				{% endif %}
-				{% if app.user and not (is_granted('ROLE_ADMIN')) %}
+
+				{% if (is_granted('ROLE_CONSULTANT')) %}
+					<li class="nav-item my-3">
+						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('accueil_admin') }}">Admin</a>
+					</li>
+				{% endif %}
+				{% if app.user and not (is_granted('ROLE_ADMIN')) and not (is_granted('ROLE_CONSULTANT')) %}
 					<li class="nav-item my-3">
 						<a class="mx-3 text-decoration-none text-secondary text-uppercase" href="{{ path('app_candidate_profile') }}">Mon profil</a>
 					</li>
