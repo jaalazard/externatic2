@@ -56,14 +56,10 @@ class JobOffer implements Localizable
     #[ORM\Column(length: 20)]
     private ?string $phone = null;
 
-    #[ORM\ManyToMany(targetEntity: Candidate::class, mappedBy: 'apply')]
-    private Collection $apply;
-
     public function __construct()
     {
         $this->createdAt = new DateTime();
         $this->candidates = new ArrayCollection();
-        $this->apply = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -226,33 +222,6 @@ class JobOffer implements Localizable
     public function setPhone(string $phone): static
     {
         $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Candidate>
-     */
-    public function getApply(): Collection
-    {
-        return $this->apply;
-    }
-
-    public function addApply(Candidate $apply): static
-    {
-        if (!$this->apply->contains($apply)) {
-            $this->apply->add($apply);
-            $apply->addApply($this);
-        }
-
-        return $this;
-    }
-
-    public function removeApply(Candidate $apply): static
-    {
-        if ($this->apply->removeElement($apply)) {
-            $apply->removeApply($this);
-        }
 
         return $this;
     }
