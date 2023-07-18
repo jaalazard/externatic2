@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ['jobOffer', 'radius']; // eslint-disable-line
 
   connect() {
-    let map = L.map('map').setView([45, 1], 6);
+    let map = L.map('map').setView([47, 1], 5);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
