@@ -92,12 +92,16 @@ class Candidate implements Localizable
     #[ORM\Column(nullable: true)]
     private ?float $longitude = null;
 
+    #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Postulation::class)]
+    private Collection $postulations;
+
     public function __construct()
     {
         $this->jobOffers = new ArrayCollection();
         $this->formations = new ArrayCollection();
         $this->experience = new ArrayCollection();
         $this->skills = new ArrayCollection();
+        $this->postulations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -375,5 +379,35 @@ class Candidate implements Localizable
     public function getLocalization(): ?string
     {
         return $this->getAddress() . ', ' . $this->getCity();
+    }
+
+    /**
+     * @return Collection<int, Postulation>
+     */
+    public function getPostulations(): Collection
+    {
+        return $this->postulations;
+    }
+
+    public function addPostulation(Postulation $postulation): static
+    {
+        if (!$this->postulations->contains($postulation)) {
+            $this->postulations->add($postulation);
+            $postulation->setCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostulation(Postulation $postulation): static
+    {
+        if ($this->postulations->removeElement($postulation)) {
+            // set the owning side to null (unless already changed)
+            if ($postulation->getCandidate() === $this) {
+                $postulation->setCandidate(null);
+            }
+        }
+
+        return $this;
     }
 }
