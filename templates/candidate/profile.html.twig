@@ -21,19 +21,19 @@
 	</h1>
 	<section class="container">
 		<div class="cadre border border-primary bg-light rounded-3 shadow p-3 mb-5 rounded">
-			<div class="d-flex justify-content-between">
-				<a class="btn text-light align-middle bg-secondary fs-4 fw-bold pt-2 text-align" href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}">Mon CV {{ include('icons/file.svg') }}</a>
-				<a class="btn btn-primary fs-4 align-items text-light fw-bold text-decoration-none justify-content-end" href="{{ path('app_candidate_edit_profile', {'id': app.user.candidate.id}) }}">{{ include('icons/edit.svg') }}
-					Modifiez vos informations</a>
+			<div class="d-flex justify-content-between gap-2 flex-wrap">
+				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align"><span href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}">Mon CV</span> {{ include('icons/file.svg') }}</a>
+				<a class="btn btn-primary fs-5 align-items text-light fw-bold text-decoration-none justify-content-end" href="{{ path('app_candidate_edit_profile', {'id': app.user.candidate.id}) }}">{{ include('icons/edit.svg') }}
+					Modifier</a>
 			</div>
 
 			<div class="d-md-flex d-block pt-md-5 pt-2">
 
-				<img style="width: 250px; height: 250px;" class="object-fit-cover img-fluid  my-3 ms-5 rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
+				<img style="width: 250px; height: 250px;" class="object-fit-cover img-fluid  my-3 ms-4 rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
 				<a class="btn btn-primary h-25 text-light d-flex justify-content-center my-3 fw-bold me-md-5 text-decoration-none" href="{{ path('app_candidate_edit_profilePic', {'id': app.user.candidate.id}) }}">{{ include('icons/camera.svg') }}</a>
 
 				<div class="flex-column my-5 mx-md-5">
-					<h2 class="title text-primary fw-bold text-uppercase fs-1 ms-md-5 mb-4 ">{{ app.user.candidate.user.lastname }}
+					<h2 class="title text-primary fw-bold text-uppercase fs-1 ms-md-4 mb-4 ">{{ app.user.candidate.user.lastname }}
 						<span class="text-secondary text-lowercase mb-4">{{ app.user.candidate.user.firstname }}</h2>
 
 						<h4>
@@ -43,7 +43,7 @@
 							<span class="fw-bold ms-md-5">Téléphone :</span>
 							{{ app.user.candidate.phone }}</h4>
 						<h4>
-							<span class="fw-bold ms-md-5">Adresse e-mail :</span>
+							<span class="fw-bold ms-md-5">E-mail :</span>
 							{{ app.user.candidate.user.email }}</h4>
 						<h4>
 							<span class="fw-bold ms-md-5">Adresse :</span>
