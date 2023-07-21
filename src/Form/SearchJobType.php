@@ -47,6 +47,7 @@ class SearchJobType extends AbstractType
                 'attr' => [
                     'min' => 1,
                     'max' => 500,
+                    'value' => 1,
                 ],
             ]);
     }

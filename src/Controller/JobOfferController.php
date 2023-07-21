@@ -32,26 +32,32 @@ class JobOfferController extends AbstractController
         $form = $this->createForm(SearchJobType::class, $jobOfferSearch);
         $form->handleRequest($request);
 
+        /** @var User */
+        $user = $this->getUser();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $jobOffers = $jobOfferRepository->findLikeName($jobOfferSearch);
+
             if ($jobOfferSearch->getLocalization()) {
                 [$longitude, $latitude] = $locator->getCoordinates($jobOfferSearch);
                 $jobOfferSearch->setLongitude($longitude)->setLatitude($latitude);
-            }
-
-            try {
-                /** @var \App\Entity\User */
-                $user = $this->getUser();
                 $jobOffers = array_filter(
                     $jobOffers,
                     fn ($jobOffer) => $distanceCalculator->isClose(
-                        $jobOfferSearch->getLocalization() ? $jobOfferSearch : $user->getCandidate(),
+                        $jobOfferSearch,
                         $jobOffer,
                         $jobOfferSearch->getRadius()
                     )
                 );
-            } catch (Exception $e) {
-                $this->addFlash('danger', $e->getMessage());
+            } elseif ($user) {
+                $jobOffers = array_filter(
+                    $jobOffers,
+                    fn ($jobOffer) => $distanceCalculator->isClose(
+                        $user->getCandidate(),
+                        $jobOffer,
+                        $jobOfferSearch->getRadius()
+                    )
+                );
             }
         } else {
             $jobOffers = $jobOfferRepository->findAll();
