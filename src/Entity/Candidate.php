@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
-*/
+ */
 class Candidate implements Localizable
 {
     #[ORM\Id]
@@ -409,5 +409,14 @@ class Candidate implements Localizable
         }
 
         return $this;
+    }
+
+    public function isPostulated(Postulation $postulation): bool
+    {
+        if ($this->postulations->contains($postulation)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

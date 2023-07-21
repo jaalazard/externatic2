@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
 use DateTime;
+use App\Entity\Postulation;
 use App\Service\Localizable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
