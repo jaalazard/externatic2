@@ -21,8 +21,8 @@
 		{{ form_end(form) }}
 	</div>
 	<section class="container">
-		<div class="d-flex">
-			<div class="col-4 g-3 bg-light rounded-3 px-4 overflow-auto scrollbar">
+		<div class="d-xxl-flex justify-content-center">
+			<div class="col-xxl-4 col-xl-10 col bg-light rounded-3 px-3 overflow-auto scrollbar">
 				{% for jobOffer in jobOffers %}
 					<div class="card p-2 my-3 rounded-2 shadow">
 						<h2 class="jobOffer fs-4 text-light text-center text-uppercase m-4">
@@ -59,7 +59,7 @@
 					Aucune offre trouvée.
 				{% endfor %}
 			</div>
-			<div class="col-8 bg-transparent rounded-4 border border-dark mx-5 p-4">
+			<div class="col-xxl-8 col-xl-10 col bg-transparent rounded-4 border border-dark mx-3 my-5 my-xxl-0 p-4">
 				{% if jobOffer is not empty %}
 					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mt-3">
 						{{ jobOffer.job }}

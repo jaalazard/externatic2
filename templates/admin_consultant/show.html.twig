@@ -17,8 +17,8 @@
 			Revenir a la liste des offres</a>
 	</div>
 	<section class="container">
-		<div class="d-flex">
-			<div class="col-4 g-3 bg-light rounded-3 px-2 overflow-auto scrollbar">
+		<div class="d-xxl-flex justify-content-center">
+			<div class="col-xxl-4 col-xl-10 col bg-light rounded-3 px-3 overflow-auto scrollbar">
 				{% for candidate in jobOffer.candidates %}
 					<div class="card p-2 my-3 rounded-2 shadow">
 						<h2 class="jobOffer fs-5 text-light text-center text-uppercase m-3">
@@ -41,7 +41,7 @@
 					Aucune offre trouvée.
 				{% endfor %}
 			</div>
-			<div class="col-8 bg-transparent rounded-4 border border-dark mx-3 py-3 px-5">
+			<div class="col-xxl-8 col-xl-10 col bg-transparent rounded-4 border border-dark mx-3 my-5 my-xxl-0 p-4">
 				{% if candidate is not empty %}
 					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mb-4 mt-3">
 						{{ candidate.user.lastname }}
