@@ -402,7 +402,6 @@ class Candidate implements Localizable
     public function removePostulation(Postulation $postulation): static
     {
         if ($this->postulations->removeElement($postulation)) {
-            // set the owning side to null (unless already changed)
             if ($postulation->getCandidate() === $this) {
                 $postulation->setCandidate(null);
             }
@@ -411,12 +410,8 @@ class Candidate implements Localizable
         return $this;
     }
 
-    public function isPostulated(Postulation $postulation): bool
+    public function hasPostulated(JobOffer $jobOffer): bool
     {
-        if ($this->postulations->contains($postulation)) {
-            return true;
-        } else {
-            return false;
-        }
+        return in_array($jobOffer, $this->getPostulations()->toArray());
     }
 }

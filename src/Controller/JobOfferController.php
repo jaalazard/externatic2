@@ -13,6 +13,7 @@ use App\Repository\BusinessRepository;
 use App\Repository\JobOfferRepository;
 use App\Repository\CandidateRepository;
 use App\Repository\PostulationRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -95,15 +96,18 @@ class JobOfferController extends AbstractController
         int $id,
         JobOfferRepository $jobOfferRepository,
         BusinessRepository $businessRepository,
-        PostulationRepository $postulationRepository
+        PostulationRepository $postulationRepository,
+        CandidateRepository $candidateRepository,
     ): Response {
         $jobOffer = $jobOfferRepository->find($id);
         $businessCard = $businessRepository->find($id);
         $postulation = $postulationRepository->find($id);
+        $candidate = $candidateRepository->find($id);
         return $this->render('/jobOffer/show.html.twig', [
             'jobOffer' => $jobOffer,
             'businessCard' => $businessCard,
             'postulation' => $postulation,
+            'candidate' => $candidate,
         ]);
     }
 
@@ -115,34 +119,31 @@ class JobOfferController extends AbstractController
         JobOffer $jobOffer,
         CandidateRepository $candidateRepository,
         JobOfferRepository $jobOfferRepository,
-        PostulationRepository $postulationRepository
+        PostulationRepository $postulationRepository,
     ): Response {
         /** @var User */
         $user = $this->getUser();
         $candidate = $user->getCandidate();
+
         $jobOffer = $jobOfferRepository->find($id);
-        $postulations = $candidate->getPostulations();
-        $postulation = new Postulation();
-        $postulation->setCandidate($candidate);
-        $postulation->setJobOffer($jobOffer);
-        $postulation->setIsValidate(false);
 
-        $postulationRepository->save($postulation);
+        $postulation = $postulationRepository->findOneByCandidateAndJoboffer($candidate, $jobOffer);
+
         if ($this->isCsrfTokenValid('apply' . $jobOffer->getId(), $request->request->get('_token'))) {
-            dd($postulation);
-            if (in_array($postulation, $postulations->toArray())) {
-                $candidate->removePostulation($postulation);
-                $postulationRepository->remove($postulation);
-            } else {
+            if ($postulation == null) {
+                $postulation = new Postulation();
+                $postulation->setCandidate($candidate);
+                $postulation->setJobOffer($jobOffer);
+                $postulation->setIsValidate(false);
+                $postulationRepository->save($postulation);
                 $candidate->addPostulation($postulation);
-                $candidate->isPostulated($postulation) == true;
+                $candidateRepository->save($candidate, true);
+            } elseif($postulation !== null) {
+                $postulationRepository->remove($postulation);
+                $candidate->removePostulation($postulation);
+                $candidateRepository->save($candidate, true);
             }
-            $candidateRepository->save($candidate, true);
-            $postulationRepository->save($postulation, true);
-
-
         }
         return $this->redirectToRoute('jobOffer_index', ['jobOffer' => $jobOffer, 'postulation' => $postulation], Response::HTTP_SEE_OTHER);
     }
-    
 }

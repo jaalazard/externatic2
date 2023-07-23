@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\JobOffer;
 use App\Repository\PostulationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,6 +28,18 @@ class Postulation
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLatitude()
+    {
+        $jobOffer = $this->getJobOffer();
+        return $jobOffer->getLatitude();
+    }
+
+    public function getLongitude()
+    {
+        $jobOffer = $this->getJobOffer();
+        return $jobOffer->getLongitude();
     }
 
     public function getCandidate(): ?Candidate

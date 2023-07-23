@@ -38,6 +38,17 @@ class PostulationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findOneByCandidateAndJoboffer($candidate, $jobOffer): ?Postulation
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.candidate = :valCand')
+            ->setParameter('valCand', $candidate)
+            ->andWhere('p.jobOffer = :valJobOffer')
+            ->setParameter('valJobOffer', $jobOffer)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 
 //    /**
 //     * @return Postulation[] Returns an array of Postulation objects
