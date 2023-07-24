@@ -21,6 +21,7 @@ class AdminConsultantController extends AbstractController
     {
         $jobOfferSearch = new JobOfferSearch();
         $form = $this->createForm(SearchJobType::class, $jobOfferSearch);
+        $form->remove('localization')->remove('radius');
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $jobOffers = $jobOfferRepository->findLikeName($jobOfferSearch);
