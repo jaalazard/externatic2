@@ -27,7 +27,7 @@
 	<section class="container">
 		<div class="d-flex">
 			<div class="col-4 g-3 bg-light rounded-3 px-2 overflow-auto scrollbar">
-				{% for candidate in jobOffer.candidates %}
+				{% for candidate in jobOffer.apply %}
 					<div class="card p-2 my-3 rounded-2 shadow">
 						<h2 class="jobOffer fs-5 text-light text-center text-uppercase m-3">
 							{{ candidate.user.lastname }}
@@ -85,7 +85,7 @@
 						{% for experience in candidate.experience %}
 							<div class="border border-dark rounded-2 my-3 pt-3 pb-1 px-2">
 								<div class="d-flex-inline">
-									<h3 class="fs-6 fw-bold text-uppercase text-dark mx-2">{{ experience. jobTitle }}</h3>
+									<h3 class="fs-6 fw-bold text-uppercase text-dark mx-2">{{ experience.jobTitle }}</h3>
 									<h4 class="fs-6 fw-semibold text-dark mx-2">{{ experience.company }}</h4>
 									<p class="fs-6 fw-medium text-dark mx-2">{{ experience.description }}</p>
 									<div class="d-flex flex-row justify-content-center">
