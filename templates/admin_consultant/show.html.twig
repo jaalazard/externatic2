@@ -46,10 +46,10 @@
 						</div>
 					</div>
 				{% else %}
-					Aucune offre trouvée.
+					Aucun candidat pour cette offre.
 				{% endfor %}
 			</div>
-			<div class="col-8 bg-transparent rounded-4 border border-dark mx-3 py-3 px-5">
+			<div class="col-xxl-8 col bg-transparent rounded-4 border border-dark mx-3 my-5 my-xxl-0 p-4">
 				{% if candidate is not empty %}
 					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mb-4 mt-3">
 						{{ candidate.user.lastname }}
@@ -90,7 +90,7 @@
 						{% for experience in candidate.experience %}
 							<div class="border border-dark rounded-2 my-3 pt-3 pb-1 px-2">
 								<div class="d-flex-inline">
-									<h3 class="fs-6 fw-bold text-uppercase text-dark mx-2">{{ experience. jobTitle }}</h3>
+									<h3 class="fs-6 fw-bold text-uppercase text-dark mx-2">{{ experience.jobTitle }}</h3>
 									<h4 class="fs-6 fw-semibold text-dark mx-2">{{ experience.company }}</h4>
 									<p class="fs-6 fw-medium text-dark mx-2">{{ experience.description }}</p>
 									<div class="d-flex flex-row justify-content-center">
