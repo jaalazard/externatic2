@@ -19,10 +19,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostulationController extends AbstractController
 {
     #[Route('/{id}/valider', name: 'validate', methods: ['GET', 'POST'])]
-    public function validatePostulation(Postulation $postulation, PostulationRepository $postulationRepository): Response
-    {
-            $postulation->setIsValidate(true);
-            $postulationRepository->save($postulation, true);
+    public function validatePostulation(
+        Postulation $postulation,
+        PostulationRepository $postulationRepository
+    ): Response {
+        $postulation->setIsValidate(true);
+        $postulationRepository->save($postulation, true);
 
         return $this->redirectToRoute('admin_jobOffer_show', ['id' => $postulation->getJobOffer()->getId()]);
     }

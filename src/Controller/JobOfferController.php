@@ -139,7 +139,7 @@ class JobOfferController extends AbstractController
                 $candidateRepository->save($candidate, true);
                 $jobOffer->addCandidate($candidate);
                 $jobOfferRepository->save($jobOffer);
-            } elseif($postulation !== null) {
+            } elseif ($postulation !== null) {
                 $postulationRepository->remove($postulation);
                 $candidate->removePostulation($postulation);
                 $candidateRepository->save($candidate, true);
@@ -147,6 +147,13 @@ class JobOfferController extends AbstractController
                 $jobOfferRepository->save($jobOffer);
             }
         }
-        return $this->redirectToRoute('jobOffer_index', ['jobOffer' => $jobOffer, 'postulation' => $postulation], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute(
+            'jobOffer_index',
+            [
+                'jobOffer' => $jobOffer,
+                'postulation' => $postulation
+            ],
+            Response::HTTP_SEE_OTHER
+        );
     }
 }
