@@ -1,0 +1,16 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Nouveau || Fiche métier{% endblock %}
+
+{% block body %}
+	<section class="container">
+
+    <h1 class="text-primary fw-bold text-uppercase d-flex justify-content-center my-5">Créer une fiche métiers </h1>
+
+    {{ include('business_card_admin/_form.html.twig') }}
+
+		<a class="btn btn-secondary btn fw-bold text-uppercase my-2 px-3 rounded-10" href="{{ path('app_business_card_admin_index') }}">
+			{% include 'icons/return.svg'%}
+			Revenir à la liste des offres
+		</a>
+{% endblock %}
