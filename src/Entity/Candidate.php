@@ -410,8 +410,8 @@ class Candidate implements Localizable
         return $this;
     }
 
-    public function hasPostulated(JobOffer $jobOffer): bool
+    public function hasPostulated(?Postulation $postulation): ?bool
     {
-        return in_array($jobOffer, $this->getPostulations()->toArray());
+        return in_array($postulation, $this->getPostulations()->toArray());
     }
 }
