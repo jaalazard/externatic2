@@ -26,7 +26,7 @@ class PostulationController extends AbstractController
         $postulation->setIsValidate(true);
         $postulationRepo->save($postulation, true);
 
-        return $this->redirectToRoute('admin_jobOffer_show', ['id' => $postulation->getJobOffer()->getId()]);
+        return $this->redirectToRoute('admin_consultant_index', ['id' => $postulation->getJobOffer()->getId()]);
     }
 
     #[Route('/{id}/rejeter', name: 'reject', methods: ['GET', 'POST'])]
@@ -35,6 +35,6 @@ class PostulationController extends AbstractController
         $postulation->setIsValidate(false);
         $postulationRepo->save($postulation, true);
 
-        return $this->redirectToRoute('admin_jobOffer_show', ['id' => $postulation->getJobOffer()->getId()]);
+        return $this->redirectToRoute('admin_consultant_index', ['id' => $postulation->getJobOffer()->getId()]);
     }
 }

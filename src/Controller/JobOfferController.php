@@ -94,19 +94,10 @@ class JobOfferController extends AbstractController
     public function show(
         int $id,
         JobOfferRepository $jobOfferRepository,
-        BusinessRepository $businessRepository,
-        PostulationRepository $postulationRepo,
-        CandidateRepository $candidateRepository,
     ): Response {
         $jobOffer = $jobOfferRepository->find($id);
-        $businessCard = $businessRepository->find($id);
-        $postulation = $postulationRepo->find($id);
-        $candidate = $candidateRepository->find($id);
         return $this->render('/jobOffer/show.html.twig', [
             'jobOffer' => $jobOffer,
-            'businessCard' => $businessCard,
-            'postulation' => $postulation,
-            'candidate' => $candidate,
         ]);
     }
 

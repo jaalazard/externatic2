@@ -20,16 +20,16 @@
 			</h3>
 
 			{% if postulation.isValidate is null %} 
-			<h4 class="fw-bold text-primary text-center text-uppercase mt-3 fs-4">
-				CANDIDATURE EN ATTENTE !!!!!!
+			<h4 class="fw-bold text-success text-center text-uppercase mt-3 fs-4">
+				CANDIDATURE EN ATTENTE !
 			</h4>
 			{% elseif postulation.isValidate == 0 %}
-			<h4 class="fw-bold text-primary text-center text-uppercase mt-3 fs-4">
-				CANDIDATURE REFUSEE !!!!!
+			<h4 class="fw-bold text-danger text-center text-uppercase mt-3 fs-4">
+				CANDIDATURE REFUSEE !
 			</h4>
 			{% else %}
 			<h4 class="fw-bold text-primary text-center text-uppercase mt-3 fs-4">
-				CANDIDATURE VALIDEE !!!!!
+				CANDIDATURE VALIDEE !
 			</h4>
 			{% endif %}
 

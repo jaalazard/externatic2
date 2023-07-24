@@ -32,10 +32,6 @@
 				<th>Téléphone</th>
 				<td>{{ jobOffer.phone }}</td>
 			</tr>
-			<tr>
-				<th>Candidats</th>
-				<td>{% for postulation in jobOffer.postulations %}{{ postulation.candidate.user.firstName }} {{ postulation.candidate.user.lastName }},  <a class="mx-auto btn-sm btn-outline-secondary fw-bold w-25 mb-5 border-3 border-secondary" href="{{ path('admin_postulation_validate', {id: postulation.id}) }}">Valider la candidature</a> <a class="mx-auto btn-sm btn-outline-secondary fw-bold w-25 mb-5 border-3 border-secondary" href="{{ path('admin_postulation_reject', {id: postulation.id}) }}">Rejeter la candidature</a>{% endfor %} </td> 
-			</tr>
 		</tbody>
 	</table>
 

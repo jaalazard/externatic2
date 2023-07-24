@@ -58,7 +58,6 @@ class AdminJobOfferController extends AbstractController
         return $this->render('admin_jobOffer/show.html.twig', [
             'jobOffer' => $jobOffer,
             'candidates' => $jobOffer->getCandidates(),
-            'postulations' => $jobOffer->getPostulations()
         ]);
     }
 
