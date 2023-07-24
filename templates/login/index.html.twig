@@ -50,19 +50,6 @@
 							<button class="w-50 mt-4 btn btn-primary fw-bold text-uppercase" type="submit">Valider</button>
 						</div>
 					</form>
-					{% for category, messages in app.flashes %}
-
-						{% for message in messages %}
-
-							<div class="alert alert-{{ category }}">
-
-								{{ message }}
-
-							</div>
-
-						{% endfor %}
-
-					{% endfor %}
 				</div>
 			</div>
 			<div class="d-none col-md-4 bg-primary d-md-flex align-items-center">

@@ -29,7 +29,7 @@ class LoginSubscriber extends AbstractController implements EventSubscriberInter
 
         /** @var \App\Entity\User */
         $user = $this->getUser();
-        $this->addFlash('info', 'Bienvenue ! Vous êtes connecté(e) à Externatic');
+        $this->addFlash('success', 'Bienvenue ! Vous êtes connecté(e) à Externatic');
 
         if ($user->getCandidate() !== null) {
             $response = new RedirectResponse(
