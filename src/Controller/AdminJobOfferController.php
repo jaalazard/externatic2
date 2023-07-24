@@ -2,16 +2,18 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Entity\JobOffer;
+use App\Service\Locator;
 use App\Form\JobOfferType;
+use App\Entity\Postulation;
 use App\Repository\JobOfferRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PostulationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\Locator;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Exception;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/offres', name: 'admin_jobOffer_')]
 class AdminJobOfferController extends AbstractController
@@ -55,6 +57,7 @@ class AdminJobOfferController extends AbstractController
     {
         return $this->render('admin_jobOffer/show.html.twig', [
             'jobOffer' => $jobOffer,
+            'candidates' => $jobOffer->getCandidates(),
         ]);
     }
 

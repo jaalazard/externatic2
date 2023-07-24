@@ -1,0 +1,36 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Admin || Fiche Métiers{% endblock %}
+
+{% block body %}
+<section class="container">
+		<h1 class="text-primary fw-bold text-uppercase d-flex my-5">Liste des fiches métiers</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Nom</th>
+                <th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">Lien</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for business_card in business_cards %}
+            <tr>
+                <td class="fs-5 fw-medium">{{ business_card.id }}</td>
+                <td class="fs-5 fw-medium">{{ business_card.name }}</td>
+                <td class="fs-5 fw-medium">{{ business_card.link }}</td>
+                <td>
+                    <a href="{{ path('app_business_card_admin_edit', {'id': business_card.id}) }}">{% include 'icons/edit.svg' %}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                		<td colspan="7">Aucun résultat trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a  class="btn btn-secondary btn fs-5 fw-bold text-uppercase my-3 px-3 rounded" href="{{ path('app_business_card_admin_new') }}">Ajouter une nouvelle fiche métier</a>
+    </section>
+{% endblock %}

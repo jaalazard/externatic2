@@ -23,7 +23,7 @@
 		</p>
 
 
-		<a class="btn btn-primary btn-lg fw-bold text-uppercase mb-5 px-md-5 px-3 rounded-0" href="https://www.frenchtechbordeaux.com/le-guide-des-metiers-en-start-up/" target="_blank">Je consulte de guide des métiers !</a>
+		<a class="btn btn-primary btn-lg fw-bold text-uppercase mb-5 px-md-5 px-3 rounded-0" href="https://www.frenchtechbordeaux.com/le-guide-des-metiers-en-start-up/" target="_blank">Je consulte le guide des métiers !</a>
 
 		<p class="my-5 fs-5">
 			« Les métiers de l’informatique » : cette expression souvent employée est très généraliste 
@@ -81,7 +81,7 @@
 				<div class="col-md-4 my-md-5 mb-md-5 bg-primary {{loop.index is even ? 'bg-secondary'}}">
 					<h2 class="h3 text-white fw-bold my-5 fs-2 text-uppercase mx-5">{{ category.name}}</h2>
 					{% for businessCard in category.businessCards %}
-						<a href="{{ businessCard.link }}">
+						<a href="{{ businessCard.link }}" target="_blank">
 							<p class="text-white fw-bold my-3 mx-5">{{ businessCard.name }}</p>
 						</a>
 					{% endfor %}

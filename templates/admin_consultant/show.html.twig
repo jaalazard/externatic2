@@ -27,34 +27,39 @@
 	<section class="container">
 		<div class="d-flex">
 			<div class="col-4 g-3 bg-light rounded-3 px-2 overflow-auto scrollbar">
-				{% for candidate in jobOffer.apply %}
+				{% for postulation in jobOffer.postulations %}
 					<div class="card p-2 my-3 rounded-2 shadow">
 						<h2 class="jobOffer fs-5 text-light text-center text-uppercase m-3">
-							{{ candidate.user.lastname }}
-							{{ candidate.user.firstname }}
+							{{ postulation.candidate.user.lastname }}
+							{{ postulation.candidate.user.firstname }}
 						</h2>
 						<div class="container">
 							<h3 class="fw-bold fs-6 text-light text-uppercase">
 								{% include 'icons/location.svg' %}
-								{{ candidate.city }}
+								{{ postulation.candidate.city }}
 							</h3>
 							<div class="bouton d-flex justify-content-around my-3">
-								<a class="btn col btn-transparent text-light rounded-3 text-decoration-none" href="{{ path("admin_consultant_show", { jobOffer: jobOffer.id, candidate: candidate.id }) }}">
+								<a class="btn col btn-transparent text-light rounded-3 text-decoration-none" href="{{ path("admin_consultant_show", { jobOffer: jobOffer.id, candidate: postulation.candidate.id }) }}">
 									{% include 'icons/see.svg' %}
 								</a>
 							</div>
 						</div>
 					</div>
 				{% else %}
-					Aucune offre trouvée.
+					Aucun candidat pour cette offre.
 				{% endfor %}
 			</div>
-			<div class="col-8 bg-transparent rounded-4 border border-dark mx-3 py-3 px-5">
+			<div class="col-xxl-8 col bg-transparent rounded-4 border border-dark mx-3 my-5 my-xxl-0 p-4">
 				{% if candidate is not empty %}
 					<h2 class="jobOffer fs-3 text-dark text-center text-uppercase mb-4 mt-3">
 						{{ candidate.user.lastname }}
 						{{ candidate.user.firstname }}
 					</h2>
+					{% for postulation in jobOffer.postulations %}
+					<a class="mx-auto btn-sm btn-outline-secondary fw-bold w-25 mb-5 border-3 border-secondary" href="{{ path('admin_postulation_validate', {id: postulation.id}) }}">Valider la candidature</a>
+					<a class="mx-auto btn-sm btn-outline-secondary fw-bold w-25 mb-5 border-3 border-secondary" href="{{ path('admin_postulation_reject', {id: postulation.id}) }}">Rejeter la candidature</a></td> 
+				{% endfor %}
+
 					<div class="d-flex flex-column">
 						{{ candidate.photo }}
 						<div class="d-flex align-items-end flex-column information my-2 mx-4">

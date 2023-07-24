@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  * @SuppressWarnings(PHPMD.ExcessivePublicCount)
-*/
+ */
 class Candidate implements Localizable
 {
     #[ORM\Id]
@@ -92,10 +92,8 @@ class Candidate implements Localizable
     #[ORM\Column(nullable: true)]
     private ?float $longitude = null;
 
-    #[ORM\ManyToMany(targetEntity: JobOffer::class, inversedBy: 'apply')]
-    #[JoinTable(name: "apply")]
-    private Collection $apply;
-
+    #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Postulation::class)]
+    private Collection $postulations;
 
     public function __construct()
     {
@@ -103,7 +101,7 @@ class Candidate implements Localizable
         $this->formations = new ArrayCollection();
         $this->experience = new ArrayCollection();
         $this->skills = new ArrayCollection();
-        $this->apply = new ArrayCollection();
+        $this->postulations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -384,31 +382,36 @@ class Candidate implements Localizable
     }
 
     /**
-     * @return Collection<int, JobOffer>
+     * @return Collection<int, Postulation>
      */
-    public function getApply(): Collection
+    public function getPostulations(): Collection
     {
-        return $this->apply;
+        return $this->postulations;
     }
 
-    public function addApply(JobOffer $apply): static
+    public function addPostulation(Postulation $postulation): static
     {
-        if (!$this->apply->contains($apply)) {
-            $this->apply->add($apply);
+        if (!$this->postulations->contains($postulation)) {
+            $this->postulations->add($postulation);
+            $postulation->setCandidate($this);
         }
 
         return $this;
     }
 
-    public function removeApply(JobOffer $apply): static
+    public function removePostulation(Postulation $postulation): static
     {
-        $this->apply->removeElement($apply);
+        if ($this->postulations->removeElement($postulation)) {
+            if ($postulation->getCandidate() === $this) {
+                $postulation->setCandidate(null);
+            }
+        }
 
         return $this;
     }
 
-    public function isApply(JobOffer $jobOffer): bool
+    public function hasPostulated(JobOffer $jobOffer): bool
     {
-        return in_array($jobOffer, $this->getApply()->toArray());
+        return in_array($jobOffer, $this->getPostulations()->toArray());
     }
 }

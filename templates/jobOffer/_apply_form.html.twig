@@ -1,11 +1,7 @@
 <form method="post" action="{{ path('jobOffer_apply', {'id': jobOffer.id}) }}">
     <input type="hidden" name="_token" value="{{ csrf_token('apply' ~ jobOffer.id) }}">
-    {% if app.user.candidate and not app.user.candidate.isApply(jobOffer) %}
+    {% if app.user.candidate %}
     <button class="bi btn btn-primary btn d-flex justify-content-center my-md-5 my-0 mb-5 fs-5 fw-bold text-uppercase px-3 w-100 rounded">
-    Postuler à cette offre</button>
-    {% else %}
-    <button class="bi btn btn-primary btn d-flex justify-content-center my-md-5 my-0 mb-5 fs-5 fw-bold text-uppercase px-3 w-100 rounded">
-    Retirer ma candidature</button>
+    Envoyer/Retirer ma candidature</button>
     {% endif %}
-
 </form>
