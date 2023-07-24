@@ -22,7 +22,7 @@ class Postulation
     #[ORM\JoinColumn(nullable: false)]
     private ?JobOffer $jobOffer = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?bool $isValidate = null;
 
     public function getId(): ?int

@@ -134,14 +134,17 @@ class JobOfferController extends AbstractController
                 $postulation = new Postulation();
                 $postulation->setCandidate($candidate);
                 $postulation->setJobOffer($jobOffer);
-                $postulation->setIsValidate(false);
                 $postulationRepository->save($postulation);
                 $candidate->addPostulation($postulation);
                 $candidateRepository->save($candidate, true);
+                $jobOffer->addCandidate($candidate);
+                $jobOfferRepository->save($jobOffer);
             } elseif($postulation !== null) {
                 $postulationRepository->remove($postulation);
                 $candidate->removePostulation($postulation);
                 $candidateRepository->save($candidate, true);
+                $jobOffer->removeCandidate($candidate);
+                $jobOfferRepository->save($jobOffer);
             }
         }
         return $this->redirectToRoute('jobOffer_index', ['jobOffer' => $jobOffer, 'postulation' => $postulation], Response::HTTP_SEE_OTHER);
