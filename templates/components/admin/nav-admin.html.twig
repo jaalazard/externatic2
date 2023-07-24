@@ -1,66 +1,71 @@
 <div class="flex-nowrap navbar-expand-lg">
-	<div class="container-xl p-0">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon mx-5 my-3"></span>
-		</button>
+	<div class="container-xl p-0 bg-dark">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"></button>
 		<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100" id="navbarNav">
-			<a class="navbar-brand mx-3" href="{{ path('accueil_admin')}}">
-				<img class="logo-nav img-fluid d-none d-md-block mt-5" src=" {{ asset('build/images/logo.png') }} " alt="Logo Externatic">
-				<img class="logo-nav-res img-fluid d-md-none d-block mt-5" src=" {{ asset('build/images/logo-res.png') }} " alt="Logo Externatic">
+			<a class="navbar-brand mx-5 " href="{{ path('accueil_admin')}}">
+				<img class="logo-nav img-fluid d-none d-xl-block my-5" src=" {{ asset('build/images/logo.png') }} " alt="Logo Externatic">
+				<img class="logo-nav-res  img-fluid d-xl-none d-block my-5" src=" {{ asset('build/images/logo-res.png') }} " alt="Logo Externatic">
 			</a>
 			<ul class="nav nav-pills flex-column mb-sm-auto mb-0  mx-auto mt-5" id="menu">
-			{% if (is_granted('ROLE_ADMIN')) %}
-				<li>
-					<a href="{{ path('app_consultant_index')}}" class="nav-link px-0 align-middle my-3">
-						<i class="fs-4"></i>
-						<span class="text-light text-uppercase fs-6 fw-bold">Consultant</span>
-					</a>
-				</li>
+				{% if (is_granted('ROLE_ADMIN',)) %}
+					<li>
+						<a href="{{ path('app_consultant_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/consultant.svg' %}</span>
+							<span class="d-none d-xl-block">
+								consultant
+							</span>
+						</a>
+					</li>
 				{% endif %}
 				{% if (is_granted('ROLE_CONSULTANT')) %}
-				<li>
-					<a href="{{path('admin_jobOffer_index')}}" class="nav-link px-0 align-middle my-3">
-						<i class="fs-4"></i>
-						<span class="text-light text-uppercase fs-6 fw-bold">Offres d'emploi</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{path('app_company_index')}}" class="nav-link px-0 align-middle my-3">
-						<i class="fs-4"></i>
-						<span class="text-light text-uppercase fs-6 fw-bold">Entreprises</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path("admin_consultant_index") }}" class="nav-link px-0 align-middle my-3">
-						<i class="fs-4"></i>
-						<span class="text-light text-uppercase fs-6 fw-bold">Mettre en relation</span>
-					</a>
-				</li>
-						<li>
-					<a href="{{ path("app_business_card_admin_index") }}" class="nav-link px-0 align-middle my-3">
-						<i class="fs-4"></i>
-						<span class="text-light text-uppercase fs-6 fw-bold">Les fiches métiers</span>
-					</a>
-				</li>
-				
+					<li>
+						<a href="{{ path('admin_jobOffer_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/offers.svg' %}</span>
+							<span class="d-none d-xl-block">
+								Offres
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('app_company_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/company.svg' %}</span>
+							<span class="d-none d-xl-block">
+								Entreprise
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('admin_consultant_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/relationship.svg' %}</span>
+							<span class="d-none d-xl-block">
+								Relation
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path("app_business_card_admin_index") }}" class="nav-link px-0 align-middle my-3">
+							<i class="fs-4"></i>
+							<span class="text-light text-uppercase fs-6 fw-bold">Les fiches métiers</span>
+						</a>
+					</li>
 				{% endif %}
+				<div class="dropdown my-5 px-xl-5 ">
+					<a href="#" class="text-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="{{ asset('build/images/placeholder-consultant.jpeg')}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
+					</a>
+					<ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+						<hr class="dropdown-divider">
+						<li>
+							<a class="dropdown-item " href="{{ path('app_logout') }}">Déconnexion</a>
+						</li>
+						<li>
+							<a class="dropdown-item " href="{{ path('app_home')}}">Accueil</a>
+						</li>
+					</ul>
+				</div>
 			</ul>
-			<div class="dropdown">
-				<a href="#" class="text-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-					<img src="{{ asset('build/images/placeholder-consultant.jpeg')}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
-				</a>
-				<ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-					<hr class="dropdown-divider">
-					<li>
-						<a class="dropdown-item " href="{{ path('app_logout') }}">Déconnexion</a>
-					</li>
-					<li>
-						<a class="dropdown-item " href="{{ path('app_home')}}">Accueil</a>
-					</li>
-				</ul>
-			</div>
+
 			<hr>
 		</div>
-
 	</div>
 </div>
