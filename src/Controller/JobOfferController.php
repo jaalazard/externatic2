@@ -99,8 +99,8 @@ class JobOfferController extends AbstractController
     #[Route('/details-offre/{id}/', name: 'show')]
     public function show(
         int $id,
-        JobOfferRepository $jobOfferRepository, PostulationRepository $postulationRepo,
-
+        JobOfferRepository $jobOfferRepository,
+        PostulationRepository $postulationRepo,
     ): Response {
         /** @var User */
         $user = $this->getUser();
