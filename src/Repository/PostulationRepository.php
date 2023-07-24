@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\JobOffer;
+use App\Entity\Candidate;
 use App\Entity\Postulation;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -38,7 +40,7 @@ class PostulationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findOneByCandidateAndJoboffer($candidate, $jobOffer): ?Postulation
+    public function findOneByCandidateAndJoboffer(Candidate $candidate, JobOffer $jobOffer): ?Postulation
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.candidate = :valCand')

@@ -30,13 +30,13 @@ class Postulation
         return $this->id;
     }
 
-    public function getLatitude()
+    public function getLatitude(): ?float
     {
         $jobOffer = $this->getJobOffer();
         return $jobOffer->getLatitude();
     }
 
-    public function getLongitude()
+    public function getLongitude(): ?float
     {
         $jobOffer = $this->getJobOffer();
         return $jobOffer->getLongitude();
