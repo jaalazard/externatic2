@@ -21,19 +21,19 @@ class PostulationController extends AbstractController
     #[Route('/{id}/valider', name: 'validate', methods: ['GET', 'POST'])]
     public function validatePostulation(
         Postulation $postulation,
-        PostulationRepository $postulationRepository
+        PostulationRepository $postulationRepo
     ): Response {
         $postulation->setIsValidate(true);
-        $postulationRepository->save($postulation, true);
+        $postulationRepo->save($postulation, true);
 
         return $this->redirectToRoute('admin_jobOffer_show', ['id' => $postulation->getJobOffer()->getId()]);
     }
 
     #[Route('/{id}/rejeter', name: 'reject', methods: ['GET', 'POST'])]
-    public function rejectPostulation(Postulation $postulation, PostulationRepository $postulationRepository): Response
+    public function rejectPostulation(Postulation $postulation, PostulationRepository $postulationRepo): Response
     {
         $postulation->setIsValidate(false);
-        $postulationRepository->save($postulation, true);
+        $postulationRepo->save($postulation, true);
 
         return $this->redirectToRoute('admin_jobOffer_show', ['id' => $postulation->getJobOffer()->getId()]);
     }

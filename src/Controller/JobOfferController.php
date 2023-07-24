@@ -13,7 +13,6 @@ use App\Repository\BusinessRepository;
 use App\Repository\JobOfferRepository;
 use App\Repository\CandidateRepository;
 use App\Repository\PostulationRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -96,12 +95,12 @@ class JobOfferController extends AbstractController
         int $id,
         JobOfferRepository $jobOfferRepository,
         BusinessRepository $businessRepository,
-        PostulationRepository $postulationRepository,
+        PostulationRepository $postulationRepo,
         CandidateRepository $candidateRepository,
     ): Response {
         $jobOffer = $jobOfferRepository->find($id);
         $businessCard = $businessRepository->find($id);
-        $postulation = $postulationRepository->find($id);
+        $postulation = $postulationRepo->find($id);
         $candidate = $candidateRepository->find($id);
         return $this->render('/jobOffer/show.html.twig', [
             'jobOffer' => $jobOffer,
@@ -119,7 +118,7 @@ class JobOfferController extends AbstractController
         JobOffer $jobOffer,
         CandidateRepository $candidateRepository,
         JobOfferRepository $jobOfferRepository,
-        PostulationRepository $postulationRepository,
+        PostulationRepository $postulationRepo,
     ): Response {
         /** @var User */
         $user = $this->getUser();
@@ -127,20 +126,20 @@ class JobOfferController extends AbstractController
 
         $jobOffer = $jobOfferRepository->find($id);
 
-        $postulation = $postulationRepository->findOneByCandidateAndJoboffer($candidate, $jobOffer);
+        $postulation = $postulationRepo->findOneByCandidateAndJoboffer($candidate, $jobOffer);
 
         if ($this->isCsrfTokenValid('apply' . $jobOffer->getId(), $request->request->get('_token'))) {
             if ($postulation == null) {
                 $postulation = new Postulation();
                 $postulation->setCandidate($candidate);
                 $postulation->setJobOffer($jobOffer);
-                $postulationRepository->save($postulation);
+                $postulationRepo->save($postulation);
                 $candidate->addPostulation($postulation);
                 $candidateRepository->save($candidate, true);
                 $jobOffer->addCandidate($candidate);
                 $jobOfferRepository->save($jobOffer);
             } elseif ($postulation !== null) {
-                $postulationRepository->remove($postulation);
+                $postulationRepo->remove($postulation);
                 $candidate->removePostulation($postulation);
                 $candidateRepository->save($candidate, true);
                 $jobOffer->removeCandidate($candidate);
