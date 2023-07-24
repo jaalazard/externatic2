@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\JobOfferRepository;
 use DateTime;
+use App\Entity\Postulation;
 use App\Service\Localizable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -56,14 +57,14 @@ class JobOffer implements Localizable
     #[ORM\Column(length: 20)]
     private ?string $phone = null;
 
-    #[ORM\ManyToMany(targetEntity: Candidate::class, mappedBy: 'apply')]
-    private Collection $apply;
+    #[ORM\OneToMany(mappedBy: 'jobOffer', targetEntity: Postulation::class)]
+    private Collection $postulations;
 
     public function __construct()
     {
         $this->createdAt = new DateTime();
         $this->candidates = new ArrayCollection();
-        $this->apply = new ArrayCollection();
+        $this->postulations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,27 +232,30 @@ class JobOffer implements Localizable
     }
 
     /**
-     * @return Collection<int, Candidate>
+     * @return Collection<int, Postulation>
      */
-    public function getApply(): Collection
+    public function getPostulations(): Collection
     {
-        return $this->apply;
+        return $this->postulations;
     }
 
-    public function addApply(Candidate $apply): static
+    public function addPostulation(Postulation $postulation): static
     {
-        if (!$this->apply->contains($apply)) {
-            $this->apply->add($apply);
-            $apply->addApply($this);
+        if (!$this->postulations->contains($postulation)) {
+            $this->postulations->add($postulation);
+            $postulation->setJobOffer($this);
         }
 
         return $this;
     }
 
-    public function removeApply(Candidate $apply): static
+    public function removePostulation(Postulation $postulation): static
     {
-        if ($this->apply->removeElement($apply)) {
-            $apply->removeApply($this);
+        if ($this->postulations->removeElement($postulation)) {
+            // set the owning side to null (unless already changed)
+            if ($postulation->getJobOffer() === $this) {
+                $postulation->setJobOffer(null);
+            }
         }
 
         return $this;

@@ -1,24 +1,66 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ parent() }}
-|| Offres postulées
+	{{ parent() }}
+	|| Offres postulées
 {% endblock %}
 
 {% block body %}
 	<section class="container">
 
-			<h1 class="fw-bold text-dark text-uppercase my-5">Avec
+		<h1 class="fw-bold text-dark text-uppercase my-5">Avec
 			<span class="text-primary">
 				Externatic</span>,<br>
 			Retrouvez les offres auxquelles vous avez postulé !</h1>
 
 		<div class="row g-5 mb-5">
-			{% for jobOffer in app.user.candidate.apply %}
-				{% include '/components/jobOffer-card.html.twig' %}
+			{% for postulation in app.user.candidate.postulations %}
+				<h3 class="fw-bold text-primary text-center text-uppercase mt-3 fs-4">
+				{{ postulation.jobOffer.job }}
+			</h3>
+
+			{% if postulation.isValidate is null %} 
+			<h4 class="fw-bold text-success text-center text-uppercase mt-3 fs-4">
+				CANDIDATURE EN ATTENTE !
+			</h4>
+			{% elseif postulation.isValidate == 0 %}
+			<h4 class="fw-bold text-danger text-center text-uppercase mt-3 fs-4">
+				CANDIDATURE REFUSEE !
+			</h4>
+			{% else %}
+			<h4 class="fw-bold text-primary text-center text-uppercase mt-3 fs-4">
+				CANDIDATURE VALIDEE !
+			</h4>
+			{% endif %}
+
+			<div class="container p-block-5">
+				<div class="d-flex">
+					{% include 'icons/contract.svg' %}
+					<h3 class="contract fw-bold fs-5">
+						{{ postulation.jobOffer.contract }}</h3>
+				</div>
+				<div class="d-flex">
+					{% include 'icons/location.svg' %}
+					<h3 class="fst-italic fs-5 fw-bold">
+						{{ postulation.jobOffer.city }}</h3>
+				</div>
+				<h5 class="fw-bold fs-6 text-dark mx-5 text-end">
+					{% set now = "now"|date("Y-m-d") %}
+					{% set nombersDays = ((date("now")|date('U') - postulation.jobOffer.createdAt|date('U'))) / (3600 * 24) %}
+					Publié il y a
+					{{ nombersDays|round }}
+					jours
+				</h5>
+				<p class="d-block text-dark-grey fw-medium mt-3 px-3">{{ postulation.jobOffer.description|u.truncate(150, '...') }}</p>
+				<a class="btn col-12 btn-transparent btn-outline-primary text-uppercase fw-bolder fs-5 rounded-3 text-decoration-none border border-primary my-2" href=" {{ path("jobOffer_show", {'id': postulation.jobOffer.id }) }}">En savoir +</a>
+			</div>
+		</div>
+	</div>
+</div>
+
 			{% else %}
 				<p class="my-5 fw-bold text-primary fs-4">Vous n'avez postulé à aucune offre.</p>
 			{% endfor %}
 		</div>
-    </section>
+	</section>
 {% endblock %}
