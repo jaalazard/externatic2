@@ -53,6 +53,9 @@ class JobOffer implements Localizable
     #[ORM\Column(type: Types::TEXT)]
     private ?string $profil = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $phone = null;
+
     #[ORM\ManyToMany(targetEntity: Candidate::class, mappedBy: 'apply')]
     private Collection $apply;
 
@@ -211,6 +214,18 @@ class JobOffer implements Localizable
     public function setProfil(?string $profil): static
     {
         $this->profil = $profil;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }

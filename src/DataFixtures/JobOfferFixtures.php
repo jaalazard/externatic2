@@ -117,10 +117,12 @@ class JobOfferFixtures extends Fixture implements DependentFixtureInterface
                 $jobOffer->setContract(self::CONTRACTS[array_rand(self::CONTRACTS)]);
                 $jobOffer->setDescription($jobOfferCard['description']);
                 $jobOffer->setCity(self::TOWNS[rand(0, count(self::TOWNS) - 1)]);
-                $jobOffer->setLatitude($faker->latitude(42, 52));
-                $jobOffer->setLongitude($faker->longitude(-3, 7));
+                $jobOffer->setLatitude($faker->latitude(42.6, 49.8));
+                $jobOffer->setLongitude($faker->longitude(-2.6, 7));
                 $jobOffer->setProfil($jobOfferCard['profil']);
                 $jobOffer->setSynopsis($jobOfferCard['synopsis']);
+                $jobOffer->setPhone($faker->phoneNumber());
+
                 $manager->persist($jobOffer);
 
                 $jobOffer->addCandidate($this->getReference('candidate_' .

@@ -7,38 +7,42 @@
 				<img class="logo-nav-res  img-fluid d-xl-none d-block my-5" src=" {{ asset('build/images/logo-res.png') }} " alt="Logo Externatic">
 			</a>
 			<ul class="nav nav-pills flex-column mb-sm-auto mb-0  mx-auto mt-5" id="menu">
-				<li>
-					<a href="{{ path('app_consultant_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
-						<span class="d-xl-none">{% include 'icons/consultant.svg' %}</span>
-						<span class="d-none d-xl-block">
-							consultant
-						</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('admin_jobOffer_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
-						<span class="d-xl-none">{% include 'icons/offers.svg' %}</span>
-						<span class="d-none d-xl-block">
-							Offres
-						</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('app_company_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
-						<span class="d-xl-none">{% include 'icons/company.svg' %}</span>
-						<span class="d-none d-xl-block">
-							Entreprise
-						</span>
-					</a>
-				</li>
-				<li>
-					<a href="{{ path('app_consultant_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
-						<span class="d-xl-none">{% include 'icons/relationship.svg' %}</span>
-						<span class="d-none d-xl-block">
-							Relation
-						</span>
-					</a>
-				</li>
+				{% if (is_granted('ROLE_ADMIN',)) %}
+					<li>
+						<a href="{{ path('app_consultant_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/consultant.svg' %}</span>
+							<span class="d-none d-xl-block">
+								consultant
+							</span>
+						</a>
+					</li>
+				{% endif %}
+				{% if (is_granted('ROLE_CONSULTANT')) %}
+					<li>
+						<a href="{{ path('admin_jobOffer_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/offers.svg' %}</span>
+							<span class="d-none d-xl-block">
+								Offres
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('app_company_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/company.svg' %}</span>
+							<span class="d-none d-xl-block">
+								Entreprise
+							</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path('admin_consultant_index')}}" class="nav-link px-0 text-light text-uppercase fs-5 fw-bolder align-middle my-3">
+							<span class="d-xl-none">{% include 'icons/relationship.svg' %}</span>
+							<span class="d-none d-xl-block">
+								Relation
+							</span>
+						</a>
+					</li>
+				{% endif %}
 				<div class="dropdown my-5 px-xl-5 ">
 					<a href="#" class="text-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
 						<img src="{{ asset('build/images/placeholder-consultant.jpeg')}}" alt="hugenerd" width="30" height="30" class="rounded-circle">
