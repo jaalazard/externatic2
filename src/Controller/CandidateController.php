@@ -23,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 #[IsGranted('ROLE_CANDIDATE')]
 class CandidateController extends AbstractController
 {
@@ -92,6 +93,29 @@ class CandidateController extends AbstractController
         );
     }
 
+    #[Route('/{id}/skill/edit', name: 'app_candidate_edit_skill', methods: ['GET', 'POST'])]
+    public function editSkill(Request $request, Skill $skill, SkillRepository $skillRepository): Response
+    {
+
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        $form = $this->createForm(SkillType::class, $skill);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $skillRepository->save($skill, true);
+
+            return $this->redirectToRoute('app_candidate_profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('candidate/edit.html.twig', [
+            'skill' => $skill,
+            'form' => $form,
+            'candidate' => $candidate,
+        ]);
+    }
+
     #[Route('/candidat/{id}/formation/supprimer', name: 'app_candidate_delete_formation', methods: ['POST'])]
     public function deleteFormation(
         Request $request,
@@ -117,6 +141,32 @@ class CandidateController extends AbstractController
         );
     }
 
+    #[Route('/{id}/formation/edit', name: 'app_candidate_edit_formation', methods: ['GET', 'POST'])]
+    public function editformation(
+        Request $request,
+        Formation $formation,
+        FormationRepository $formationRepository
+    ): Response {
+
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        $form = $this->createForm(FormationType::class, $formation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $formationRepository->save($formation, true);
+
+            return $this->redirectToRoute('app_candidate_profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('candidate/edit.html.twig', [
+            'formation' => $formation,
+            'form' => $form,
+            'candidate' => $candidate,
+        ]);
+    }
+
     #[Route('/candidat/{id}/experience/supprimer', name: 'app_candidate_delete_experience', methods: ['POST'])]
     public function deleteExperience(
         Request $request,
@@ -140,6 +190,32 @@ class CandidateController extends AbstractController
             ['candidate' => $candidate, 'id' => $candidate->getId()],
             Response::HTTP_SEE_OTHER
         );
+    }
+
+    #[Route('/{id}/experience/edit', name: 'app_candidate_edit_experience', methods: ['GET', 'POST'])]
+    public function editexperience(
+        Request $request,
+        Experience $experience,
+        ExperienceRepository $experienceRepository
+    ): Response {
+
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        $form = $this->createForm(ExperienceType::class, $experience);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $experienceRepository->save($experience, true);
+
+            return $this->redirectToRoute('app_candidate_profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('candidate/edit.html.twig', [
+            'experience' => $experience,
+            'form' => $form,
+            'candidate' => $candidate,
+        ]);
     }
 
     #[Route('candidat', name: 'app_candidate_profile', methods: ['GET', 'POST'])]
