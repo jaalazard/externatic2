@@ -412,6 +412,6 @@ class Candidate implements Localizable
 
     public function hasPostulated(?Postulation $postulation): ?bool
     {
-        return in_array($postulation, $this->getPostulations()->toArray());
-    }
+        return $this->getPostulations()->contains($postulation);
+     }
 }
