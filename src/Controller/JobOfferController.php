@@ -100,10 +100,17 @@ class JobOfferController extends AbstractController
     public function show(
         int $id,
         JobOfferRepository $jobOfferRepository,
+        PostulationRepository $postulationRepo,
     ): Response {
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
         $jobOffer = $jobOfferRepository->find($id);
+        $postulation = $postulationRepo->findOneByCandidateAndJoboffer($candidate, $jobOffer);
+
         return $this->render('/jobOffer/show.html.twig', [
             'jobOffer' => $jobOffer,
+            'postulation' => $postulation,
         ]);
     }
 
