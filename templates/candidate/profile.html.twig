@@ -23,14 +23,12 @@
 		<div class="cadre border border-primary bg-light rounded-3 shadow p-3 mb-5 rounded">
 			<div class="d-flex justify-content-between gap-2 flex-wrap">
 				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align" href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}"><span>Mon CV</span> {{ include('icons/file.svg') }}</a>
-				<a class="btn btn-primary fs-5 align-items text-light fw-bold text-decoration-none justify-content-end" href="{{ path('app_candidate_edit_profile', {'id': app.user.candidate.id}) }}">{{ include('icons/edit.svg') }}
 					Modifier</a>
 			</div>
 
 			<div class="d-md-flex d-block pt-md-5 pt-2">
 
 				<img style="width: 250px; height: 250px;" class="object-fit-cover img-fluid  my-3 ms-4 rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
-				<a class="btn btn-primary h-25 text-light d-flex justify-content-center my-3 fw-bold me-md-5 text-decoration-none" href="{{ path('app_candidate_edit_profilePic', {'id': app.user.candidate.id}) }}">{{ include('icons/camera.svg') }}</a>
 
 				<div class="flex-column my-5 mx-md-5">
 					<h2 class="title text-primary fw-bold text-uppercase fs-1 ms-md-4 mb-4 ">{{ app.user.candidate.user.lastname }}
@@ -66,7 +64,6 @@
 					-
 					<span class="text-secondary">{{ experience.company }}</span>
 				</h4>
-				<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_experience', {'id': experience.id}) }}">{% include 'icons/new.svg'%}
 
 				<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
 					{{ experience.start|date('d/m/Y') }}
