@@ -140,6 +140,29 @@ class CandidateController extends AbstractController
         );
     }
 
+    #[Route('/{id}/formation/edit', name: 'app_candidate_edit_formation', methods: ['GET', 'POST'])]
+    public function editformation(Request $request, Formation $formation, FormationRepository $formationRepository): Response
+    {
+
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        $form = $this->createForm(FormationType::class, $formation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $formationRepository->save($formation, true);
+
+            return $this->redirectToRoute('app_candidate_profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('candidate/edit.html.twig', [
+            'formation' => $formation,
+            'form' => $form,
+            'candidate' => $candidate,
+        ]);
+    }
+
     #[Route('/candidat/{id}/experience/supprimer', name: 'app_candidate_delete_experience', methods: ['POST'])]
     public function deleteExperience(
         Request $request,
