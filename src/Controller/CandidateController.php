@@ -23,6 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 #[IsGranted('ROLE_CANDIDATE')]
 class CandidateController extends AbstractController
 {
