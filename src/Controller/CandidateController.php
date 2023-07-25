@@ -188,6 +188,29 @@ class CandidateController extends AbstractController
         );
     }
 
+    #[Route('/{id}/experience/edit', name: 'app_candidate_edit_experience', methods: ['GET', 'POST'])]
+    public function editexperience(Request $request, Experience $experience, ExperienceRepository $experienceRepository): Response
+    {
+
+        /** @var User */
+        $user = $this->getUser();
+        $candidate = $user->getCandidate();
+        $form = $this->createForm(ExperienceType::class, $experience);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $experienceRepository->save($experience, true);
+
+            return $this->redirectToRoute('app_candidate_profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('candidate/edit.html.twig', [
+            'experience' => $experience,
+            'form' => $form,
+            'candidate' => $candidate,
+        ]);
+    }
+
     #[Route('candidat', name: 'app_candidate_profile', methods: ['GET', 'POST'])]
     public function show(): Response
     {
