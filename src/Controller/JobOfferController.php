@@ -144,12 +144,14 @@ class JobOfferController extends AbstractController
                 $candidateRepository->save($candidate, true);
                 $jobOffer->addCandidate($candidate);
                 $jobOfferRepository->save($jobOffer);
+                $this->addFlash('success', 'Vous avez postulé à cette offre.');
             } elseif ($postulation !== null) {
                 $postulationRepo->remove($postulation);
                 $candidate->removePostulation($postulation);
                 $candidateRepository->save($candidate, true);
                 $jobOffer->removeCandidate($candidate);
                 $jobOfferRepository->save($jobOffer);
+                $this->addFlash('warning', 'Vous avez retiré votre candidature à cette offre.');
             }
         }
         return $this->redirectToRoute(
