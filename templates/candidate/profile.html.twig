@@ -66,6 +66,8 @@
 					-
 					<span class="text-secondary">{{ experience.company }}</span>
 				</h4>
+				<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_experience', {'id': experience.id}) }}">{% include 'icons/new.svg'%}
+
 				<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
 					{{ experience.start|date('d/m/Y') }}
 					au
@@ -92,6 +94,8 @@
 							<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
 								{{ skill.name }}
 							</li>
+							<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_skill', {'id': skill.id}) }}">{% include 'icons/new.svg'%}
+
 						</div>
 					{% endfor %}
 				</ul>
@@ -117,6 +121,7 @@
 					<h5 class="h6 d-flex justify-content-center my-5">
 						{{ formation.description }}
 					</h5>
+							<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_formation', {'id': formation.id}) }}">{% include 'icons/new.svg'%}
 
 					<div class="mb-5">
 						{% include 'formation/_delete_form.html.twig' %}
