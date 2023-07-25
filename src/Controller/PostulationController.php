@@ -26,6 +26,7 @@ class PostulationController extends AbstractController
         $postulation->setIsValidate(true);
         $postulationRepo->save($postulation, true);
 
+        $this->addFlash('success', 'Vous avez validé la cadidature de ce candidat.');
         return $this->redirectToRoute('admin_consultant_index', ['id' => $postulation->getJobOffer()->getId()]);
     }
 
@@ -35,6 +36,7 @@ class PostulationController extends AbstractController
         $postulation->setIsValidate(false);
         $postulationRepo->save($postulation, true);
 
+        $this->addFlash('info', 'Vous avez décliné la candidature de ce candidat.');
         return $this->redirectToRoute('admin_consultant_index', ['id' => $postulation->getJobOffer()->getId()]);
     }
 }
