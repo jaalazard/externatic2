@@ -92,6 +92,8 @@
 							<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
 								{{ skill.name }}
 							</li>
+							<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_skill', {'id': skill.id}) }}">{% include 'icons/new.svg'%}
+
 						</div>
 					{% endfor %}
 				</ul>
