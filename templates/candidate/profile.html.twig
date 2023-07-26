@@ -22,8 +22,7 @@
 	<section class="container">
 		<div class="cadre border border-primary bg-light rounded-3 shadow p-3 mb-5 rounded">
 			<div class="d-flex justify-content-between gap-2 flex-wrap">
-				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align">
-					<span href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}">Mon CV</span>
+				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align" href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}"><span>Mon CV</span>
 					{{ include('icons/file.svg') }}</a>
 				<a class="btn btn-primary fs-5 align-items text-light fw-bold text-decoration-none justify-content-end" href="{{ path('app_candidate_edit_profile', {'id': app.user.candidate.id}) }}">{{ include('icons/edit.svg') }}
 					Modifier</a>
