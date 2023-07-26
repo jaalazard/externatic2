@@ -73,6 +73,10 @@ form {
     font-size: 1rem;
 }
 
+.leaflet-marker-icon{
+    filter: hue-rotate(2.10rad) brightness(60%);
+}
+
 @media screen and (max-width:600px) {
     .jobOfferForm>form {
         flex-direction: column;
