@@ -68,7 +68,7 @@ class JobOfferType extends AbstractType
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
                 'attr' => [
-                    'placeholder' => 'Rentrez votre numéro de mobile',
+                    'placeholder' => 'Entrez votre numéro de mobile',
                 ]
             ]);
     }
