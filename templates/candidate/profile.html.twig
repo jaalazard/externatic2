@@ -30,7 +30,7 @@
 
 			<div class="d-md-flex d-block pt-md-5 pt-2">
 
-				<img style="width: 250px; height: 250px;" class="object-fit-cover img-fluid  my-3 ms-4 rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
+				<img class="object-fit-cover img-fluid  my-3 ms-4 rounded-circle" src="{% if app.user.candidate.photo %}{{asset('uploads/images/candidate/') ~ app.user.candidate.photo}}{% else %}{{ asset('build/images/placeholder-consultant.jpeg')}}{% endif %}" alt="{{ app.user.lastname }}">
 
 				<div class="flex-column my-5 mx-md-5">
 					<h2 class="title text-primary fw-bold text-uppercase fs-1 ms-md-4 mb-4 ">{{ app.user.candidate.user.lastname }}
