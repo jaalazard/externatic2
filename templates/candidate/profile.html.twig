@@ -22,7 +22,8 @@
 	<section class="container">
 		<div class="cadre border border-primary bg-light rounded-3 shadow p-3 mb-5 rounded">
 			<div class="d-flex justify-content-between gap-2 flex-wrap">
-				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align" href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}"><span>Mon CV</span> {{ include('icons/file.svg') }}</a>
+				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align" href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}"><span>Mon CV</span>
+					{{ include('icons/file.svg') }}</a>
 				<a class="btn btn-primary fs-5 align-items text-light fw-bold text-decoration-none justify-content-end" href="{{ path('app_candidate_edit_profile', {'id': app.user.candidate.id}) }}">{{ include('icons/edit.svg') }}
 					Modifier</a>
 			</div>
@@ -66,7 +67,6 @@
 					-
 					<span class="text-secondary">{{ experience.company }}</span>
 				</h4>
-				<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_experience', {'id': experience.id}) }}">{% include 'icons/new.svg'%}
 
 				<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
 					{{ experience.start|date('d/m/Y') }}
@@ -78,59 +78,67 @@
 					{{ experience.description }}
 				</h5>
 				<div class="mb-5">
+
 					{% include 'experience/_delete_form.html.twig' %}
-				{% endfor %}
-				<h3 class="fs-md-6 h2 mt-5 fw-bold mb-md-5 pt-5 border-top border-secondary d-flex justify-content-center pb-md-5">Compétences
-					<button class="btn btn-secondary mx-4">
-						<a class="text-white fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': app.user.candidate.id}) }}">{% include 'icons/new.svg'%}
-							Ajouter une compétence</a>
-					</button>
-				</h3>
-				<ul class="ul">
+				</div>
+				<div class="mb-5">
 
-					{% for skill in app.user.candidate.skills %}
-						<div class="d-flex">
-							{% include 'skill/_delete_form.html.twig' %}
-							<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
-								{{ skill.name }}
-							</li>
-							<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_skill', {'id': skill.id}) }}">{% include 'icons/new.svg'%}
+					<a class="btn btn-primary btn-sm fw-bold rounded-10" href="{{ path('app_candidate_edit_experience', {'id': experience.id}) }}">{% include 'icons/edite.svg'%} Modifier</a>
+				</div>
 
-						</div>
-					{% endfor %}
-				</ul>
-
-				<h3 class="fs-md-6 h2 mt-5 fw-bold my-5 pt-5 d-flex justify-content-center">Formations
-					<button class="btn btn-secondary mx-4">
-						<a class="text-white fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': app.user.candidate.id}) }}">{% include 'icons/new.svg'%}
-							Ajouter une formation</a>
-					</button>
-				</h3>
-				{% for formation in app.user.candidate.formations %}
-					<h4 class="border-top border-secondary pt-5">
-						<span class="text-primary">{{ formation.diploma }}</span>
-						-
-						<span class="text-secondary">{{ formation.establishment }}</span>
-					</h4>
-					<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
-						{{ formation.start|date('d/m/Y') }}
-						au
-						{{ formation.end|date('d/m/Y') }}
-					</h5>
-
-					<h5 class="h6 d-flex justify-content-center my-5">
-						{{ formation.description }}
-					</h5>
-							<a class="btn btn-primary text-white fw-bold text-decoration-none" href="{{ path('app_candidate_edit_formation', {'id': formation.id}) }}">{% include 'icons/new.svg'%}
-
-					<div class="mb-5">
-						{% include 'formation/_delete_form.html.twig' %}
-					</div>
-				{% endfor %}
 			</div>
-		</div>
-	</section>
-{% endblock %}
-{% block footer %}
-	{% include "components/_footer.html.twig" %}
-{% endblock %}
+		{% endfor %}
+		<h3 class="fs-md-6 h2 mt-5 fw-bold mb-md-5 pt-5 border-top border-secondary d-flex justify-content-center pb-md-5">Compétences
+			<button class="btn btn-secondary mx-4">
+				<a class="text-white fw-bold text-decoration-none" href="{{ path('app_candidate_add_skill', {'id': app.user.candidate.id}) }}">{% include 'icons/new.svg'%}
+					Ajouter une compétence</a>
+			</button>
+		</h3>
+		<ul class="ul">
+
+			{% for skill in app.user.candidate.skills %}
+				<div class="d-flex">
+					{% include 'skill/_delete_form.html.twig' %}
+
+					<li class="list-unstyled fw-bold text-secondary fst-italic fs-5 my-3 mx-5">{{ include('icons/arrow.svg') }}
+						{{ skill.name }}
+					</li>
+
+				</div>
+			{% endfor %}
+		</ul>
+
+		<h3 class="fs-md-6 h2 mt-5 fw-bold my-5 pt-5 d-flex justify-content-center">Formations
+			<button class="btn btn-secondary mx-4">
+				<a class="text-white fw-bold text-decoration-none" href="{{ path('app_candidate_add_formation', {'id': app.user.candidate.id}) }}">{% include 'icons/new.svg'%}
+					Ajouter une formation</a>
+			</button>
+
+		</h3>
+		{% for formation in app.user.candidate.formations %}
+			<h4 class="border-top border-secondary pt-5">
+				<span class="text-primary">{{ formation.diploma }}</span>
+				-
+				<span class="text-secondary">{{ formation.establishment }}</span>
+			</h4>
+			<h5 class="h6 d-flex justify-content-end fw-bold fst-italic">Du
+				{{ formation.start|date('d/m/Y') }}
+				au
+				{{ formation.end|date('d/m/Y') }}
+			</h5>
+
+			<h5 class="h6 d-flex justify-content-center my-5">
+				{{ formation.description }}
+			</h5>
+
+			<div class="mb-5">
+				{% include 'formation/_delete_form.html.twig' %}
+			</div>
+			<div class="mb-5">
+				<a class="btn btn-primary btn-sm fw-bold rounded-10" href="{{ path('app_candidate_edit_formation', {'id': formation.id}) }}">{% include 'icons/edite.svg'%} Modifier</a>
+			</div>
+
+
+		{% endfor %}
+	</div>
+</div></section>{% endblock %}{% block footer %}{% include "components/_footer.html.twig" %}{% endblock %}
