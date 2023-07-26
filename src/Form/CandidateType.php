@@ -16,7 +16,8 @@ class CandidateType extends AbstractType
     {
         $builder
             ->add('cvitaeFile', VichFileType::class, [
-                'label' => 'Format pdf',
+                'label' => 'Ajouter votre CV ',
+                'help' => 'Format PDF requis',
                 'attr' => [
                     'class' => 'border-primary',
                 ],
