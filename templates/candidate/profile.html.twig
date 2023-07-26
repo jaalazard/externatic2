@@ -22,7 +22,8 @@
 	<section class="container">
 		<div class="cadre border border-primary bg-light rounded-3 shadow p-3 mb-5 rounded">
 			<div class="d-flex justify-content-between gap-2 flex-wrap">
-				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align" href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}"><span>Mon CV</span>
+				<a class="btn text-light align-middle bg-secondary fs-5 fw-bold pt-2 text-align" href="{{ vich_uploader_asset(app.user.candidate, 'cvitaeFile') }}">
+					<span>Mon CV</span>
 					{{ include('icons/file.svg') }}</a>
 				<a class="btn btn-primary fs-5 align-items text-light fw-bold text-decoration-none justify-content-end" href="{{ path('app_candidate_edit_profile', {'id': app.user.candidate.id}) }}">{{ include('icons/edit.svg') }}
 					Modifier</a>
@@ -82,7 +83,8 @@
 				</div>
 				<div class="mb-5">
 
-					<a class="btn btn-primary btn-sm fw-bold rounded-10" href="{{ path('app_candidate_edit_experience', {'id': experience.id}) }}">{% include 'icons/edite.svg'%} Modifier</a>
+					<a class="btn btn-primary btn-sm fw-bold rounded-10" href="{{ path('app_candidate_edit_experience', {'id': experience.id}) }}">{% include 'icons/edite.svg'%}
+						Modifier</a>
 				</div>
 
 			</div>
@@ -134,10 +136,14 @@
 				{% include 'formation/_delete_form.html.twig' %}
 			</div>
 			<div class="mb-5">
-				<a class="btn btn-primary btn-sm fw-bold rounded-10" href="{{ path('app_candidate_edit_formation', {'id': formation.id}) }}">{% include 'icons/edite.svg'%} Modifier</a>
+				<a class="btn btn-primary btn-sm fw-bold rounded-10" href="{{ path('app_candidate_edit_formation', {'id': formation.id}) }}">{% include 'icons/edite.svg'%}
+					Modifier</a>
 			</div>
 
 
 		{% endfor %}
 	</div>
-</div></section>{% endblock %}{% block footer %}{% include "components/_footer.html.twig" %}{% endblock %}
+</section>
+{% endblock %}
+{% block footer %}
+{% endblock %}
