@@ -27,17 +27,17 @@
 				<div class="row mt-3">
 					<div class="col-md-4">
 						{{ form_label(form.search)}}
-						{{ form_widget(form.search)}}
+						{{ form_widget(form.search, {'attr':{'class': 'mb-0'}})}}
 						{{ form_errors(form.search)}}
 					</div>
 					<div class="col-md-4">
 						{{ form_label(form.contract)}}
-						{{ form_widget(form.contract)}}
+						{{ form_widget(form.contract, {'attr':{'class': 'mb-0'}})}}
 						{{ form_errors(form.contract)}}
 					</div>
 					<div class="col-md-4">
 						{{ form_label(form.city)}}
-						{{ form_widget(form.city)}}
+						{{ form_widget(form.city, {'attr':{'class': 'mb-0'}})}}
 						{{ form_help(form.city)}}
 						{{ form_errors(form.city)}}
 					</div>
