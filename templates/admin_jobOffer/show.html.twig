@@ -4,33 +4,38 @@
 {% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
 	<h1>Offres d'emplois</h1>
+=======
+<section class="container">
+	<h1 class="text-primary fw-bold text-uppercase d-flex my-5">JobOffer</h1>
+>>>>>>> 7ac74dfbc9c770305593c80f39c872de241205e9
 
 	<table class="table">
 		<tbody>
 			<tr>
-				<th>Poste</th>
-				<td>{{ jobOffer.job }}</td>
+				<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">>Poste</th>
+				<td class="fs-5 fw-medium">>{{ jobOffer.job }}</td>
 			</tr>
 			<tr>
-				<th>Ville</th>
-				<td>{{ jobOffer.city }}</td>
+				<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">>Ville</th>
+				<td class="fs-5 fw-medium">>{{ jobOffer.city }}</td>
 			</tr>
 			<tr>
-				<th>Contrat</th>
-				<td>{{ jobOffer.contract }}</td>
+				<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">>Contrat</th>
+				<td class="fs-5 fw-medium">>{{ jobOffer.contract }}</td>
 			</tr>
 			<tr>
-				<th>Description</th>
-				<td>{{ jobOffer.description }}</td>
+				<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">>Description</th>
+				<td class="fs-5 fw-medium">>{{ jobOffer.description }}</td>
 			</tr>
 			<tr>
-				<th>Date d'ajout</th>
-				<td>{{ jobOffer.createdAt ? jobOffer.createdAt|date('Y-m-d') : '' }}</td>
+				<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">>Date d'ajout</th>
+				<td class="fs-5 fw-medium">>{{ jobOffer.createdAt ? jobOffer.createdAt|date('Y-m-d') : '' }}</td>
 			</tr>
 			<tr>
-				<th>Téléphone</th>
-				<td>{{ jobOffer.phone }}</td>
+				<th class="text-dark fw-bold text-uppercase fs-5 mx-md-5 mx-0 my-5">>Téléphone</th>
+				<td class="fs-5 fw-medium">>{{ jobOffer.phone }}</td>
 			</tr>
 		</tbody>
 	</table>
