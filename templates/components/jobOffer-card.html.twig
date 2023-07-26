@@ -27,7 +27,7 @@
 					{% set nombersDays = ((date("now")|date('U') - jobOffer.createdAt|date('U'))) / (3600 * 24) %}
 					Publié il y a
 					{{ nombersDays|round }}
-					jours
+					jour(s)
 				</h5>
 				<p class="d-block text-dark-grey fw-medium mt-3 px-3">{{ jobOffer.description|u.truncate(150, '...') }}</p>
 				<a class="btn col-12 btn-transparent btn-outline-primary text-uppercase fw-bolder fs-5 rounded-3 text-decoration-none border border-primary my-2" href=" {{ path("jobOffer_show", {'id': jobOffer.id }) }}">En savoir +</a>
