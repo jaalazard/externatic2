@@ -6,6 +6,7 @@ export default class extends Controller {
 
   connect() {
     let map = L.map('map').setView([47, 1], 5);
+    L.control.scale().addTo(map);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
