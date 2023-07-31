@@ -60,7 +60,7 @@
 						<a class="btn text-white bg-danger rounded-4 fw-bold text-decoration-none mx-2" href="{{ path('admin_postulation_reject', {id: postulation.id}) }}">Rejeter la candidature {% include 'icons/cross.svg' %}</a></td> 
 					</div>
 					<div class="d-flex flex-column">
-						{{ candidate.photo }}
+						<img class="object-fit-cover img-fluid  my-3 ms-4 rounded-circle" src="{{asset('uploads/images/candidate/') ~ candidate.photo}}" alt="{{ candidate.user.lastname }} {{ candidate.user.firstname }}">
 						<div class="d-flex align-items-end flex-column information my-2 mx-4">
 							<h3 class="fs-6 text-dark fw-semibold fst-italic">{{ candidate.address }}</h3>
 							<h3 class="fs-6 text-dark fw-semibold fst-italic">{{ candidate.city }}</h3>
