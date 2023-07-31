@@ -6,6 +6,7 @@ use App\Entity\JobOffer;
 use App\Entity\Candidate;
 use App\Form\SearchJobType;
 use App\Entity\JobOfferSearch;
+use App\Repository\CandidateRepository;
 use App\Repository\JobOfferRepository;
 use App\Repository\PostulationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,12 +39,17 @@ class AdminConsultantController extends AbstractController
     }
 
     #[Route('/{jobOffer}/candidats/{candidate}', name: 'show', methods: ['GET'])]
-    public function showCandidate(JobOffer $jobOffer, Candidate $candidate = null): Response
-    {
+    public function showCandidate(
+        JobOffer $jobOffer,
+        PostulationRepository $postulationRepo,
+        CandidateRepository $candidateRepository,
+        Candidate $candidate = null
+    ): Response {
         return $this->render('admin_consultant/show.html.twig', [
             'candidate' => $candidate,
             'jobOffer' => $jobOffer,
-            'postulations' => $jobOffer->getPostulations()
+            'postulations' => $jobOffer->getPostulations(),
+            'postulation' => $postulationRepo->findOneByCandidateAndJoboffer($candidate, $jobOffer)
         ]);
     }
 }
