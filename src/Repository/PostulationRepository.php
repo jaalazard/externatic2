@@ -40,7 +40,7 @@ class PostulationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findOneByCandidateAndJoboffer(Candidate $candidate, JobOffer $jobOffer): ?Postulation
+    public function findOneByCandidateAndJoboffer(Candidate $candidate = null, JobOffer $jobOffer = null): ?Postulation
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.candidate = :valCand')
